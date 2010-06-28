@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="Tier" elementFormDefault="qualified" targetNamespace="Tier">
+
+  <xs:element name="piece" type="Piece"/>
+  <xs:element name="piececonnection" type="PieceConnection"/>
+  <xs:element name="weaponconnection" type="WeaponConnection"/>
+  <xs:element name="vector3" type="Vector3"/>
+
+  <xs:complexType name="PieceConnection">
+    <xs:sequence>
+      <xs:element name="position" type="Vector3"/>
+      <xs:element name="pivot" type="Vector3"/>
+    </xs:sequence>
+  </xs:complexType>
+
+	<xs:complexType name="WeaponConnection">
+		<xs:sequence>
+			<xs:element name="position" type="Vector3"/>
+			<xs:element name="pivot" type="Vector3"/>
+			<xs:element name="weapontype" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	
+  <xs:complexType name="Vector3">
+    <xs:attribute name="x" type="xs:float"/>
+    <xs:attribute name="y" type="xs:float"/>
+    <xs:attribute name="z" type="xs:float"/>
+  </xs:complexType>
+
+  <xs:complexType name="Piece">
+    <xs:sequence>
+      <xs:element name="name" type="xs:string"/>
+      <xs:element name="connection" type="PieceConnection" minOccurs="1" maxOccurs="unbounded"/>
+	  <xs:element name="weaponconnection" type="WeaponConnection" minOccurs="0" maxOccurs="unbounded"/>
+	</xs:sequence>
+  </xs:complexType>
+
+</xs:schema>
