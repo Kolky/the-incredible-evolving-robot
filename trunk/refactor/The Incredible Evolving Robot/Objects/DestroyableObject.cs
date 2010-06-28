@@ -204,7 +204,7 @@ namespace Tier.Objects
     public virtual void Explode(BasicObject parent)
     {
       this.Exploded = true;
-			TierGame.Audio.playSFX3D("explosion", this, 2); //Limits the explosion to two at a time (for this events at any case)
+			//TierGame.Audio.playSFX3D("explosion", this, 2); //Limits the explosion to two at a time (for this events at any case)
 			TierGame.GameHandler.Boss.Health -= this.MaxHealth;
 			if (TierGame.GameHandler.Boss.Health > this.MaxHealth)
 				TierGame.GameHandler.Boss.Health -= this.MaxHealth;

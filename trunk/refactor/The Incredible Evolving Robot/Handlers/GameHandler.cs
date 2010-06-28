@@ -176,8 +176,8 @@ namespace Tier.Handlers
         TierGame.ContentHandler.setAnimatedTexture("Explosion", "Content//Textures//Explosion//BigExplosion");
 
         //instanced models:
-        TierGame.ContentHandler.setInstancedModel("DoubleBullet", TierGame.Content.Load<InstancedModel>("Content//Models//DoubleBullet"));
-				TierGame.ContentHandler.setInstancedModel("Rocket", TierGame.Content.Load<InstancedModel>("Content//Models//Rocket"));
+        TierGame.ContentHandler.setModel("DoubleBullet", TierGame.Content.Load<Model>("Content//Models//DoubleBullet"));
+        TierGame.ContentHandler.setModel("Rocket", TierGame.Content.Load<Model>("Content//Models//Rocket"));
 
         BasicEffect effect = new BasicEffect(TierGame.Device, null);
         effect.TextureEnabled = true;

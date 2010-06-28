@@ -70,13 +70,13 @@ namespace Tier.Menus
 							Options.Settings.BGMVolume = 1f;
 							this.MenuItems.ChangeItemText("Music", "Music On");
 						}
-						TierGame.Audio.setVolumeBGM(Options.Settings.BGMVolume);
+						//TierGame.Audio.setVolumeBGM(Options.Settings.BGMVolume);
 						break;
 					case 1: // start
 						if (Options.Settings.SFXVolume > 0)
 						{
 							Options.Settings.SFXVolume = 0;
-							TierGame.Audio.setVolumeSFX(0f);
+							//TierGame.Audio.setVolumeSFX(0f);
 							this.MenuItems.ChangeItemText("SFX", "SFX Off");
 						}
 						else
@@ -84,7 +84,7 @@ namespace Tier.Menus
 							Options.Settings.SFXVolume = 1f;
 							this.MenuItems.ChangeItemText("SFX", "SFX On");
 						}
-						TierGame.Audio.setVolumeSFX(Options.Settings.SFXVolume);
+						//TierGame.Audio.setVolumeSFX(Options.Settings.SFXVolume);
 						break;
 					case 2:
 						TierGame.Graphics.IsFullScreen = !TierGame.Graphics.IsFullScreen;

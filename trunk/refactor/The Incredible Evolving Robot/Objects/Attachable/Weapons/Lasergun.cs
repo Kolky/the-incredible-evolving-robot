@@ -47,7 +47,7 @@ namespace Tier.Objects.Attachable.Weapons
 		{
 			if (base.canFire())
 			{
-				TierGame.Audio.playSFX3D("photon", this, 82);
+				//TierGame.Audio.playSFX3D("photon", this, 82);
 				GameHandler.ObjectHandler.AddObject(new LaserCluster(this.Game, this.Position, this.radSpread));
 				base.Fire();
 			}
