@@ -10,33 +10,34 @@ using Tier.Handlers;
 
 namespace Tier.Objects.Destroyable.Projectile
 {
-  class Rocket : Tier.Objects.Projectile
-  {
-    public Rocket(Game game, Position sourcePos)
-      : base(game, true, sourcePos, 10)
+    class Rocket : Tier.Objects.Projectile
     {
-      this.TimeToLive = 2000;
-			this.ModelName = "Rocket";
-			this.ModelMeta = TierGame.ContentHandler.GetModelMeta(this.ModelName);
-      this.Scale = 0.025f;
-      this.Sort = SortFilter.OtherInstanced;
-      this.IsInstanced = true;
-			this.addBoundingShere(0.2f, new Vector3(0f, 0f, 0.8f));
+        public Rocket(Game game, Position sourcePos)
+            : base(game, true, sourcePos, 10)
+        {
+            this.TimeToLive = 2000;
+            this.ModelName = "Rocket";
+            this.ModelMeta = TierGame.ContentHandler.GetModelMeta(this.ModelName);
+            this.Model = this.ModelMeta.Model;
+            this.Scale = 0.025f;
+            //this.Sort = SortFilter.OtherInstanced;
+            //this.IsInstanced = true;
+            this.addBoundingShere(0.2f, new Vector3(0f, 0f, 0.8f));
 
-      this.Initialize();
+            this.Initialize();
+        }
+
+        public override void Initialize()
+        {
+            base.Initialize();
+            //this.RotationFix = Matrix.CreateRotationY(-MathHelper.PiOver2);
+            this.RotationFix = Matrix.CreateRotationX(MathHelper.PiOver2);
+        }
+
+        public override void Update(GameTime gameTime)
+        {
+            this.UpdateBoundingObjects();
+            base.Update(gameTime);
+        }
     }
-
-    public override void Initialize()
-    {
-      base.Initialize();			 
-   //   this.RotationFix = Matrix.CreateRotationY(-MathHelper.PiOver2);
-      this.RotationFix = Matrix.CreateRotationX(MathHelper.PiOver2);
-    }
-
-		public override void Update(GameTime gameTime)
-		{
-			this.UpdateBoundingObjects();
-			base.Update(gameTime);
-		}
-  }
 }
