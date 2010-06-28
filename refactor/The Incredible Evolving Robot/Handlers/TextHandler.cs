@@ -246,8 +246,8 @@ namespace Tier.Handlers
     public void Initialize()
     {
       this.fontBatch = new SpriteBatch(TierGame.Device);
-      this.font = TierGame.Content.Load<SpriteFont>("Content\\Fonts\\Arial");
-      this.fontTexture = TierGame.Content.Load<Texture2D>("Content\\Fonts\\GameFont");
+      this.font = TierGame.Instance.Content.Load<SpriteFont>("Content\\Fonts\\Arial");
+      this.fontTexture = TierGame.Instance.Content.Load<Texture2D>("Content\\Fonts\\GameFont");
     }
 
     #region AddItem
