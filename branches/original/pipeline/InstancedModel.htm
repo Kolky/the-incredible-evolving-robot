@@ -1,0 +1,1135 @@
+﻿<html xmlns:MSHelp="http://msdn.microsoft.com/mshelp" xmlns:msxsl="urn:schemas-microsoft-com:xslt" xmlns:xanx="http://schemas.microsoft.com/developer/xanx/2005"><head><META http-equiv="Content-Type" content="text/html; charset=utf-8"><META NAME="save" CONTENT="history"><title>Instanced Model Sample</title>
+<style><!--
+/***********************************************************
+ *             SCRIPT-SUPPORTING STYLES
+ ***********************************************************/
+
+/* Defines the userData cache persistence mechanism. */
+.userDataStyle
+{
+	behavior: url(#default#userData);
+}
+
+/* Used to save the scroll bar position when navigating away from a page. */
+div.saveHistory
+{
+	behavior: url(#default#saveHistory);
+}
+
+/* Formats the expand/collapse images for all collapsible regions. */
+img.toggle
+{
+	border: 0;
+	margin-right: 5;
+}
+
+/* Formats the Language filter drop-down image. */
+img#languageFilterImage
+{
+	border: 0;
+	margin-left: 0;
+	vertical-align: middle;
+}
+
+/* Formats the Members Options filter drop-down image. */
+img#membersOptionsFilterImage
+{
+	border: 0;
+	margin-left: 0;
+	vertical-align: middle;
+}
+
+/* Formats the Collapse All/Expand All images. */
+img#toggleAllImage
+{
+	margin-left: 0;
+	vertical-align: middle;
+}
+
+/* Supports XLinks */
+MSHelp\:link
+{
+ 	text-decoration: underline;
+	color: #0000ff; 
+	hoverColor: #3366ff;
+	filterString: ;
+}
+
+
+body
+	{
+	background:	#FFFFFF;
+	color: #000000;
+	font-family:	Verdana;
+	font-size: medium;
+	font-style: normal;
+	font-weight: normal;
+	margin-top:	0;
+	margin-bottom:	0;
+	margin-left:	0;
+	margin-right:	0;
+	width:	100%;
+	/*font-size: 110%;*/
+	}
+
+div.section
+	{
+	margin-left: 15px;
+	}
+
+div.hxnx5
+	{
+	margin-left: 1.5em;
+	}
+
+/* Font for all headings */	
+h1, h2, h3, h4, h5, h6
+	{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	margin-top: 18;
+	margin-bottom: 8; 
+	font-weight: bold;
+	}
+h1
+	{
+	font-size: 130%;
+	color: #003399;
+	}
+div#scrollyes h1 /* Changes font size for full-scrolling topic */
+	{
+	font-size: 150%;
+	}
+h2
+	{
+	font-size: 125%;
+	}
+h3
+	{
+	font-size: 115%;
+	margin-top: 9;
+	margin-bottom: 4; 
+	}
+h4
+	{
+	font-size: 115%;
+	margin-top: 9;
+	margin-bottom: 4; 
+	}
+h5
+	{
+	font-size: 100%;
+	margin-top: 9;
+	margin-bottom: 4; 
+	}
+h6
+	{
+	font-size: 100%;
+	margin-top: 9;
+	margin-bottom: 4; 
+	}
+
+ul p, ol p, dl p
+	{
+	margin-left: 0em;
+	}
+
+p
+	{
+	margin-top: .6em;
+	margin-bottom: .6em;
+	}
+	
+td p
+	{
+	margin-top: 0.0em;
+	margin-bottom: 0.6em;
+	}
+
+dd p
+	{
+	margin-top: 0.0em;
+	margin-bottom: 0.6em;
+	}
+
+.image
+	{
+	text-align: center;
+	}
+
+dl
+	{
+	margin-top: 0em; 
+	margin-bottom: 1.3em;
+	}
+
+dd
+	{
+	margin-bottom: 0em;
+	margin-left: 0;
+	}
+
+dl.glossary dd 
+{
+	margin-bottom: 0em;  
+	margin-left: 1.5em; 
+}
+
+dt
+	{
+	margin-top: .6em;
+	margin-bottom: 1;
+	}
+
+ul, ol
+	{
+	margin-top: 0.6em;
+	margin-bottom: 0.6em; 	
+	}
+	
+ol
+	{
+	margin-left: 2.5em; 
+	
+	}	
+	
+ul
+	{
+	list-style-type: disc; 
+	margin-left: 1.9em; 
+	}
+
+li
+	{
+	margin-bottom: 0.4em;
+	}
+
+ul ol, ol ol
+	{
+	list-style-type: lower-alpha;
+	}
+
+pre
+	{
+	margin-top: .6em;
+	margin-bottom: .6em; 
+	}
+
+pre
+	{
+	font: 105% Lucida, mono; 
+	color: #000066;
+	}
+
+code
+{
+	font-family: Monospace, Courier New, Courier;
+	font-size: 105%;
+	color:	#000066;
+}
+
+table.userdata td 
+	{
+	background: #ffffff;
+	background-color: #F5F5F5;
+	border-color: #ffffff;
+	border: none;
+	}	
+table.clsWarning
+	{
+	background: #ffffff;
+	padding: 0px;
+	margin: 0px;
+	border: none;
+	}
+table.clsWarning td
+	{
+	padding: 0px;
+	margin: 0px;
+	background: #ffffff;
+	vertical-align: middle;
+	font-size: 70%;
+	}
+
+div#mainSection table
+	{
+	width: 98%;
+	background: #ffffff;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	}
+
+div#mainSection table th
+	{ 
+	padding: 5px 6px;
+	background: #EFEFF7;
+	text-align: left;
+	font-size: 70%;
+	vertical-align: bottom;
+	border-bottom: 1px solid #C8CDDE;
+	}
+div#mainSection table td
+	{ 
+	padding: 5px 5px;
+	background: #F7F7FF;
+	vertical-align: top;
+	font-size: 70%;
+	border-bottom: 1px solid #D5D5D3;
+	}
+
+div#syntaxCodeBlocks table th
+	{
+	padding: 1px 6px;
+	color: #000066;
+	}
+
+div#syntaxCodeBlocks table td
+	{
+	padding: 1px 5px;
+	}
+
+/* Applies to the running header text in the first row of the upper table in the
+   non-scrolling header region. */
+span#runningHeaderText
+{
+	color: #003399;
+	font-size: 90%;
+	padding-left: 13;
+}
+
+/* Applies to the topic title in the second row of the upper table in the
+   non-scrolling header region. */
+span#nsrTitle
+{
+	color: #003399;
+	font-size: 120%;
+	font-weight: 600;
+	padding-left: 13;
+}
+
+/* Applies to everything below the non-scrolling header region. */
+div#mainSection
+{
+	font-size: 70%;
+	width: 100%;
+}
+
+/* Applies to everything below the non-scrolling header region, minus the footer. */
+div#mainBody
+{
+	font-size: 90%;
+	margin-left: 15;
+	margin-top: 10;
+	padding-bottom: 20;
+}
+
+/* Adds right padding for all blocks in mainBody */
+div#mainBody p, div#mainBody ol, div#mainBody ul, div#mainBody dl
+{
+	padding-right: 5;
+}
+
+div#mainBody div.alert, div#mainBody div.code, div#mainBody div.tableSection
+{
+	width:98.9%;
+}
+
+div.alert p, div.code p
+{
+	margin-top:5;
+	margin-bottom:8;
+}
+
+/*- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - Begin Note Styles - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
+div#mainSection div.alert table
+{
+	border: 0;
+}
+
+div#mainSection div.alert table th
+{
+	padding-top: 0;
+	padding-bottom: 0;
+	padding-left: 5;
+	padding-right: 5;
+}
+
+div#mainSection div.alert table td
+{
+	padding-left: 5;
+	padding-right: 5;
+}
+
+img.note
+{
+	border: 0;
+	margin-left: 0;
+	margin-right: 3;
+}
+/*- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - End Note Styles - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
+
+/*- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - Begin Non-scrolling Header Region Styles - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
+/* Applies to the entire non-scrolling header region. */
+div#header
+{
+	background-color: #D4DFFF;
+	padding-top:	0;
+	padding-bottom:	0;
+	padding-left:	0;
+	padding-right:	0;
+	width:	100%;
+}
+
+/* Applies to both tables in the non-scrolling header region. */
+div#header table
+{
+	margin-top:	0;
+	margin-bottom: 0;
+	border-bottom-color: #C8CDDE;
+	border-bottom-style: solid;
+	border-bottom-width: 1;
+	background: #D4DFFF;
+	width:	100%;
+}
+
+/* Applies to cells in both tables in the non-scrolling header region. */
+div#header table td
+{
+	color: #0000FF;
+	font-size: 70%;
+	padding-right: 20;
+	padding-top: 1;
+	padding-bottom: 1;
+	border: none;
+	background: #D4DFFF;
+}
+
+/* Applies to the last row in the upper table of the non-scrolling header region. Text 
+   in this row includes See Also, Constructors, Methods, and Properties. */
+div#header table tr#headerTableRow3 td
+{
+	padding-bottom: 2;
+	padding-top: 5;
+	padding-left: 15;
+}
+
+/* Applies to the lower table in the non-scrolling header region. Text in this table
+   includes Collapse All/Expand All, Language Filter, and Members Options. */
+div#header table#bottomTable
+{
+	border-top-color: #FFFFFF;
+	border-top-style: solid;
+	border-top-width: 1;
+	text-align: left;
+	padding-left: 15;
+}
+
+
+blockquote
+	{
+	margin-left: 3.8em;
+	margin-right: 3.8em;
+	margin-top: .6em;
+	margin-bottom: .6em;
+	}
+
+sup
+	{
+	text-decoration: none;
+	font-size: smaller; 
+	}
+
+a:link
+	{
+	color: #0000FF;
+/*    font-weight: bold */
+	}
+	
+a:visited
+	{
+	color: #0000AA;
+/*    font-weight: bold	*/
+	}
+	
+a:hover
+	{
+	color: #3366FF;
+/*    font-weight: bold */
+	}
+	
+.label
+	{
+	font-weight: bold; 
+	margin-top: 1em;
+	margin-left: -26px;
+	}
+	
+.tl
+	{
+	margin-bottom: .75em; 
+	}
+	
+.atl
+	{
+	padding-left: 1.5em;
+	padding-bottom: .75em; 
+	}
+	
+.cfe
+	{
+	font-weight: bold; 
+	}
+	
+.mini
+	{
+	font-size: smaller;
+	}
+	
+.dt
+	{
+	margin-bottom: -.6em; 
+	}
+	
+.indent
+	{
+	margin-left: 1.9em; 
+	margin-right: 1.9em;
+	}
+
+.product
+	{
+	text-align: right;
+	color: #333333;
+	font-size: smaller;
+	font-style: italic;
+	}
+
+.buttonbarshade
+	{
+	position: relative;
+	margin: 0;
+	left: 0px;
+	top: 2;
+	width: 50%;
+	height: 40px;
+	}
+
+.buttonbartable
+	{
+	position: absolute;
+	margin: 0;
+	padding:0;
+	border:0;
+	left:0px;
+	top: 2;
+	width: 100%;
+	height: 40px;
+	}
+
+/* background color, font for header */ 
+table.buttonbartable td, table.buttonbarshade td
+	{
+	background: #ffffff; /*#5177B8; #80C615;*/
+	border-left: 0px solid #80C615;
+	margin: 0;
+	padding: 0px 0px 0px 0px;
+	font-family: Impact, sans-serif;
+	font-size: 14pt;
+	}
+
+table.buttonbartable td.button1
+	{
+	background: #5177B8; /*#80C615;*/;
+	padding: 0;
+	font-weight: bold;
+	text-align: center;
+	cursor: hand;
+	}
+
+table.buttonbartable td.button2
+	{
+	background: #5177B8; /*#80C615;*/;
+	font-weight: bold;
+	text-align: center;
+	}
+
+table.buttonbartable td.button3
+	{
+	background: #5177B8; /*#80C615;*/;
+	font-weight: bold;
+	text-align: center;
+	}
+
+table.buttonbartable td.runninghead
+	{
+	padding-left: 0px;
+	font-style: italic;
+	text-align: left;
+	}
+
+.version
+	{
+	text-align: left;
+	color: #000000;
+	margin-top: 3em;
+	margin-left: -26px;
+	font-size: smaller;
+	font-style: italic;
+	}
+
+.lang, .ilang
+	{
+	color: #0000ff;
+	font: normal 7pt Arial, Helvetica, sans-serif;
+	}
+
+div.langMenu
+	{
+	position: absolute;
+	z-index: 1;
+	width: 96pt;
+	padding: 8pt;
+	visibility: hidden;
+	border: 1px solid #000000;
+	background: #ffffd0;
+	}
+
+div.langMenu ul
+	{
+	padding-left: 2em;
+	margin-left: 0;
+	}
+
+div.filtered
+	{
+	margin: 4pt 0 8pt -26px;
+	padding: 4px 4px 8px 26px;
+	width: 100%;
+	border: 2px solid #aaaacc;
+	background: #ffffff;
+	}
+
+div.filtered2
+	{
+	margin: 4pt 0 8pt -26px;
+	padding: 4px 4px 8px 26px;
+	width: 100%;
+	border: none;
+	background: #ffffff;
+	}
+
+div.filtered h1, div.filtered h2, div.filtered h3, div.filtered h4
+	{
+	margin-left: -22px;
+	}
+
+div.filtered span.lang
+	{
+	position: relative;
+	left: -22px;
+	}
+
+div.reftip
+	{
+	position: absolute;
+	z-index: 1;
+	padding: 8pt;
+	visibility: hidden;
+	border: 1px solid #000000;
+	background: #ffffd0;
+	}
+
+a.synParam
+	{
+	color: #0000FF;
+	/*color: #3F7800;*/ 	
+	/*color: #8DC54F;*/
+	text-decoration: none;
+    font-weight: normal;
+	}
+
+a.synParam:hover
+	{
+	text-decoration: underline;
+    font-weight: normal;
+	}
+
+div.sapop
+	{
+	position: absolute;
+	z-index: 1;
+	left: 26px;
+	width: 100%;
+	padding: 10px 10px 10px 36px;
+	visibility: hidden;
+	border: 1px solid #000000;
+	background: #ffffd0;
+	}
+
+div.footer
+	{
+	width: 100%;
+	border: none;
+	background: #ffffff;
+	margin-top: 18pt;
+	padding-bottom: 12pt;
+	color: #0000FF;
+	/*color: #228B22; */
+	text-align: center;
+	font-size: 76%;
+	}
+
+div.preliminary
+	{
+	margin-top: 8pt;
+	padding-bottom: 12pt;
+	color: #A0A0A0;
+	}
+
+/* A procedure section. eg. 'To create a file', 'To add a value' */
+div.proc
+    {
+	margin-left: 0.5em; 
+    }
+     
+/* The title of a 'procedure' section. */
+div.proc h3
+    {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	font-size: 115%;
+	margin-top: 1em;
+	margin-bottom: 0.4em;
+	margin-left: -0.5em; 
+	color: #003399;
+    }
+
+div.proc ul
+    {
+    margin-left: 1.5em;
+    }
+
+div.proc ol
+    {
+    margin-left: 2.0em;
+    }
+      
+.note
+	{
+	margin-left: 14pt;
+	margin-right: 12pt;
+	}
+
+.indent1
+	{
+	margin-left: 12pt;
+	}
+
+.indent2
+	{
+	margin-left: 24pt;
+	}
+
+.indent3
+	{
+	margin-left: 36pt;
+	}
+
+p.proch
+	{
+	padding-left: 16px;
+	}
+
+p.proch img
+	{
+	position: relative; 
+	vertical-align: top;
+	left: -18px; 
+	margin-right: -14px; 
+	margin-bottom: -18px;
+	}
+	
+div.clsPlatSpec
+{
+	background-color:#FFF8DC;
+	border-style:solid;
+	border-width:1pt 0pt 0pt 1pt;
+	border-color:#ffE4C4;
+	margin-top:0.6em;
+	width:100%;
+}
+
+
+/* Applies to the language labels in the Language Filter drop-down list. */
+.languageFilter
+{
+	color:	#0000FF;
+	cursor:hand;
+	text-decoration:underline;
+	padding-bottom:4;
+}
+
+/* Dropdown areas */
+
+#languageSpan {
+	position: absolute;
+	visibility: hidden;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #C8CDDE;
+	background: #d4dfff;
+	padding: 4px;
+	font-size: 70%;
+}
+
+#membersOptionsSpan {
+	position: absolute;
+	visibility: hidden;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #C8CDDE;
+	background: #d4dfff;
+	padding: 4px;
+	font-size: 70%;
+}
+--></style>
+
+<xml>
+<MSHelp:TOCTitle Title="Instanced Model Sample" />
+<MSHelp:RLTitle Title="Instanced Model Sample" />
+<MSHelp:Keyword Index="A" Term="O:Microsoft.Xna.InstancedModel" />
+<MSHelp:Keyword Index="A" Term="e7e1af4d-032b-57e0-1c01-4a0d54f02408" />
+<MSHelp:Keyword Index="K" Term="Instanced Model Sample" />
+<MSHelp:Attr Name="ProjType" Value="LocalProj" />
+<MSHelp:Attr Name="ProjType" Value="XNA_20" />
+<MSHelp:Attr Name="DocSet" Value="XNA" />
+<MSHelp:Attr Name="DocSet" Value="ExpressLibVS" />
+<MSHelp:Attr Name="DocSet" Value="C#" />
+<MSHelp:Attr Name="Locale" Value="en-us" />
+<MSHelp:Attr Name="AssetID" Value="e7e1af4d-032b-57e0-1c01-4a0d54f02408" />
+<MSHelp:Attr Name="TopicType" Value="kbOrient" />
+</xml>
+</head><body><div id="mainSection"><div id="mainBody">
+  <h1>Instanced Model Sample</h1>
+  
+  This sample shows how to efficiently render many copies of the same model, using GPU instancing techniques to reduce the cost of repeated draw calls.
+  
+  <a name="ID2EK"></a><h1 class="heading">Sample Overview</h1><div id="ID2EK" class="hxnx1">
+    
+    
+    <p>Games often need to render many copies of the same model, for instance covering a landscape with trees or filling a room with crates. The calls needed to render a model are relatively expensive, and can quickly add up if you are drawing hundreds or thousands of models in a row. This sample demonstrates several techniques you can use to reduce the overhead of drawing many copies of the same model.</p>
+    
+    <p>Note that there is no single perfect instancing technique. This must be implemented in a different way on Windows compared to Xbox 360, and on Windows the ideal technique requires shader 3.0, but there is also a fallback approach that will work with shader 2.0. This sample implements several different instancing techniques, so it can work on both platforms and shader versions.</p>
+
+    <p>These instancing techniques can dramatically reduce the amount of CPU work required to draw models, but they will make little difference or in some cases may even slightly increase the GPU cost. The CPU cost of drawing a model is constant regardless of how complex the model may be, but the GPU cost increases in proportion with the number of triangles and shader complexity. For this reason, drawing low polygon models with simple shaders is likely to be limited mainly by CPU performance, while more detailed meshes are likely to be bottlenecked on the GPU side. If the GPU is your bottleneck, there is nothing to be gained from using these instancing techniques. Also, if your models are large and complex, the memory overhead required to instance them may be prohibitive. Instancing yields the most dramatic performance gains when used with relatively small and simple models: somewhere in the ballpark of 1000 triangles or less.</p>
+
+    <p>Instancing requires the vertex and index data to be organized in a particular way. The <b>Model</b> class that comes built in to the XNA Framework is not flexible enough to properly support instanced rendering, so this sample implements an alternative <b>InstancedModel</b> class. A custom Content Pipeline processor is used to convert model data from input file formats such as .X and .FBX into our <b>InstancedModel</b> class: see the Custom Model Class Sample for more information about how this works.</p>
+    
+    <a name="ID2E4"></a><h2 class="subHeading">Minimum Shader Profile</h2><div id="ID2E4" class="hxnx2">
+      
+      <dl class="glossary">
+        <dt>Vertex Shader Model 2.0</dt>
+        <dt>Pixel Shader Model 1.1</dt>
+      </dl>
+    </div>
+
+    <a name="ID2EJB"></a><h2 class="subHeading">Sample Controls</h2><div id="ID2EJB" class="hxnx2">
+      
+        <p>This sample uses the following keyboard and gamepad controls.</p>
+        
+        <table>
+          <tr>
+            <th>Action</th>
+            <th>Keyboard Control</th>
+            <th>Gamepad Control</th>
+          </tr>
+          <tr>
+            <td>Change techniques.</td>
+            <td><b>A</b></td>
+            <td><b>A</b></td>
+          </tr>
+          <tr>
+            <td>Add instances.</td>
+            <td><b>X</b></td>
+            <td><b>X</b></td>
+          </tr>
+          <tr>
+            <td>Remove instances.</td>
+            <td><b>Y</b></td>
+            <td><b>Y</b></td>
+          </tr>
+          <tr>
+            <td>Exit the sample.</td>
+            <td>ESC or ALT+F4</td>
+            <td><b>BACK</b></td>
+          </tr>
+        </table>
+    </div>
+  </div>
+
+  <a name="ID2EID"></a><h1 class="heading">How the Sample Works</h1><div id="ID2EID" class="hxnx1">
+    
+
+    <p>This sample implements five different rendering techniques.</p>
+    <ol>
+      <li>No instancing or state batching: this is equivalent to just calling <b>ModelMesh.Draw</b> many times in a loop.</li>
+      <li>No instancing: not using any special GPU tricks, but being smarter about repeatedly setting device states.</li>
+      <li>Hardware instancing: Windows shader 3.0 technique.</li>
+      <li>Shader instancing: Windows shader 2.0 technique.</li>
+      <li>VFetch instancing: Xbox 360 technique.</li>
+    </ol>
+
+    <a name="ID2E5D"></a><h2 class="subHeading">No Instancing or State Batching</h2><div id="ID2E5D" class="hxnx2">
+      
+      
+      <p>This rendering technique does not use instancing at all, and it is not a smart approach or something that you should copy in your own code! This is included only for comparison purposes, so you can see the performance gain achieved by the following techniques.</p>
+      
+      <p>This technique just loops over all the active instances, setting all the rendering state, beginning the effect, and then calling <b>DrawIndexedPrimitives</b> once for each copy of the model. This is basically the same sequence of operations that would take place if you were to call <b>ModelMesh.Draw</b> several times inside a loop, so the performance of this technique is similar to what you would get if you drew many instances using the built in <b>Model</b> class.</p>
+      
+      <p>In psuedocode, this technique is implemented as follows:</p>
+      
+      <div class="code"><span codeLanguage="CSharp"><table><tr><th>C# </th></tr><tr><td><pre><pre>
+    foreach (Matrix instance in instances)
+    {
+        SetVertexBuffer();
+        SetIndexBuffer();
+        SetVertexDeclaration();
+
+        SetWorldTransform(instance);
+          
+        effect.Begin();
+        
+        foreach (EffectPass pass in effect.CurrentTechnique.Passes)
+        {
+            pass.Begin();
+
+            DrawIndexedPrimitives();
+
+            pass.End();
+        }
+          
+        effect.End();
+    }</pre></pre></td></tr></table></span></div>
+
+      <p>Note the repetitiveness of setting the same state and calling the same effect methods every time around the loop.</p>
+
+    </div>
+    
+    <a name="ID2EVE"></a><h2 class="subHeading">No Instancing</h2><div id="ID2EVE" class="hxnx2">
+      
+  
+      <p>This is still not strictly speaking a proper instancing technique: it just rearranges the C# drawing code to hoist repeated operations out of the inner loop. Instead of looping over all the instances and repeating the exact same draw code for each one, the <b>InstancedModel.DrawInstances</b> method takes an array of instance transform matrices, so it can draw many copies of the same model all in one go. The core of this technique is implemented by the <b>InstancedModelPart.Draw</b> method, which sets up the graphics device and begins the effect, and then calls the <b>InstancedModelPart.DrawNoInstancing</b> helper to loop over each instance, doing the absolute minimum of repeated work per copy.</p>
+
+      <p>In psuedocode, the algorithm is:</p>
+
+      <div class="code"><span codeLanguage="CSharp"><table><tr><th>C# </th></tr><tr><td><pre><pre>
+    SetVertexBuffer();
+    SetIndexBuffer();
+    SetVertexDeclaration();
+
+    effect.Begin();
+        
+    foreach (EffectPass pass in effect.CurrentTechnique.Passes)
+    {
+        pass.Begin();
+
+        foreach (Matrix instance in instances)
+        {
+            SetWorldTransform(instance);
+            effect.CommitChanges();
+          
+            DrawIndexedPrimitives();
+        }
+
+        pass.End();
+    }  
+
+    effect.End();</pre></pre></td></tr></table></span></div>
+
+    </div>
+
+    <p>The interesting thing about this technique is that it does not require any shader changes at all, so it will work identically on any platform and alongside whatever other shaders you may already be using. It achieves a significant performance improvement over naively issuing many calls to <b>ModelMesh.Draw</b>, simply by being smarter about the order in which it does things. Moral: don't be afraid to replace the built-in model drawing code if you can take advantage of more specialized knowledge to optimize your particular scenario!</p>
+    
+    <a name="ID2ENF"></a><h2 class="subHeading">Hardware Instancing</h2><div id="ID2ENF" class="hxnx2">
+      
+      
+      <p>This technique performs the instancing work entirely on the GPU, and so has extremely low CPU load regardless of how many instances you are drawing. It works on Windows only, and requires a shader 3.0 graphics card.</p>
+      
+      <p>In conventional non-indexed rendering, every set of three indices forms a triangle. The indices are used to look up into a vertex buffer, which provides data such as position, normal, and texture coordinates. The following diagram shows the data layout for a simple model that consists of just one rectangle (two triangles, specified by six indices, and four vertices).</p>
+      
+      <img src="Documentation\NoInstancing.png">
+      
+      <p>Hardware instancing does not require any changes to that data layout, but it adds a new source of information. This is a second vertex buffer that holds transform matrices, one per instance. This second vertex buffer should be as large as the maximum number of instances you are planning to draw in a single call: it does not need to be the same size as your main vertex buffer. Each frame, you call <b>SetData</b> to update this second vertex buffer with the latest transform matrices for each instance.</p>
+      
+      <p>To pass both vertex buffers into your shader, you must modify your <b>VertexDeclaration</b> to include this additional transform matrix data. Unfortunately, there is no <b>VertexElementFormat</b> for matrix data, so instead we must split the matrix up into four channels of type <b>Vector4</b>. This <b>VertexDeclaration</b> change is handled by the <b>InstancedModelPart.InitializeHardwareInstancing</b> method in the sample.</p>
+      
+      <p>We must now set both vertex buffers onto the <b>GraphicsDevice</b> (the first holding our actual geometry data, and the second holding the instance transform matrices), and tell it how many instances to draw. This is done as follows:</p>
+
+      <div class="code"><span codeLanguage="CSharp"><table><tr><th>C# </th></tr><tr><td><pre><pre>
+    VertexStreamCollection vertices = graphicsDevice.Vertices;
+
+    vertices[0].SetSource(geometryVertexBuffer, 0, geometryVertexStride);
+    vertices[0].SetFrequencyOfIndexData(numberOfInstances);
+
+    vertices[1].SetSource(instanceTransformVertexBuffer, 0, SizeOfMatrix);
+    vertices[1].SetFrequencyOfInstanceData(1);</pre></pre></td></tr></table></span></div>
+      
+      <p>Finally, we must add the per instance transform matrix as an input parameter to our vertex shader. See the <b>HardwareInstancingVertexShader</b> function in <b>InstancedModel.fx</b> for an example of how to do this.</p>
+      
+      <p>Once we have completed these setup operations, the GPU handles everything else for us. We can just call <b>DrawIndexedPrimitives</b> in the usual way, and the GPU will draw the specified number of copies of our model data. It will reuse the same index buffer for each copy, using these indices to look up into the same geometry vertex buffer, but it will also keep track of which instance it is currently drawing, automatically looking up the transform matrix from the appropriate part of our second vertex buffer and passing this into our vertex shader along with the position, normal, etc.</p>
+      
+      <p>Using the same two triangles example shown in the previous diagram, this shows the data flow when drawing two copies of the model using hardware instancing:</p>
+      
+      <img src="Documentation\HardwareInstancing.png">
+
+      <p>Data used for the first instance is shown in blue, and the second instance is green. Grey represents data that is shared between both instances. Note how triangles 0/2 and 1/3 share the same indices, which reference the same information from vertex buffer stream 0, but how each instance pulls a different transform matrix from vertex buffer stream 1.</p>
+      
+    </div>
+
+    <a name="ID2EGH"></a><h2 class="subHeading">Shader Instancing</h2><div id="ID2EGH" class="hxnx2">
+      
+      
+      <p>Hardware instancing is great, if you have a shader 3.0 card. But what about the many machines that only have shader 2.0? The shader instancing technique provides a similar performance boost to hardware instancing, but in a way that works on shader 2.0 hardware. The only downside is that it requires more memory due to needing duplicate copies of the index and vertex data.</p>
+      
+      <p>The <b>InstancedModel</b> constructor uses the <b>IsTechniqueSupported</b> method to autodetect whether it is running on a shader 3.0 card. It will default to hardware instancing wherever possible, or fall back on shader instancing when necessary.</p>
+      
+      <p>The basic idea of shader instancing is just to make several copies of your geometry data, and store them one after another in your vertex and index buffers. This makes it possible to draw many copies of the model in a single call, simply by specifying a larger number of triangles when you call <b>DrawIndexedPrimitives</b>. The hard part is, how can the shader tell which instance it is currently drawing? To determine this, you must add an additional channel of data to your vertex buffer, which specifies the instance index. This will be set to 0 for all the vertices of the first copy of the model, 1 for the second copy, etc. The shader can use this index to choose which instance transform matrix should apply to each vertex, looking up the instance transforms from a matrix array that is uploaded to the shader constant registers via an effect parameter.</p>
+      
+      <p>Here is a diagram of shader instancing in action:</p>
+      
+      <img src="Documentation\ShaderInstancing.png">
+
+      <p>Data used for the first instance is shown in blue, and the second instance is green. Note how the triangle assembly, index buffer, and vertex buffer lookups are functioning exactly as they would while drawing a single non instanced model. The vertex buffer just happens to contain two copies of the same position, normal, and texture coordinate data, which are differentiated only by the instance index value. This is used to select the appropriate instance transform matrix for each copy of the model.</p>
+      
+      <p>The repeated copies of the geometry data are created on demand by the <b>ReplicateVertexData</b> and <b>ReplicateIndexData</b> methods of the <b>InstancedModelPart</b> class. <b>InitializeShaderInstancing</b> also modifies the vertex declaration to include the additional instance index data channel. It would alternatively have been possible to pregenerate this data inside the content processor, but doing it this way avoids bloating our XNB files with repeated copies of the same data, and also means we can avoid bothering to generate this repeated information if we are running on a shader 3.0 card that can use hardware instancing.</p>
+      
+      <p>There is a limit on how many shader instances can be drawn in a single batch. This comes partly from the limited number of shader constant registers available to hold the instance transform matrices (see the comment and MAX_SHADER_MATRICES constant at the top of <b>InstanceModel.fx</b>) and partly from the limited range of 16-bit index values. If we repeated the model data too many times, our 16-bit indices would overflow, and we do not want to use 32-bit indices because they are not universally supported on all graphics cards. The <b>InstancedModelPart</b> class stores the result of combining these two batch size limits in the <b>maxInstances</b> field. If asked to draw more copies than this limit, the <b>DrawShaderInstancing</b> method will split up the request, drawing as many instances as possible in each call to <b>DrawIndexPrimitives</b>.</p>
+      
+    </div>
+
+    <a name="ID2EZAAC"></a><h2 class="subHeading">VFetch Instancing</h2><div id="ID2EZAAC" class="hxnx2">
+      
+      
+      <p>Xbox 360 does not support the hardware instancing technique, and although it is technically possible to use shader instancing on Xbox 360, there is no point in doing so because it provides a better alternative.</p>
+      
+      <p>Index dereferencing is normally handled automatically inside the GPU. Your vertex shader never gets direct access to the index value: instead, it is passed the result of the GPU dereferencing whatever is stored at that index in the vertex buffer. Xbox 360 provides an alternative to this behavior, however. Using the <b>INDEX</b> HLSL semantic, you can request that the raw index value be passed directly into your vertex shader:</p>
+      
+      <div class="code"><span codeLanguage=""><table><tr><th> </th></tr><tr><td><pre><pre>
+    VertexShaderOutput MyVertexShader(int index : INDEX)
+    {
+        ....</pre></pre></td></tr></table></span></div>
+      
+      <p>You can then use the <b>vfetch</b> shader instruction to manually look up whatever data lives at that index in the vertex buffer, for example:</p>
+      
+      <div class="code"><span codeLanguage=""><table><tr><th> </th></tr><tr><td><pre><pre>
+    float4 position;
+    float4 normal;
+    float4 textureCoordinate;
+
+    asm
+    {
+        vfetch position,          index, position0
+        vfetch normal,            index, normal0
+        vfetch textureCoordinate, index, texcoord0
+    };</pre></pre></td></tr></table></span></div>
+
+      <p>But here's the trick: there is no requirement that the index you pass into the <b>vfetch</b> instruction be the same value that was passed in to your vertex shader! You can use arbitrary math instructions to compute whatever vertex buffer index you like. You could even do one <b>vfetch</b> instruction to look up a value from one part of the vertex buffer, and then use that value as an index to look up in a different part of the buffer.</p>
+      
+      <p>To render instanced data, we extend our index buffer with repeated copies of the model data, in the same way as when using the shader instancing technique on Windows. But thanks to the <b>vfetch</b> instruction, there is no need to also replicate multiple copies of the vertex data, or to add the extra vertex channel for holding instance indices. Instead, we perform modulus and division computations at the top of our vertex shader:</p>
+      
+      <div class="code"><span codeLanguage=""><table><tr><th> </th></tr><tr><td><pre><pre>
+    VertexShaderOutput MyVertexShader(int index : INDEX)
+    {
+          int vertexIndex = (index + 0.5) % VertexCount;
+          int instanceIndex = (index + 0.5) / VertexCount;</pre></pre></td></tr></table></span></div>
+
+      <p>This diagram shows the resulting data flow:</p>
+      
+      <img src="Documentation\VFetchInstancing.png">
+
+      <p>Thanks to the modulus operation, both the original index value of 0 and the replicated index value of 4 end up referencing the first entry in our vertex buffer, so both copies of the model can use the same vertex buffer data. But thanks to the division operation, we are also able to determine that an index value of 0 refers to the first instance, while 4 refers to the second, so each instance can choose the appropriate transform matrix from the shader constant registers.</p>
+      
+      <p>Although VFetch instancing does require extra copies of the index data, the memory overhead is much smaller than for shader instancing on Windows, because it does not also require extra copies of the (much bigger) vertex data.</p>
+    
+    </div>
+
+    <a name="ID2EFCAC"></a><h2 class="subHeading">Instancing Technique Comparison</h2><div id="ID2EFCAC" class="hxnx2">
+      
+
+      <table>
+        <tr>
+          <th>Technique</th>
+          <th>Platform</th>
+          <th>CPU cost</th>
+          <th>Memory cost</th>
+          <th>Maximum instances per draw call</th>
+          <th>How instance positions are specified</th>
+          <th>Replicated index data</th>
+          <th>Replicated vertex data</th>
+        </tr>
+        <tr>
+          <td>No instancing or state batching</td>
+          <td>Any</td>
+          <td>Terrible</td>
+          <td>Excellent</td>
+          <td>1</td>
+          <td>Effect parameter</td>
+          <td>No</td>
+          <td>No</td>
+        </tr>
+        <tr>
+          <td>No instancing</td>
+          <td>Any</td>
+          <td>Better</td>
+          <td>Excellent</td>
+          <td>1</td>
+          <td>Effect parameter</td>
+          <td>No</td>
+          <td>No</td>
+        </tr>
+        <tr>
+          <td>Hardware instancing</td>
+          <td>Windows, shader 3.0</td>
+          <td>Excellent</td>
+          <td>Excellent</td>
+          <td>Unlimited</td>
+          <td>Secondary vertex stream</td>
+          <td>No</td>
+          <td>No</td>
+        </tr>
+        <tr>
+          <td>Shader instancing</td>
+          <td>Windows, shader 2.0</td>
+          <td>Excellent</td>
+          <td>Poor</td>
+          <td>~60 (depends on shader)</td>
+          <td>Effect parameter array</td>
+          <td>Yes</td>
+          <td>Yes</td>
+        </tr>
+        <tr>
+          <td>VFetch instancing</td>
+          <td>Xbox 360</td>
+          <td>Excellent</td>
+          <td>Slight overhead</td>
+          <td>~60 (depends on shader)</td>
+          <td>Effect parameter array</td>
+          <td>Yes</td>
+          <td>No</td>
+        </tr>
+      </table>
+    </div>
+    
+  </div>
+
+  <a name="ID2EAGAC"></a><h1 class="heading">Extending the Sample</h1><div id="ID2EAGAC" class="hxnx1">
+    
+    
+    <p>Apart from the instancing behavior, the shader used in this sample is not very interesting: it just implements a simple Lambert diffuse lighting model. You could extend this to add more interesting features such as specular lighting, multiple light sources, per-pixel lighting, normal mapping, and so on.</p>
+
+    <p>This sample specifies only a 4×4 matrix per instance, so although each instance can be positioned differently, all the copies will look 100-percent identical. You could extend this by adding additional per-instance parameters, passed in as a shader constant array when using VFetch and shader instancing, or by adding an extra data channel to the secondary vertex stream used for hardware instancing. You could then use these extra parameters to give each instance a different tint, or to perform selective color replacement or decal selection to vary their appearance.</p>
+
+    <p>This sample requires shader 2.0, but the shader instancing technique can actually be made to work with shader 1.1 if you reduce the MAX_SHADER_MATRICES and MaxShaderMatrices constants at the top of InstancedModel.fx and InstancedModelPart.cs. A shader 1.1 version of the technique would not be able to render so many instances in each batch, because shader 1.1 has only 96 constant registers compared to 256 with shader 2.0.</p>
+    
+  </div>
+
+</div><div class="footer" id="footer"><p>© 2007 Microsoft Corporation. All rights reserved.<br>Send feedback to <a href="mailto:xna@microsoft.com?subject=Documentation Feedback: Instanced Model Sample">xna@microsoft.com</a>.</p></div></div></body></html>
