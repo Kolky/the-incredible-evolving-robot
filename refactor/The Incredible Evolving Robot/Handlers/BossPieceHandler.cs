@@ -95,7 +95,7 @@ namespace Tier.Handlers
       BlockPiece piece = new BlockPiece(this.Game);
 
       // Validate the XML file & Load
-      using (FileStream fs = File.Open(String.Format("Content//Xml//Pieces//{0}.xml", name),
+      using (FileStream fs = File.Open(String.Format("Xml//Pieces//{0}.xml", name),
           FileMode.Open, FileAccess.Read))
       {
         XmlDocument XmlDocument = new XmlDocument();

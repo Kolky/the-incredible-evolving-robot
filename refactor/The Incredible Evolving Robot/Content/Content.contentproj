@@ -58,84 +58,13 @@
       <Importer>WavImporter</Importer>
       <Processor>SoundEffectProcessor</Processor>
     </Compile>
-    <Compile Include="dll\InstancedModelPipeline.dll">
-      <Name>InstancedModelPipeline</Name>
-    </Compile>
     <Compile Include="Fonts\GameFont.png">
       <Name>GameFont</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Xml\BossGrowth\Default.xml">
-      <Name>Default</Name>
-      <Importer>XmlImporter</Importer>
-      <Processor>PassThroughProcessor</Processor>
-    </Compile>
-    <Compile Include="Xml\Pieces\Bar.xml">
-      <Name>Bar</Name>
-      <Importer>XmlImporter</Importer>
-      <Processor>PassThroughProcessor</Processor>
-    </Compile>
-    <Compile Include="Xml\Pieces\Boss.xml">
-      <Name>Boss</Name>
-      <Importer>XmlImporter</Importer>
-      <Processor>PassThroughProcessor</Processor>
-    </Compile>
-    <Compile Include="Xml\Pieces\Cross.xml">
-      <Name>Cross</Name>
-      <Importer>XmlImporter</Importer>
-      <Processor>PassThroughProcessor</Processor>
-    </Compile>
-    <Compile Include="Xml\Pieces\Cube.xml">
-      <Name>Cube</Name>
-      <Importer>XmlImporter</Importer>
-      <Processor>PassThroughProcessor</Processor>
-    </Compile>
-    <Compile Include="Xml\Pieces\L.xml">
-      <Name>L</Name>
-      <Importer>XmlImporter</Importer>
-      <Processor>PassThroughProcessor</Processor>
-    </Compile>
-    <Compile Include="Xml\Pieces\Nico.xml">
-      <Name>Nico</Name>
-      <Importer>XmlImporter</Importer>
-      <Processor>PassThroughProcessor</Processor>
-    </Compile>
-    <Compile Include="Xml\Pieces\Sphere.xml">
-      <Name>Sphere</Name>
-      <Importer>XmlImporter</Importer>
-      <Processor>PassThroughProcessor</Processor>
-    </Compile>
-    <Compile Include="Xml\Pieces\T.xml">
-      <Name>T</Name>
-      <Importer>XmlImporter</Importer>
-      <Processor>PassThroughProcessor</Processor>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Audio\Audio.xap">
-      <Name>Audio</Name>
-      <Importer>XactImporter</Importer>
-      <Processor>XactProcessor</Processor>
-    </Compile>
-    <Compile Include="Audio\Win\audio.xgs">
-      <Name>audio</Name>
-    </Compile>
-    <Compile Include="Audio\Win\Sound Bank.xsb">
-      <Name>Sound Bank</Name>
-    </Compile>
-    <Compile Include="Audio\Win\Wave Bank.xwb">
-      <Name>Wave Bank</Name>
-    </Compile>
-    <Compile Include="Audio\Xbox\audio.xgs">
-      <Name>audio</Name>
-    </Compile>
-    <Compile Include="Audio\Xbox\Sound Bank.xsb">
-      <Name>Sound Bank</Name>
-    </Compile>
-    <Compile Include="Audio\Xbox\Wave Bank.xwb">
-      <Name>Wave Bank</Name>
-    </Compile>
     <Compile Include="Effects\Blocks.fx">
       <Name>Blocks</Name>
       <Importer>EffectImporter</Importer>
@@ -395,15 +324,6 @@
       <Name>BigExplosion0027</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Xml\BossGrowth\TierBoss.xsd">
-      <Name>TierBoss</Name>
-    </Compile>
-    <Compile Include="Xml\Pieces\TierPieces.xsd">
-      <Name>TierPieces</Name>
-    </Compile>
-    <Compile Include="Xml\Tier.xsd">
-      <Name>Tier</Name>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />

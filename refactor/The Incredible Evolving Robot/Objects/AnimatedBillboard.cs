@@ -102,7 +102,7 @@ namespace Tier.Objects
       this.Effect = (BasicEffect) TierGame.ContentHandler.getEffect("AnimatedBillboard");
 
       // Initialise vertex buffer
-      vb = new VertexBuffer(this.GraphicsDevice, MyVertexPositionTexture.SizeInBytes * 4, ResourceUsage.None);
+      vb = new VertexBuffer(this.GraphicsDevice, MyVertexPositionTexture.SizeInBytes * 4, BufferUsage.Points);
       MyVertexPositionTexture[] verts = new MyVertexPositionTexture[]
                       {
                           new MyVertexPositionTexture(
@@ -122,7 +122,7 @@ namespace Tier.Objects
 
       // Initialise index buffer
       short[] indices = new short[] { 0, 1, 2, 2, 3, 0 };
-      ib = new IndexBuffer(this.GraphicsDevice, sizeof(short) * 6, ResourceUsage.None, IndexElementSize.SixteenBits);
+      ib = new IndexBuffer(this.GraphicsDevice, sizeof(short) * 6, BufferUsage.WriteOnly, IndexElementSize.SixteenBits);
       ib.SetData<short>(indices);
     }
 

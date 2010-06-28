@@ -132,7 +132,7 @@ namespace Tier
 #else
 			TierGame.input = new InputPC();
 #endif
-      TierGame.audio = new Audio("Content\\Audio\\Audio.xgs", "Content\\Audio\\Wave Bank.xwb", "Content\\Audio\\Sound Bank.xsb");
+      //TierGame.audio = new Audio("Content\\Audio\\Audio.xgs", "Content\\Audio\\Wave Bank.xwb", "Content\\Audio\\Sound Bank.xsb");
       TierGame.graphics = new GraphicsDeviceManager(this);
       TierGame.content = new ContentManager(this.Services);
       TierGame.contenthandler = new ContentHandler();
@@ -280,7 +280,7 @@ namespace Tier
 #endif
 
       TierGame.Input.Update();
-			TierGame.Audio.Update();
+	  //TierGame.Audio.Update();
 
       base.Update(gameTime);
     }

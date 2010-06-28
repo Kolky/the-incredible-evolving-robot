@@ -15,7 +15,7 @@ namespace Tier.Misc
     private Effect bloomCombineEffect;
     private Effect gaussianBlurEffect;
 
-    private Texture2D resolveTarget;
+    private ResolveTexture2D resolveTarget;
     private RenderTarget2D renderTarget1;
     private RenderTarget2D renderTarget2;
 
@@ -75,8 +75,7 @@ namespace Tier.Misc
       SurfaceFormat format = pp.BackBufferFormat;
 
       // Create a texture for reading back the backbuffer contents.
-      this.resolveTarget = new Texture2D(this.GraphicsDevice, width, height, 1,
-                                    ResourceUsage.ResolveTarget, format, ResourceManagementMode.Manual);
+      this.resolveTarget = new ResolveTexture2D(this.GraphicsDevice, width, height, 1, format);
 
       // Create two rendertargets for the bloom processing. These are half the
       // size of the backbuffer, in order to minimize fillrate costs. Reducing
@@ -143,7 +142,7 @@ namespace Tier.Misc
                          this.bloomCombineEffect, IntermediateBuffer.FinalResult);
     }
 
-    public void Draw(GameTime gameTime, Texture2D target)
+    public void Draw(GameTime gameTime, ResolveTexture2D target)
     {
       Viewport viewport = this.GraphicsDevice.Viewport;
 
@@ -199,7 +198,7 @@ namespace Tier.Misc
 
       this.DrawFullscreenQuad(texture, renderTarget.Width, renderTarget.Height, effect, currentBuffer);
 
-      this.GraphicsDevice.ResolveRenderTarget(0);
+      //this.GraphicsDevice.ResolveRenderTarget(0);
     }
 
     /// <summary>

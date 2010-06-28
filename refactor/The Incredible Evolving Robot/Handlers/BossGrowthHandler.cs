@@ -14,7 +14,7 @@ namespace Tier.Handlers
       BossGrowth pattern = new BossGrowth();
 
       // Validate the XML file & Load
-      using ( FileStream fs = File.Open(String.Format("Content//Xml//BossGrowth//{0}.xml", name),
+      using ( FileStream fs = File.Open(String.Format("Xml//BossGrowth//{0}.xml", name),
           FileMode.Open, FileAccess.Read))
       {
         XmlDocument XmlDocument = new XmlDocument();
