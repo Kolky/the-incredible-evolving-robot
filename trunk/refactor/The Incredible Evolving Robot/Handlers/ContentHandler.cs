@@ -131,7 +131,7 @@ namespace Tier.Handlers
         temp = String.Format("{0}{1}", filepath, texNumber.ToString("0000"));
 
         //Read all textures in this animation
-        at.Frames.Add(TierGame.Content.Load<Texture2D>(temp));
+        at.Frames.Add(TierGame.Instance.Content.Load<Texture2D>(temp));
 
         // animatedTextures.Add(name+texNumber, );
         texNumber++;
