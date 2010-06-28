@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<boss xmlns="TierBoss">
+	<name>Default boss</name>
+	<model>TierCore</model>
+
+	<growthpattern base="Cube">
+		<block name="Cross" required="true" sourceconnector="0" blockconnector="0"/>
+		<block name="Bar" required="true" sourceconnector="1" blockconnector="1"/>
+	</growthpattern>
+
+	<growthpattern base="Cross">
+		<block name="L" required="true" sourceconnector="1" blockconnector="0"/>
+		<block name="Nico" required="true" sourceconnector="2" blockconnector="1"/>
+		<block name="Cross" required="true" sourceconnector="3" blockconnector="0"/>
+	</growthpattern>
+
+	<growthpattern base="L">
+		<block name="Nico" required="true" sourceconnector="1" blockconnector="0"/>
+	</growthpattern>
+
+	<growthpattern base="Nico">
+		<block name="L" required="true" sourceconnector="0" blockconnector="0"/>
+	</growthpattern>
+
+	<growthpattern base="T">
+		<block name="L" required="true" sourceconnector="1" blockconnector="0"/>
+		<block name="T" required="true" sourceconnector="2" blockconnector="1"/>
+	</growthpattern>
+
+	<growthpattern base="Bar">
+		<block name="T" required="true" sourceconnector="0" blockconnector="0"/>
+	</growthpattern>
+</boss>

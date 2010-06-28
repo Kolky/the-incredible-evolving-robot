@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<piece xmlns="TierPieces">
+	<name>Nico</name>
+	<connection>
+		<position x="-1" y="0.0" z="-1.5"/>
+		<pivot x="0" y="0" z="-1"/>
+	</connection>
+	<connection>
+		<position x="1" y="-1.5" z="0"/>
+		<pivot x="0" y="-1" z="0"/>
+	</connection>
+
+	<collisionvolumes>
+		<bar>
+			<boundsleft x="1.5" y="0.5" z="0.5"/>
+			<boundsright x="1.5" y="0.5" z="0.5"/>
+			<offset x="0" y="0" z="0"/>
+		</bar>
+		<box>
+			<bounds x="0.5" y="0.5" z="0.5"/>
+			<offset x="1" y="-1" z="0"/>
+		</box>
+			<box>
+			<bounds x="0.5" y="0.5" z="0.5"/>
+			<offset x="-1" y="0" z="-1"/>
+		</box>
+	</collisionvolumes>
+	
+</piece>
