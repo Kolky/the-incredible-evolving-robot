@@ -1,7 +1,5 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Text;
 
 using Tier.Objects.Attachable;
 using Microsoft.Xna.Framework.Graphics;
@@ -16,29 +14,24 @@ namespace Tier.Handlers
     public class BossPieceHandler : GameComponent
     {
         #region Properties
-        private Hashtable pieces;
-
-        public Hashtable Pieces
-        {
-            get { return pieces; }
-        }
+        public Hashtable Pieces { get; private set; }
         #endregion
 
         public BossPieceHandler(Game game)
             : base(game)
         {
-            this.pieces = new Hashtable();
+            Pieces = new Hashtable();
         }
 
         public void AddPiece(String name, Model model)
         {
-            this.pieces.Add(name, this.Load(name, model));
+            Pieces.Add(name, Load(name, model));
         }
 
         public Enemy GetEnemy(String name)
         {
-            Enemy boss = new Enemy(this.Game);
-            BlockPiece blueprintPiece = (BlockPiece)this.pieces[name];
+            Enemy boss = new Enemy(Game);
+            BlockPiece blueprintPiece = (BlockPiece)Pieces[name];
 
             boss.Name = blueprintPiece.Name;
 
@@ -63,8 +56,8 @@ namespace Tier.Handlers
 
         public BlockPiece GetPiece(String name)
         {
-            BlockPiece newPiece = new BlockPiece(this.Game);
-            BlockPiece blueprintPiece = (BlockPiece)this.pieces[name];
+            BlockPiece newPiece = new BlockPiece(Game);
+            BlockPiece blueprintPiece = (BlockPiece)Pieces[name];
 
             newPiece.Name = blueprintPiece.Name;
 
@@ -92,7 +85,7 @@ namespace Tier.Handlers
 
         private BlockPiece Load(String name, Model model)
         {
-            BlockPiece piece = new BlockPiece(this.Game);
+            BlockPiece piece = new BlockPiece(Game);
 
             // Validate the XML file & Load
             using (FileStream fs = File.Open(String.Format("Xml//Pieces//{0}.xml", name),
@@ -105,7 +98,7 @@ namespace Tier.Handlers
 
                 // Handles child XmlNodes
                 if (XmlDocument.HasChildNodes)
-                    this.handleChildNodes(XmlDocument.ChildNodes, piece);
+                    handleChildNodes(XmlDocument.ChildNodes, piece);
             }
 
             piece.Model = model;
@@ -131,10 +124,10 @@ namespace Tier.Handlers
                             switch (connectionNode.Name.ToLower())
                             {
                                 case "position":
-                                    position = this.handleVector3(connectionNode);
+                                    position = handleVector3(connectionNode);
                                     break;
                                 case "pivot":
-                                    pivot = this.handleVector3(connectionNode);
+                                    pivot = handleVector3(connectionNode);
                                     break;
                             }
                         }
@@ -144,7 +137,7 @@ namespace Tier.Handlers
                         break;
                     case "collisionvolumes":
                         if (xmlNode.HasChildNodes)
-                            this.handleCollisionVolumes(piece, xmlNode);
+                            handleCollisionVolumes(piece, xmlNode);
                         break;
                     default:
                         if (xmlNode.HasChildNodes)
@@ -173,13 +166,13 @@ namespace Tier.Handlers
                             switch (boxNode.Name.ToLower())
                             {
                                 case "boundsleft":
-                                    boundsLeft = this.handleVector3(boxNode);
+                                    boundsLeft = handleVector3(boxNode);
                                     break;
                                 case "boundsright":
-                                    boundsRight = this.handleVector3(boxNode);
+                                    boundsRight = handleVector3(boxNode);
                                     break;
                                 case "offset":
-                                    offset = this.handleVector3(boxNode);
+                                    offset = handleVector3(boxNode);
                                     break;
                             }
                         }
@@ -196,10 +189,10 @@ namespace Tier.Handlers
                             switch (boxNode.Name.ToLower())
                             {
                                 case "bounds":
-                                    bounds = this.handleVector3(boxNode);
+                                    bounds = handleVector3(boxNode);
                                     break;
                                 case "offset":
-                                    offset = this.handleVector3(boxNode);
+                                    offset = handleVector3(boxNode);
                                     break;
                             }
                         }
@@ -219,7 +212,7 @@ namespace Tier.Handlers
                                     radius = float.Parse(boxNode.FirstChild.Value, CultureInfo.CreateSpecificCulture("en-us"));
                                     break;
                                 case "offset":
-                                    offset = this.handleVector3(boxNode);
+                                    offset = handleVector3(boxNode);
                                     break;
                             }
                         }

@@ -28,22 +28,8 @@ namespace Tier.Handlers
     public class GameHandler
     {
         #region Properties
-
-        private int currentLevel;
-
-        public int CurrentLevel
-        {
-            get { return currentLevel; }
-            set { currentLevel = value; }
-        }
-
-        private Enemy boss;
-        public Enemy Boss
-        {
-            get { return boss; }
-            set { boss = value; }
-        }
-
+        public int CurrentLevel { get; private set; }
+        public Enemy Boss { get; private set; }
         private static MenuState menuState;
         public static MenuState MenuState
         {
@@ -56,94 +42,56 @@ namespace Tier.Handlers
                 menuState.Initialize();
             }
         }
-
-        private static BossGrowthHandler growthHandler;
-        public static BossGrowthHandler BossGrowthHandler
-        {
-            get { return growthHandler; }
-            set { growthHandler = value; }
-        }
-
-        private static BossPieceHandler bossPieceHandler;
-        public static BossPieceHandler BossPieceHandler
-        {
-            get { return bossPieceHandler; }
-        }
-
-        private static ObjectHandler objectHandler;
-        public static ObjectHandler ObjectHandler
-        {
-            get { return objectHandler; }
-        }
-
-        private static Tier.Camera.Camera camera;
-        public static Tier.Camera.Camera Camera
-        {
-            get { return camera; }
-            set { camera = value; }
-        }
-
-        private static HUD hud;
-        public static HUD HUD
-        {
-            get { return hud; }
-            set { hud = value; }
-        }
-
-        private static Game game;
-        public static Game Game
-        {
-            get { return game; }
-        }
-
-        private static Player player;
-        public static Player Player
-        {
-            get { return player; }
-        }
+        public static BossGrowthHandler BossGrowthHandler { get; private set; }
+        public static BossPieceHandler BossPieceHandler { get; private set; }
+        public static ObjectHandler ObjectHandler { get; private set; }
+        public static Tier.Camera.Camera Camera { get; private set; }
+        public static HUD HUD { get; private set; }
+        public static Game Game { get; private set; }
+        public static Player Player { get; private set; }
         #endregion
 
         public GameHandler(Game game)
         {
-            GameHandler.game = game;
-            GameHandler.MenuState = new StartMenu();
-            GameHandler.objectHandler = new ObjectHandler(game);
-            GameHandler.HUD = new HUD();
-            GameHandler.bossPieceHandler = new BossPieceHandler(game);
-            GameHandler.BossGrowthHandler = new BossGrowthHandler();
+            Game = game;
+            MenuState = new StartMenu();
+            ObjectHandler = new ObjectHandler(game);
+            HUD = new HUD();
+            BossPieceHandler = new BossPieceHandler(game);
+            BossGrowthHandler = new BossGrowthHandler();
         }
 
         private void InitializeComponents()
         {
             // Boss pieces
-            GameHandler.BossPieceHandler.AddPiece("Bar", TierGame.ContentHandler.GetModel("Bar"));
-            GameHandler.BossPieceHandler.AddPiece("L", TierGame.ContentHandler.GetModel("L"));
-            GameHandler.BossPieceHandler.AddPiece("T", TierGame.ContentHandler.GetModel("T"));
-            GameHandler.BossPieceHandler.AddPiece("Boss", TierGame.ContentHandler.GetModel("Boss"));
-            GameHandler.BossPieceHandler.AddPiece("Sphere", TierGame.ContentHandler.GetModel("Sphere"));
-            GameHandler.BossPieceHandler.AddPiece("Cube", TierGame.ContentHandler.GetModel("Cube"));
-            GameHandler.BossPieceHandler.AddPiece("Cross", TierGame.ContentHandler.GetModel("Cross"));
-            GameHandler.BossPieceHandler.AddPiece("Nico", TierGame.ContentHandler.GetModel("Nico"));
+            BossPieceHandler.AddPiece("Bar", TierGame.ContentHandler.GetModel("Bar"));
+            BossPieceHandler.AddPiece("L", TierGame.ContentHandler.GetModel("L"));
+            BossPieceHandler.AddPiece("T", TierGame.ContentHandler.GetModel("T"));
+            BossPieceHandler.AddPiece("Boss", TierGame.ContentHandler.GetModel("Boss"));
+            BossPieceHandler.AddPiece("Sphere", TierGame.ContentHandler.GetModel("Sphere"));
+            BossPieceHandler.AddPiece("Cube", TierGame.ContentHandler.GetModel("Cube"));
+            BossPieceHandler.AddPiece("Cross", TierGame.ContentHandler.GetModel("Cross"));
+            BossPieceHandler.AddPiece("Nico", TierGame.ContentHandler.GetModel("Nico"));
 
-            Sphere sphere = new Sphere(GameHandler.Game, 34.0f);
-            GameHandler.player = new Player(GameHandler.Game, sphere);
-            GameHandler.Camera = new DelayCamera(new Vector3(0f, 0f, 23f), Vector3.Zero, GameHandler.Player, new Vector3(0f, 0.1f, 0f));
+            Sphere sphere = new Sphere(Game, 34.0f);
+            Player = new Player(Game, sphere);
+            Camera = new DelayCamera(new Vector3(0f, 0f, 23f), Vector3.Zero, Player, new Vector3(0f, 0.1f, 0f));
 
-            GameHandler.ObjectHandler.AddObject(sphere);
-            GameHandler.ObjectHandler.AddObject(GameHandler.Player);
+            ObjectHandler.AddObject(sphere);
+            ObjectHandler.AddObject(Player);
 
-            this.NewGame();
+            NewGame();
         }
 
         public void NewGame()
         {
-            this.Boss = GameHandler.BossPieceHandler.GetEnemy("Cube");
-            this.Boss.GrowthPattern = GameHandler.BossGrowthHandler.Load("Default");
-            this.Boss.Initialize();
-            this.Boss.Spawn();
-            this.currentLevel = 1;
+            Boss = BossPieceHandler.GetEnemy("Cube");
+            Boss.GrowthPattern = BossGrowthHandler.Load("Default");
+            Boss.Initialize();
+            Boss.Spawn();
+            CurrentLevel = 1;
 
-            GameHandler.ObjectHandler.AddObject(this.Boss);
+            ObjectHandler.AddObject(Boss);
         }
 
         public void LoadGraphicsContent(Boolean loadAllContent)
@@ -186,34 +134,34 @@ namespace Tier.Handlers
                 TierGame.ContentHandler.setEffect("AnimatedBillboard", effect);
                 TierGame.ContentHandler.setEffect("BlockEffect", TierGame.Instance.Content.Load<Effect>("Content//Effects//Blocks"));
 
-                this.InitializeComponents();
+                InitializeComponents();
             }
         }
 
         public void Update(GameTime gameTime)
         {
             Effect ef = TierGame.ContentHandler.getEffect("BlockEffect");
-            ef.Parameters["lightDir"].SetValue(GameHandler.Camera.Direction);
-            GameHandler.Camera.Update(gameTime);
+            ef.Parameters["lightDir"].SetValue(Camera.Direction);
+            Camera.Update(gameTime);
 
-            GameHandler.MenuState.Update(gameTime);
+            MenuState.Update(gameTime);
 
-            if (GameHandler.MenuState.GetType() == typeof(GameMenu))
-                GameHandler.ObjectHandler.Update(gameTime);
+            if (MenuState.GetType() == typeof(GameMenu))
+                ObjectHandler.Update(gameTime);
         }
 
         public void Draw(GameTime gameTime)
         {
-            GameHandler.MenuState.Draw(gameTime);
+            MenuState.Draw(gameTime);
 
-            if (GameHandler.MenuState.GetType() == typeof(GameMenu))
-                GameHandler.ObjectHandler.Draw(gameTime);
+            if (MenuState.GetType() == typeof(GameMenu))
+                ObjectHandler.Draw(gameTime);
         }
 
         public void NextLevel()
         {
-            this.currentLevel++;
-            this.Boss.GrowBoss();
+            CurrentLevel++;
+            Boss.GrowBoss();
         }
     }
 }

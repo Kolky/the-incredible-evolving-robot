@@ -24,15 +24,10 @@ namespace Tier.Handlers
     public class ObjectHandler : GameComponent
     {
         #region Properties
-        private LinkedList<BasicObject> objects;
-        public LinkedList<BasicObject> Objects
-        {
-            get { return objects; }
-        }
-
+        public LinkedList<BasicObject> Objects { get; private set; }
         public int Count
         {
-            get { return objects.Count; }
+            get { return Objects.Count; }
         }
 
         private List<Object> toBeRemoved;
@@ -49,32 +44,32 @@ namespace Tier.Handlers
         public ObjectHandler(Game game)
             : base(game)
         {
-            this.objects = new LinkedList<BasicObject>();
-            this.toBeAdded = new List<Object>();
-            this.toBeRemoved = new List<Object>();
+            Objects = new LinkedList<BasicObject>();
+            toBeAdded = new List<Object>();
+            toBeRemoved = new List<Object>();
 
-            this.bloom = new BloomComponent(game);
-            this.bloom.Initialize();
-            this.bloom.Settings = BloomSettings.PresetSettings[3];
+            bloom = new BloomComponent(game);
+            bloom.Initialize();
+            bloom.Settings = BloomSettings.PresetSettings[3];
 
-            this.instancedCount = new Hashtable();
+            instancedCount = new Hashtable();
         }
 
         public void AddObject(Object obj)
         {
-            if (!this.toBeAdded.Contains(obj))
-                this.toBeAdded.Add(obj);
+            if (!toBeAdded.Contains(obj))
+                toBeAdded.Add(obj);
         }
 
         public void RemoveObject(Object obj)
         {
-            if (!this.toBeRemoved.Contains(obj))
-                this.toBeRemoved.Add(obj);
+            if (!toBeRemoved.Contains(obj))
+                toBeRemoved.Add(obj);
         }
 
         public override void Update(GameTime gameTime)
         {
-            LinkedList<BasicObject>.Enumerator iter = this.Objects.GetEnumerator();
+            LinkedList<BasicObject>.Enumerator iter = Objects.GetEnumerator();
             while (iter.MoveNext())
             {
                 iter.Current.Update(gameTime);
@@ -94,7 +89,7 @@ namespace Tier.Handlers
 
                         LaserCluster lcluster = (LaserCluster)iter.Current;
 
-                        LinkedList<BasicObject>.Enumerator iter2 = this.Objects.GetEnumerator();
+                        LinkedList<BasicObject>.Enumerator iter2 = Objects.GetEnumerator();
                         while (iter2.MoveNext())
                         {
                             if (iter2.Current.IsCollidable
@@ -123,16 +118,16 @@ namespace Tier.Handlers
                     {	//All other , what Player does not shoot :P
                         GameHandler.HUD.HitUpdate();
                         GameHandler.HUD.Die();
-                        this.toBeRemoved.Add(iter.Current);
+                        toBeRemoved.Add(iter.Current);
 
-                        this.AddObject(new AnimatedBillboard(GameHandler.Game, "Explosion", false, iter.Current.Position.Coordinate, 1f, 150));
+                        AddObject(new AnimatedBillboard(GameHandler.Game, "Explosion", false, iter.Current.Position.Coordinate, 1f, 150));
                     }
                 }
                 //************************************
             }
 
-            this.anythingChanged |= this.removeOld();
-            this.anythingChanged |= this.addNew();
+            anythingChanged |= removeOld();
+            anythingChanged |= addNew();
         }
 
         /// <summary>
@@ -141,38 +136,38 @@ namespace Tier.Handlers
         /// <returns>true als er iets is toegevoegd</returns>
         public bool addNew()
         {
-            if (this.toBeAdded.Count == 0)
+            if (toBeAdded.Count == 0)
                 return false;
 
-            for (int j = 0; j < this.toBeAdded.Count; j++)
+            for (int j = 0; j < toBeAdded.Count; j++)
             {
-                if (this.Objects.Count == 0)
+                if (Objects.Count == 0)
                 {
-                    this.Objects.AddLast((BasicObject)this.toBeAdded[j]);
+                    Objects.AddLast((BasicObject)toBeAdded[j]);
                 }
                 else
                 {
-                    LinkedListNode<BasicObject> currentObj = this.Objects.First;
+                    LinkedListNode<BasicObject> currentObj = Objects.First;
                     bool found = false, determinedRightSpot = false;
 
-                    for (int i = 0; i < this.Objects.Count; i++)
+                    for (int i = 0; i < Objects.Count; i++)
                     {
                         if (found)
                             break;
 
                         if (!determinedRightSpot)
                         {
-                            switch (currentObj.Value.CompareTo((BasicObject)this.toBeAdded[j]))
+                            switch (currentObj.Value.CompareTo((BasicObject)toBeAdded[j]))
                             {
                                 case 0:
-                                    this.Objects.AddBefore(currentObj, (BasicObject)this.toBeAdded[j]);
+                                    Objects.AddBefore(currentObj, (BasicObject)toBeAdded[j]);
                                     found = true; determinedRightSpot = true;
                                     break;
                                 case -1:
                                     determinedRightSpot = true;
                                     break;
                                 case 1:
-                                    this.Objects.AddBefore(currentObj, (BasicObject)this.toBeAdded[j]);
+                                    Objects.AddBefore(currentObj, (BasicObject)toBeAdded[j]);
                                     found = true; determinedRightSpot = true;
                                     break;
                             }
@@ -180,14 +175,14 @@ namespace Tier.Handlers
 
                         if (determinedRightSpot)
                         {
-                            if (currentObj.Value.CompareTo((BasicObject)this.toBeAdded[j]) != -1)
+                            if (currentObj.Value.CompareTo((BasicObject)toBeAdded[j]) != -1)
                             {
-                                this.Objects.AddBefore(currentObj, (BasicObject)this.toBeAdded[j]);
+                                Objects.AddBefore(currentObj, (BasicObject)toBeAdded[j]);
                                 found = true;
                             }
-                            else if ((i + 1) == this.Objects.Count)
+                            else if ((i + 1) == Objects.Count)
                             {
-                                this.Objects.AddAfter(currentObj, (BasicObject)this.toBeAdded[j]);
+                                Objects.AddAfter(currentObj, (BasicObject)toBeAdded[j]);
                                 found = true;
                             }
                         }
@@ -196,7 +191,7 @@ namespace Tier.Handlers
                 }
             }
 
-            this.toBeAdded.Clear();
+            toBeAdded.Clear();
 
             return true;
         }
@@ -207,15 +202,15 @@ namespace Tier.Handlers
         /// <returns>true als er iets is verwijderd</returns>
         public bool removeOld()
         {
-            if (this.toBeRemoved.Count == 0)
+            if (toBeRemoved.Count == 0)
                 return false;
 
-            for (int i = 0; i < this.toBeRemoved.Count; i++)
+            for (int i = 0; i < toBeRemoved.Count; i++)
             {
-                if (this.Objects.Contains((BasicObject)this.toBeRemoved[i]))
-                    this.Objects.Remove((BasicObject)this.toBeRemoved[i]);
+                if (Objects.Contains((BasicObject)toBeRemoved[i]))
+                    Objects.Remove((BasicObject)toBeRemoved[i]);
             }
-            this.toBeRemoved.Clear();
+            toBeRemoved.Clear();
 
             return true;
         }
@@ -223,12 +218,12 @@ namespace Tier.Handlers
 
         public void Draw(GameTime gameTime)
         {
-            if (this.anythingChanged)
+            if (anythingChanged)
             {
-                this.setFirstLastMetaData();
+                setFirstLastMetaData();
             }
 
-            LinkedList<BasicObject>.Enumerator iter = this.Objects.GetEnumerator();
+            LinkedList<BasicObject>.Enumerator iter = Objects.GetEnumerator();
             while (iter.MoveNext())
             {
                 if (!iter.Current.IsInstanced)
@@ -245,9 +240,11 @@ namespace Tier.Handlers
                 }
 
 #if DEBUG && BOUNDRENDER
-        if (iter.Current.GetType().IsSubclassOf(typeof(DestroyableObject))
-          && !((DestroyableObject)iter.Current).Exploded)
-          ((DestroyableObject)iter.Current).DrawBoundingObjects();
+                if (iter.Current.GetType().IsSubclassOf(typeof(DestroyableObject))
+                    && !((DestroyableObject)iter.Current).Exploded)
+                {
+                    ((DestroyableObject)iter.Current).DrawBoundingObjects();
+                }
 #endif
             }
         }
@@ -258,14 +255,14 @@ namespace Tier.Handlers
         /// </summary>
         private void setFirstLastMetaData()
         {
-            if (this.Objects.Count != 0)
+            if (Objects.Count != 0)
             {
-                LinkedList<BasicObject>.Enumerator iter = this.Objects.GetEnumerator();
+                LinkedList<BasicObject>.Enumerator iter = Objects.GetEnumerator();
 
                 iter.MoveNext();//ga naar eeste positie
                 if (iter.Current.IsInstanced)
                 {
-                    this.instancedCount[iter.Current.ModelName] = 1;
+                    instancedCount[iter.Current.ModelName] = 1;
                 }
                 iter.Current.FirstInList = true;
                 iter.Current.LastInList = false;//word op true gezet als dit het geval is
@@ -289,10 +286,10 @@ namespace Tier.Handlers
 
                     if (iter.Current.IsInstanced)
                     {
-                        if (this.instancedCount[iter.Current.ModelName] == null)
-                            this.instancedCount[iter.Current.ModelName] = 1;
+                        if (instancedCount[iter.Current.ModelName] == null)
+                            instancedCount[iter.Current.ModelName] = 1;
                         else
-                            this.instancedCount[iter.Current.ModelName] = (int)this.instancedCount[iter.Current.ModelName] + 1;
+                            instancedCount[iter.Current.ModelName] = (int)instancedCount[iter.Current.ModelName] + 1;
                     }
 
                     prev = iter.Current;
@@ -305,20 +302,20 @@ namespace Tier.Handlers
         {
             if (bo.FirstInList)
             {
-                int size = (int)this.instancedCount[bo.ModelName];
-                Array.Resize(ref this.instanceTransforms, size);
+                int size = (int)instancedCount[bo.ModelName];
+                Array.Resize(ref instanceTransforms, size);
                 instanceIndex = 0;
             }
 
-            this.instanceTransforms[instanceIndex++] = Matrix.CreateScale(bo.Scale) *
+            instanceTransforms[instanceIndex++] = Matrix.CreateScale(bo.Scale) *
                                          bo.RotationFix *
                                          Matrix.CreateFromQuaternion(bo.Position.Front) *
                                          Matrix.CreateTranslation(bo.Position.Coordinate);
 
             if (bo.LastInList)
             {
-                TierGame.Instance.Content.Load<InstancedModel>("Content//Models//" + bo.ModelName).DrawInstances(this.instanceTransforms, GameHandler.Camera.View, GameHandler.Camera.Projection);
-                this.instancedCount[bo.ModelName] = 0;
+                TierGame.Instance.Content.Load<InstancedModel>("Content//Models//" + bo.ModelName).DrawInstances(instanceTransforms, GameHandler.Camera.View, GameHandler.Camera.Projection);
+                instancedCount[bo.ModelName] = 0;
             }
         }
     }

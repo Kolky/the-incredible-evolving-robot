@@ -8,131 +8,72 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Tier.Handlers
 {
-  public class TextHandler
-  {
-    public class TextObject
+    public class TextHandler
     {
-      #region Properties
-      private FontType fontType;
-      public FontType FontType
-      {
-        get { return fontType; }
-        set { fontType = value; }
-      }
+        public class TextObject
+        {
+            #region Properties
+            public FontType FontType { get; set; }
+            public Color Color { get; set; }
+            public String Text { get; set; }
+            public Vector2 Position { get; set; }
+            public float Rotation { get; set; }
+            public Vector2 Origin { get; set; }
+            public float Scale { get; set; }
+            public SpriteEffects Effects { get; set; }
+            public Boolean CenterX { get; set; }
+            public Boolean CenterY { get; set; }
+            #endregion
 
-      private Color color;
-      public Color Color
-      {
-        get { return color; }
-        set { color = value; }
-      }
+            public TextObject(FontType fontType, String text, Vector2 position, Color color, float rotation, Vector2 origin, float scale, SpriteEffects effects, Boolean centerX, Boolean centerY)
+            {
+                FontType = fontType;
 
-      private String text;
-      public String Text
-      {
-        get { return text; }
-        set { text = value; }
-      }
+                Text = text;
+                Position = position;
+                Color = color;
 
-      private Vector2 position;
-      public Vector2 Position
-      {
-        get { return position; }
-        set { position = value; }
-      }
+                Rotation = rotation;
+                Origin = origin;
+                Scale = scale;
+                Effects = effects;
 
-      private float rotation;
-      public float Rotation
-      {
-        get { return rotation; }
-        set { rotation = value; }
-      }
+                CenterX = centerX;
+                CenterY = centerY;
+            }
+        }
 
-      private Vector2 origin;
-      public Vector2 Origin
-      {
-        get { return origin; }
-        set { origin = value; }
-      }
+        #region Properties
+        public enum FontType
+        {
+            DEFAULT_FONT,
+            TEXTURE_FONT
+        }
 
-      private float scale;
-      public float Scale
-      {
-        get { return scale; }
-        set { scale = value; }
-      }
+        private SpriteBatch fontBatch;
+        private SpriteFont font;
+        private Texture2D fontTexture;
 
-      private SpriteEffects effects;
-      public SpriteEffects Effects
-      {
-        get { return effects; }
-        set { effects = value; }
-      }
+        private Hashtable textToWrite;
 
-      private Boolean centerX;
-      public Boolean CenterX
-      {
-        get { return centerX; }
-        set { centerX = value; }
-      }
+        /// <summary>
+        /// Font height
+        /// </summary>
+        private const int FontHeight = 36;
 
-      private Boolean centerY;
-      public Boolean CenterY
-      {
-        get { return centerY; }
-        set { centerY = value; }
-      }
-      #endregion
+        /// <summary>
+        /// Substract this value from the y postion when rendering.
+        /// Most letters start below the CharRects, this fixes that issue.
+        /// </summary>
+        private const int SubRenderHeight = 5;
 
-      public TextObject(FontType fontType, String text, Vector2 position, Color color, float rotation, Vector2 origin, float scale, SpriteEffects effects, Boolean centerX, Boolean centerY)
-      {
-        this.FontType = fontType;
-
-        this.Text = text;
-        this.Position = position;
-        this.Color = color;
-
-        this.Rotation = rotation;
-        this.Origin = origin;
-        this.Scale = scale;
-        this.Effects = effects;
-
-        this.CenterX = centerX;
-        this.CenterY = centerY;
-      }
-    }
-
-    #region Properties
-    public enum FontType
-    {
-      DEFAULT_FONT,
-      TEXTURE_FONT
-    }
-
-    private SpriteBatch fontBatch;
-    private SpriteFont font;
-    private Texture2D fontTexture;
-
-    private Hashtable textToWrite;
-
-    /// <summary>
-    /// Font height
-    /// </summary>
-    private const int FontHeight = 36;
-
-    /// <summary>
-    /// Substract this value from the y postion when rendering.
-    /// Most letters start below the CharRects, this fixes that issue.
-    /// </summary>
-    private const int SubRenderHeight = 5;
-
-    /// <summary>
-    /// Char rectangles, goes from space (32) to ~ (126).
-    /// Height is not used (always the same), instead we save the actual
-    /// used width for rendering in the height value!
-    /// Then we also got 4 extra rects for the XBox Buttons: A, B, X, Y
-    /// </summary>
-    private static Rectangle[] CharRects = new Rectangle[126 - 32 + 1]
+        /// <summary>
+        /// Char rectangles, goes from space (32) to ~ (126).
+        /// Height is not used (always the same), instead we save the actual
+        /// used width for rendering in the height value!
+        /// Then we also got 4 extra rects for the XBox Buttons: A, B, X, Y
+        /// </summary>
+        private static Rectangle[] CharRects = new Rectangle[126 - 32 + 1]
         {
             new Rectangle(0, 0, 1, 8), // space
             new Rectangle(1, 0, 11, 10), // !
@@ -236,211 +177,211 @@ namespace Tier.Handlers
             new Rectangle(227, 216, 10, 9), // }
             new Rectangle(237, 216, 18, 17), // ~
         };
-    #endregion
+        #endregion
 
-    public TextHandler()
-    {
-      this.textToWrite = new Hashtable();
-    }
-
-    public void Initialize()
-    {
-      this.fontBatch = new SpriteBatch(TierGame.Device);
-      this.font = TierGame.Instance.Content.Load<SpriteFont>("Content\\Fonts\\Arial");
-      this.fontTexture = TierGame.Instance.Content.Load<Texture2D>("Content\\Fonts\\GameFont");
-    }
-
-    #region AddItem
-    public void AddItem(String key, String text, Vector2 position)
-    {
-      this.AddItem(key, text, position, Color.White);
-    }
-    public void AddItem(String key, String text, Vector2 position, Color color)
-    {
-      this.AddItem(key, text, position, color, 0f, Vector2.Zero, 1f, SpriteEffects.None);
-    }
-    public void AddItem(String key, String text, Vector2 position, Color color, Boolean centerX, Boolean centerY)
-    {
-      this.AddItem(key, text, position, color, 0f, Vector2.Zero, 1f, SpriteEffects.None, centerX, centerY);
-    }
-    public void AddItem(String key, String text, Vector2 position, Color color, float rotation, Vector2 origin, float scale, SpriteEffects effects)
-    {
-      this.AddItem(key, text, position, color, rotation, origin, scale, effects, false, false);
-    }
-    public void AddItem(String key, String text, Vector2 position, Color color, float rotation, Vector2 origin, float scale, SpriteEffects effects, Boolean centerX, Boolean centerY)
-    {
-      TextObject obj = new TextObject(FontType.TEXTURE_FONT, text, position, color, rotation, origin, scale, effects, centerX, centerY);
-
-      if (!this.textToWrite.Contains(key))
-        this.textToWrite.Add(key, obj);
-    }
-    #endregion
-
-    #region RemoveItem
-    public void RemoveItem(String key)
-    {
-      if (this.textToWrite.Contains(key))
-        this.textToWrite.Remove(key);
-    }
-    #endregion
-
-    #region ChangeItem
-    public void ChangeText(String key, String text)
-    {
-      if (this.textToWrite.Contains(key))
-      {
-        TextObject obj = (TextObject)this.textToWrite[key];
-        obj.Text = text;
-        this.textToWrite[key] = obj;
-      }
-    }
-    public void ChangePosition(String key, Vector2 position)
-    {
-      if (this.textToWrite.Contains(key))
-      {
-        TextObject obj = (TextObject)this.textToWrite[key];
-        obj.Position = position;
-        this.textToWrite[key] = obj;
-      }
-    }
-    public void ChangeColor(String key, Color color)
-    {
-      if (this.textToWrite.Contains(key))
-      {
-        TextObject obj = (TextObject)this.textToWrite[key];
-        obj.Color = color;
-        this.textToWrite[key] = obj;
-      }
-    }
-    public void ChangeRotation(String key, float rotation)
-    {
-      if (this.textToWrite.Contains(key))
-      {
-        TextObject obj = (TextObject)this.textToWrite[key];
-        obj.Rotation = rotation;
-        this.textToWrite[key] = obj;
-      }
-    }
-    public void ChangeOrigin(String key, Vector2 origin)
-    {
-      if (this.textToWrite.Contains(key))
-      {
-        TextObject obj = (TextObject)this.textToWrite[key];
-        obj.Origin = origin;
-        this.textToWrite[key] = obj;
-      }
-    }
-    public void ChangeScale(String key, float scale)
-    {
-      if (this.textToWrite.Contains(key))
-      {
-        TextObject obj = (TextObject)this.textToWrite[key];
-        obj.Scale = scale;
-        this.textToWrite[key] = obj;
-      }
-    }
-    public void ChangeEffects(String key, SpriteEffects effects)
-    {
-      if (this.textToWrite.Contains(key))
-      {
-        TextObject obj = (TextObject)this.textToWrite[key];
-        obj.Effects = effects;
-        this.textToWrite[key] = obj;
-      }
-    }
-    #endregion
-
-    #region GetTextWidth
-    public Vector2 GetTextWidth(String key)
-    {
-      if (this.textToWrite.Contains(key))
-      {
-        if (((TextObject)this.textToWrite[key]).FontType == FontType.DEFAULT_FONT)
-          return this.font.MeasureString(((TextObject)this.textToWrite[key]).Text);
-        else if (((TextObject)this.textToWrite[key]).FontType == FontType.TEXTURE_FONT)
+        public TextHandler()
         {
-          int width = 0, height = 0;
-          char[] chars = ((TextObject)this.textToWrite[key]).Text.ToCharArray();
-          for (int num = 0; num < chars.Length; num++)
-          {
-            int charNum = (int)chars[num];
-            if (charNum >= 32 && charNum - 32 < CharRects.Length)
-              width += CharRects[charNum - 32].Height;
-          }
-          return new Vector2(width, height);
+            textToWrite = new Hashtable();
         }
-        else
-          return Vector2.Zero;
-      }
-      else
-        return Vector2.Zero;
-    }
-    #endregion
 
-    #region GetTextObject
-    public TextObject GetTextObject(String key)
-    {
-      if (this.textToWrite.Contains(key))
-        return (TextObject)this.textToWrite[key];
-      else
-        return null;
-    }
-    #endregion
-
-    #region Draw
-    public void Draw(GameTime gameTime)
-    {
-      if (this.textToWrite.Count > 0)
-      {
-        this.fontBatch.Begin(SpriteBlendMode.AlphaBlend, SpriteSortMode.BackToFront, SaveStateMode.SaveState);
-
-        IDictionaryEnumerator iter = this.textToWrite.GetEnumerator();
-        while (iter.MoveNext())
+        public void Initialize()
         {
-          if (((TextObject)iter.Value).CenterX || ((TextObject)iter.Value).CenterY)
-            ((TextObject)iter.Value).Origin = new Vector2((((TextObject)iter.Value).CenterX ? (this.GetTextWidth((String)iter.Key).X * 0.5f) : ((TextObject)iter.Value).Origin.X),
-              (((TextObject)iter.Value).CenterY ? (this.GetTextWidth((String)iter.Key).Y * 0.5f) : ((TextObject)iter.Value).Origin.Y));
+            fontBatch = new SpriteBatch(TierGame.Device);
+            font = TierGame.Instance.Content.Load<SpriteFont>("Content\\Fonts\\Arial");
+            fontTexture = TierGame.Instance.Content.Load<Texture2D>("Content\\Fonts\\GameFont");
+        }
 
-          if (((TextObject)iter.Value).FontType == FontType.DEFAULT_FONT)
-          {
-            // Draw using normal Arial Font
-            this.fontBatch.DrawString(this.font, ((TextObject)iter.Value).Text, ((TextObject)iter.Value).Position, ((TextObject)iter.Value).Color, ((TextObject)iter.Value).Rotation, ((TextObject)iter.Value).Origin, ((TextObject)iter.Value).Scale, ((TextObject)iter.Value).Effects, 0f);
-          }
-          else if (((TextObject)iter.Value).FontType == FontType.TEXTURE_FONT)
-          {
-            // Draw using texture Font
-            char[] chars = ((TextObject)iter.Value).Text.ToCharArray();
-            float posX = ((TextObject)iter.Value).Position.X;
-            float posY = ((TextObject)iter.Value).Position.Y;
-            
-            for (int num = 0; num < chars.Length; num++)
-            {              
-              int charNum = (int)chars[num];
-              if (charNum >= 32 && charNum - 32 < CharRects.Length)
-              {
-                Rectangle rect = CharRects[charNum - 32];
+        #region AddItem
+        public void AddItem(String key, String text, Vector2 position)
+        {
+            AddItem(key, text, position, Color.White);
+        }
+        public void AddItem(String key, String text, Vector2 position, Color color)
+        {
+            AddItem(key, text, position, color, 0f, Vector2.Zero, 1f, SpriteEffects.None);
+        }
+        public void AddItem(String key, String text, Vector2 position, Color color, Boolean centerX, Boolean centerY)
+        {
+            AddItem(key, text, position, color, 0f, Vector2.Zero, 1f, SpriteEffects.None, centerX, centerY);
+        }
+        public void AddItem(String key, String text, Vector2 position, Color color, float rotation, Vector2 origin, float scale, SpriteEffects effects)
+        {
+            AddItem(key, text, position, color, rotation, origin, scale, effects, false, false);
+        }
+        public void AddItem(String key, String text, Vector2 position, Color color, float rotation, Vector2 origin, float scale, SpriteEffects effects, Boolean centerX, Boolean centerY)
+        {
+            TextObject obj = new TextObject(FontType.TEXTURE_FONT, text, position, color, rotation, origin, scale, effects, centerX, centerY);
 
-                // Reduce height to prevent overlapping pixels
-                rect.Y += 1;
-                rect.Height = FontHeight;
-                Rectangle destRect = new Rectangle((int)posX, (int)posY - TextHandler.SubRenderHeight, rect.Width, rect.Height);
+            if (!textToWrite.Contains(key))
+                textToWrite.Add(key, obj);
+        }
+        #endregion
 
-                destRect.Width = (int)Math.Round(destRect.Width * ((TextObject)iter.Value).Scale);
-                destRect.Height = (int)Math.Round(destRect.Height * ((TextObject)iter.Value).Scale);
+        #region RemoveItem
+        public void RemoveItem(String key)
+        {
+            if (textToWrite.Contains(key))
+                textToWrite.Remove(key);
+        }
+        #endregion
 
-                // Since we want upscaling, we use the modified destRect
-                this.fontBatch.Draw(fontTexture, destRect, rect, ((TextObject)iter.Value).Color, ((TextObject)iter.Value).Rotation, ((TextObject)iter.Value).Origin, ((TextObject)iter.Value).Effects, 0f);
-
-                // Increase x pos by width we use for this character
-                int charWidth = CharRects[charNum - 32].Height;
-                posX += (int)Math.Round(charWidth * ((TextObject)iter.Value).Scale);
-              }
+        #region ChangeItem
+        public void ChangeText(String key, String text)
+        {
+            if (textToWrite.Contains(key))
+            {
+                TextObject obj = (TextObject)textToWrite[key];
+                obj.Text = text;
+                textToWrite[key] = obj;
             }
-          }
         }
-        this.fontBatch.End();
-      }
+        public void ChangePosition(String key, Vector2 position)
+        {
+            if (textToWrite.Contains(key))
+            {
+                TextObject obj = (TextObject)textToWrite[key];
+                obj.Position = position;
+                textToWrite[key] = obj;
+            }
+        }
+        public void ChangeColor(String key, Color color)
+        {
+            if (textToWrite.Contains(key))
+            {
+                TextObject obj = (TextObject)textToWrite[key];
+                obj.Color = color;
+                textToWrite[key] = obj;
+            }
+        }
+        public void ChangeRotation(String key, float rotation)
+        {
+            if (textToWrite.Contains(key))
+            {
+                TextObject obj = (TextObject)textToWrite[key];
+                obj.Rotation = rotation;
+                textToWrite[key] = obj;
+            }
+        }
+        public void ChangeOrigin(String key, Vector2 origin)
+        {
+            if (textToWrite.Contains(key))
+            {
+                TextObject obj = (TextObject)textToWrite[key];
+                obj.Origin = origin;
+                textToWrite[key] = obj;
+            }
+        }
+        public void ChangeScale(String key, float scale)
+        {
+            if (textToWrite.Contains(key))
+            {
+                TextObject obj = (TextObject)textToWrite[key];
+                obj.Scale = scale;
+                textToWrite[key] = obj;
+            }
+        }
+        public void ChangeEffects(String key, SpriteEffects effects)
+        {
+            if (textToWrite.Contains(key))
+            {
+                TextObject obj = (TextObject)textToWrite[key];
+                obj.Effects = effects;
+                textToWrite[key] = obj;
+            }
+        }
+        #endregion
+
+        #region GetTextWidth
+        public Vector2 GetTextWidth(String key)
+        {
+            if (textToWrite.Contains(key))
+            {
+                if (((TextObject)textToWrite[key]).FontType == FontType.DEFAULT_FONT)
+                    return font.MeasureString(((TextObject)textToWrite[key]).Text);
+                else if (((TextObject)this.textToWrite[key]).FontType == FontType.TEXTURE_FONT)
+                {
+                    int width = 0, height = 0;
+                    char[] chars = ((TextObject)textToWrite[key]).Text.ToCharArray();
+                    for (int num = 0; num < chars.Length; num++)
+                    {
+                        int charNum = (int)chars[num];
+                        if (charNum >= 32 && charNum - 32 < CharRects.Length)
+                            width += CharRects[charNum - 32].Height;
+                    }
+                    return new Vector2(width, height);
+                }
+                else
+                    return Vector2.Zero;
+            }
+            else
+                return Vector2.Zero;
+        }
+        #endregion
+
+        #region GetTextObject
+        public TextObject GetTextObject(String key)
+        {
+            if (textToWrite.Contains(key))
+                return (TextObject)textToWrite[key];
+            else
+                return null;
+        }
+        #endregion
+
+        #region Draw
+        public void Draw(GameTime gameTime)
+        {
+            if (textToWrite.Count > 0)
+            {
+                fontBatch.Begin(SpriteBlendMode.AlphaBlend, SpriteSortMode.BackToFront, SaveStateMode.SaveState);
+
+                IDictionaryEnumerator iter = textToWrite.GetEnumerator();
+                while (iter.MoveNext())
+                {
+                    if (((TextObject)iter.Value).CenterX || ((TextObject)iter.Value).CenterY)
+                        ((TextObject)iter.Value).Origin = new Vector2((((TextObject)iter.Value).CenterX ? (GetTextWidth((String)iter.Key).X * 0.5f) : ((TextObject)iter.Value).Origin.X),
+                          (((TextObject)iter.Value).CenterY ? (GetTextWidth((String)iter.Key).Y * 0.5f) : ((TextObject)iter.Value).Origin.Y));
+
+                    if (((TextObject)iter.Value).FontType == FontType.DEFAULT_FONT)
+                    {
+                        // Draw using normal Arial Font
+                        fontBatch.DrawString(font, ((TextObject)iter.Value).Text, ((TextObject)iter.Value).Position, ((TextObject)iter.Value).Color, ((TextObject)iter.Value).Rotation, ((TextObject)iter.Value).Origin, ((TextObject)iter.Value).Scale, ((TextObject)iter.Value).Effects, 0f);
+                    }
+                    else if (((TextObject)iter.Value).FontType == FontType.TEXTURE_FONT)
+                    {
+                        // Draw using texture Font
+                        char[] chars = ((TextObject)iter.Value).Text.ToCharArray();
+                        float posX = ((TextObject)iter.Value).Position.X;
+                        float posY = ((TextObject)iter.Value).Position.Y;
+
+                        for (int num = 0; num < chars.Length; num++)
+                        {
+                            int charNum = (int)chars[num];
+                            if (charNum >= 32 && charNum - 32 < CharRects.Length)
+                            {
+                                Rectangle rect = CharRects[charNum - 32];
+
+                                // Reduce height to prevent overlapping pixels
+                                rect.Y += 1;
+                                rect.Height = FontHeight;
+                                Rectangle destRect = new Rectangle((int)posX, (int)posY - TextHandler.SubRenderHeight, rect.Width, rect.Height);
+
+                                destRect.Width = (int)Math.Round(destRect.Width * ((TextObject)iter.Value).Scale);
+                                destRect.Height = (int)Math.Round(destRect.Height * ((TextObject)iter.Value).Scale);
+
+                                // Since we want upscaling, we use the modified destRect
+                                fontBatch.Draw(fontTexture, destRect, rect, ((TextObject)iter.Value).Color, ((TextObject)iter.Value).Rotation, ((TextObject)iter.Value).Origin, ((TextObject)iter.Value).Effects, 0f);
+
+                                // Increase x pos by width we use for this character
+                                int charWidth = CharRects[charNum - 32].Height;
+                                posX += (int)Math.Round(charWidth * ((TextObject)iter.Value).Scale);
+                            }
+                        }
+                    }
+                }
+                fontBatch.End();
+            }
+        }
+        #endregion
     }
-    #endregion
-  }
 }
