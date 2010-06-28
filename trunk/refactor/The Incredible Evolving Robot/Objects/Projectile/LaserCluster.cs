@@ -39,7 +39,7 @@ namespace Tier.Objects.Destroyable.Projectile
 			this.TimeToLive = 750;
 			this.Model = TierGame.ContentHandler.GetModel("Laser");
 			this.Scale = 0.075f;
-			this.Sort = SortFilter.Bloom;
+			//this.Sort = SortFilter.Bloom;
 
 			this.ModelMeta = new ModelMeta(this.Model);
 			this.Initialize();

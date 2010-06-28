@@ -24,7 +24,7 @@ namespace Tier.Objects.Destroyable.Projectile
       this.ModelMeta = new ModelMeta(this.Model);
 
       this.Scale = 0.5f;
-      this.Sort = SortFilter.Bloom;
+      //this.Sort = SortFilter.Bloom;
       this.Initialize();
     }
 
