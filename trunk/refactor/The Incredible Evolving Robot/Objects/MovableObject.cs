@@ -6,27 +6,22 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Tier.Objects
 {
-  abstract public class MovableObject : BasicObject
-  {
-    #region Properties
-    private Movement movement;
-    public Movement Movement
+    abstract public class MovableObject : BasicObject
     {
-      get { return movement; }
-      set { movement = value; }
-    }	
-    #endregion
+        #region Properties
+        public Movement Movement { get; set; }
+        #endregion
 
-		public MovableObject(Game game, Boolean isCollidable)
-      : base(game, isCollidable)
-    {
-      this.Movement = new Movement();
-    }
+        public MovableObject(Game game, Boolean isCollidable)
+            : base(game, isCollidable)
+        {
+            Movement = new Movement();
+        }
 
-    public override void Update(GameTime gameTime)
-    {
-      this.Position.Coordinate += this.Movement.Velocity * (gameTime.ElapsedGameTime.Milliseconds * 0.001f);
-      base.Update(gameTime);
+        public override void Update(GameTime gameTime)
+        {
+            Position.Coordinate += Movement.Velocity * (gameTime.ElapsedGameTime.Milliseconds * 0.001f);
+            base.Update(gameTime);
+        }
     }
-  }
 }

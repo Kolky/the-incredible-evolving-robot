@@ -7,28 +7,17 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Tier.Objects
 {
-  public class Movement
-  {
-    #region Properties
-    private Quaternion rotation;
-    public Quaternion Rotation
+    public class Movement
     {
-      get { return rotation; }
-      set { rotation = value; }
-    }
+        #region Properties
+        public Quaternion Rotation { get; set; }
+        public Vector3 Velocity { get; set; }
+        #endregion
 
-    private Vector3 velocity;
-    public Vector3 Velocity
-    {
-      get { return velocity; }
-      set { velocity = value; }
-    }	
-    #endregion
-
-    public Movement()
-    {
-      this.Rotation = Quaternion.Identity;
-      this.Velocity = Vector3.Zero;
+        public Movement()
+        {
+            Rotation = Quaternion.Identity;
+            Velocity = Vector3.Zero;
+        }
     }
-  }
 }

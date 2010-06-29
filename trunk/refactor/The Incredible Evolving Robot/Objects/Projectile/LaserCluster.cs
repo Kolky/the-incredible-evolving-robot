@@ -8,130 +8,118 @@ using Tier.Handlers;
 
 namespace Tier.Objects.Destroyable.Projectile
 {
-	class LaserCluster : Tier.Objects.Projectile
-	{
-		#region properties
-		private List<Laser> lasers;
-    public List<Laser> Lasers
+    class LaserCluster : Tier.Objects.Projectile
     {
-      get { return lasers; }
-    }
+        #region properties
+        public List<Laser> Lasers { get; private set; }
+        private List<Laser> toBeRemoved;
+        public float RadSpread { get; set; }
+        private int clusterCapacity = 8;
+        #endregion
 
-    private List<Laser> toBeRemoved;
+        public LaserCluster(Game game, Position sourcePos, float spread)
+            : base(game, true, sourcePos, 40)
+        {
+            RadSpread = spread;
+            Lasers = new List<Laser>(clusterCapacity);
+            toBeRemoved = new List<Laser>();
 
-		private float radSpread;
-		public float RadSpread
-		{
-			get { return this.radSpread; }
-			set { this.radSpread = value; }
-		}
+            TimeToLive = 750;
+            Model = TierGame.ContentHandler.GetModel("Laser");
+            Scale = 0.075f;
+            //Sort = SortFilter.Bloom;
 
-		private int clusterCapacity = 8;
-		#endregion
+            ModelMeta = new ModelMeta(Model);
+            Initialize();
+        }
 
-		public LaserCluster(Game game, Position sourcePos, float spread)
-			: base(game, true, sourcePos, 40)
-		{
-			this.radSpread = spread;
-			this.lasers = new List<Laser>(this.clusterCapacity);
-      this.toBeRemoved = new List<Laser>();
+        public override void Initialize()
+        {
+            base.RotationFix = Matrix.CreateFromAxisAngle(Vector3.UnitX, MathHelper.PiOver2 + MathHelper.Pi);
 
-			this.TimeToLive = 750;
-			this.Model = TierGame.ContentHandler.GetModel("Laser");
-			this.Scale = 0.075f;
-			//this.Sort = SortFilter.Bloom;
+            Position posWithSpread = new Position(Position);
+            Vector3 upVector = Vector3.Transform(Vector3.Up, Position.Front);
+            Vector3 rightVector = Vector3.Transform(Vector3.Right, Position.Front);
+            for (int i = 0; i < clusterCapacity; i++)
+            {
+                Quaternion randomSpread = Quaternion.Concatenate(Quaternion.CreateFromAxisAngle(upVector, (RadSpread * Options.Random.Next(-1000, 1000)) / 1000f),
+                                                                             Quaternion.CreateFromAxisAngle(rightVector, (RadSpread * Options.Random.Next(-1000, 1000)) / 1000f));
 
-			this.ModelMeta = new ModelMeta(this.Model);
-			this.Initialize();
-		}
+                posWithSpread.Front = Quaternion.Concatenate(posWithSpread.Front, randomSpread);
+                Laser l = new Laser(Game, posWithSpread);
+                Lasers.Add(l);
+            }
+            addBoundingBar(Vector3.One * RadSpread, Vector3.One * RadSpread, Vector3.Zero);
 
-		public override void Initialize()
-		{
-			base.RotationFix = Matrix.CreateFromAxisAngle(Vector3.UnitX, MathHelper.PiOver2 + MathHelper.Pi);
+            base.Initialize();
+        }
 
-			Position posWithSpread = new Position(this.Position);
-			Vector3 upVector = Vector3.Transform(Vector3.Up, this.Position.Front);
-			Vector3 rightVector = Vector3.Transform(Vector3.Right, this.Position.Front);
-			for (int i = 0; i < this.clusterCapacity; i++)
-			{
-        Quaternion randomSpread =
-						Quaternion.Concatenate(Quaternion.CreateFromAxisAngle(upVector, (radSpread * Options.Random.Next(-1000, 1000)) / 1000f),
-																	 Quaternion.CreateFromAxisAngle(rightVector, (radSpread * Options.Random.Next(-1000, 1000)) / 1000f));
+        public override void Update(GameTime gameTime)
+        {
+            RemoveLasers();
 
-				posWithSpread.Front = Quaternion.Concatenate(posWithSpread.Front, randomSpread);
-        Laser l = new Laser(this.Game, posWithSpread);
-				this.Lasers.Add(l);
-			}
-      this.addBoundingBar(Vector3.One  * this.RadSpread, Vector3.One  * this.RadSpread, Vector3.Zero);
+            for (int i = 0; i < BoundingBoxMetas.Count; i++)
+            {
+                float fact = (gameTime.ElapsedGameTime.Milliseconds * 0.002f) * (1 * (RadSpread * 50));
 
-      base.Initialize();
-		}
+                if (BoundingBoxMetas[i].GetType() == typeof(BoundingBarMeta))
+                {
+                    BoundingBarMeta bar = (BoundingBarMeta)BoundingBoxMetas[i];
 
-		public override void Update(GameTime gameTime)
-		{
-      RemoveLasers();
+                    bar.BoundsLeft = new Vector3(bar.BoundsLeft.X + fact, bar.BoundsLeft.Y + fact, bar.BoundsLeft.Z);
+                    bar.BoundsRight = new Vector3(bar.BoundsRight.X + fact, bar.BoundsRight.Y + fact, bar.BoundsRight.Z);
+                }
+            }
 
-      for (int i = 0; i < this.BoundingBarMetas.Count; i++)
-      {
-        float fact = (gameTime.ElapsedGameTime.Milliseconds * 0.002f) * (1 * (this.RadSpread * 50));
+            for (int i = 0; i < Lasers.Count; i++)
+            {
+                Lasers[i].Update(gameTime);
+            }
+            UpdateBoundingObjects();
 
-        this.BoundingBarMetas[i].BoundsLeft = new Vector3(this.BoundingBarMetas[i].BoundsLeft.X + fact,
-          this.BoundingBarMetas[i].BoundsLeft.Y + fact,
-          this.BoundingBarMetas[i].BoundsLeft.Z);
-        this.BoundingBarMetas[i].BoundsRight = new Vector3(this.BoundingBarMetas[i].BoundsRight.X + fact,
-          this.BoundingBarMetas[i].BoundsRight.Y + fact,
-          this.BoundingBarMetas[i].BoundsRight.Z);
-      }
+            base.Update(gameTime);
+        }
 
-			for (int i = 0; i < this.Lasers.Count; i++)
-			{
-				this.Lasers[i].Update(gameTime);
-			}
-			this.UpdateBoundingObjects();
+        public void RemoveLasers()
+        {
+            for (int i = 0; i < toBeRemoved.Count; i++)
+            {
+                if (Lasers.Contains(toBeRemoved[i]))
+                    Lasers.Remove(toBeRemoved[i]);
+            }
 
-			base.Update(gameTime);
-		}
+            toBeRemoved.Clear();
+        }
 
-    public void RemoveLasers()
-    {
-      for (int i = 0; i < this.toBeRemoved.Count; i++)
-      {
-        if (this.Lasers.Contains(this.toBeRemoved[i]))
-          this.Lasers.Remove(this.toBeRemoved[i]);
-      }
+        public void RemoveLaser(Laser laser)
+        {
+            toBeRemoved.Add(laser);
+        }
 
-      this.toBeRemoved.Clear();
-    }
-
-    public void RemoveLaser(Laser laser)
-    {
-      this.toBeRemoved.Add(laser);
-    }
-
-		public override void Draw(GameTime gameTime)
-		{
-			for (int i = 0; i < this.lasers.Count; i++)
-			{
-        this.lasers[i].Draw(gameTime);
+        public override void Draw(GameTime gameTime)
+        {
+            for (int i = 0; i < Lasers.Count; i++)
+            {
+                Lasers[i].Draw(gameTime);
 #if DEBUG && BOUNDRENDER
-        this.lasers[i].DrawBoundingObjects();
+                this.lasers[i].DrawBoundingObjects();
 #endif
-        /*
-				foreach (ModelMesh mesh in this.Model.Meshes)
+                /*
+				foreach (ModelMesh mesh in Model.Meshes)
 				{
 					foreach (BasicEffect effect in mesh.Effects)
 					{
-						effect.World = Matrix.CreateScale(this.Scale) *
+						effect.World = Matrix.CreateScale(Scale) *
 							RotationFix *
-							Matrix.CreateFromQuaternion(this.lasers[i].Position.Front) *
-							Matrix.CreateTranslation(this.lasers[i].Position.Coordinate);
+							Matrix.CreateFromQuaternion(Lasers[i].Position.Front) *
+							Matrix.CreateTranslation(Lasers[i].Position.Coordinate);
 						effect.View = GameHandler.Camera.View;
 						effect.Projection = GameHandler.Camera.Projection;
 					}
 					mesh.Draw();
 				}
-        */
-			}
-		}
-	}
+                */
+            }
+        }
+    }
 }

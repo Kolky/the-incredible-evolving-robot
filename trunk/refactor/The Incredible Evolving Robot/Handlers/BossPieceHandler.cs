@@ -72,9 +72,6 @@ namespace Tier.Handlers
             for (int i = 0; i < blueprintPiece.BoundingSphereMetas.Count; i++)
                 newPiece.BoundingSphereMetas.Add(blueprintPiece.BoundingSphereMetas[i]);
 
-            for (int i = 0; i < blueprintPiece.BoundingBarMetas.Count; i++)
-                newPiece.BoundingBarMetas.Add(blueprintPiece.BoundingBarMetas[i]);
-
             newPiece.Model = blueprintPiece.Model;
             newPiece.ModelMeta = blueprintPiece.ModelMeta;
             newPiece.IsCollidable = blueprintPiece.IsCollidable;
