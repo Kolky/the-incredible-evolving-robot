@@ -117,9 +117,16 @@ namespace Tier.Objects
             for (int i = 0; i < BoundingSphereMetas.Count; i++)
                 TierGame.BoundingSphereRender.Draw(BoundingSphereMetas[i].Sphere, Color.White);
             for (int i = 0; i < BoundingBoxMetas.Count; i++)
-                TierGame.BoundingBoxRenderer.Draw(BoundingBoxMetas[i], Color.White);
-            for (int i = 0; i < BoundingBarMetas.Count; i++)
-                TierGame.BoundingBoxRenderer.Draw(BoundingBarMetas[i], Color.White);
+            {
+                if(BoundingBoxMetas[i].GetType() == typeof(BoundingBoxMeta))
+                {
+                    TierGame.BoundingBoxRenderer.Draw((BoundingBoxMeta)BoundingBoxMetas[i], Color.White);
+                }
+                else
+                {
+                    TierGame.BoundingBoxRenderer.Draw((BoundingBarMeta)BoundingBoxMetas[i], Color.White);
+                }
+            }
         }
 #endif
         #endregion
