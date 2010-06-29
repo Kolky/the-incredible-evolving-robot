@@ -6,34 +6,18 @@ using Microsoft.Xna.Framework;
 
 namespace Tier.Misc
 {
-	public class BoundingSphereMeta
-	{
-		#region Properties
-    private Vector3 offset;
-    public Vector3 Offset
-		{
-      get { return offset; }
-      set { offset = value; }
-		}
+    public class BoundingSphereMeta
+    {
+        #region Properties
+        public Vector3 Offset { get; set; }
+        public Vector3 Center { get; set; }
+        public BoundingSphere Sphere { get; set; }
+        #endregion
 
-		private BoundingSphere sphere;
-		public BoundingSphere Sphere
-		{
-			get { return sphere; }
-      set { sphere = value; }
-		}
-
-		public Vector3 Center
-		{
-			get { return sphere.Center; }
-      set { sphere.Center = value; }
-		}
-		#endregion
-
-    public BoundingSphereMeta(BoundingSphere sphere, Vector3 offset)
-		{
-      this.Sphere = sphere;
-      this.Offset = offset;
-		}
-	}
+        public BoundingSphereMeta(BoundingSphere sphere, Vector3 offset)
+        {
+            Sphere = sphere;
+            Offset = offset;
+        }
+    }
 }

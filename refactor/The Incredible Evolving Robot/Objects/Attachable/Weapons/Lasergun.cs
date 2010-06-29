@@ -67,94 +67,96 @@ namespace Tier.Objects.Attachable.Weapons
     {
       float elapsedPartOfSecond = gameTime.ElapsedGameTime.Milliseconds * 0.001f;
 
-#if XBOX360
-      // Right Shoulder
-			if (TierGame.Input.checkKeyAction(GameAction.SPREAD_INCREASE, true))
-      {
-        this.spread += 8.0f * elapsedPartOfSecond;
-        if (this.spread > 5)
-          this.spread = 5;
-      }
+      if (TierGame.Input.GetType() == typeof(InputXBOX))
+      {// Right Shoulder
+          if (TierGame.Input.checkKeyAction(GameAction.SPREAD_INCREASE, true))
+          {
+              this.spread += 8.0f * elapsedPartOfSecond;
+              if (this.spread > 5)
+                  this.spread = 5;
+          }
 
-      // Left Shoulder
-      if (TierGame.Input.checkKeyAction(GameAction.SPREAD_DECREASE, true))
-      {
-        this.spread -= 8.0f * elapsedPartOfSecond;
-        if (this.spread < 0.4f)
-          this.spread = 0.4f;
-      }
+          // Left Shoulder
+          if (TierGame.Input.checkKeyAction(GameAction.SPREAD_DECREASE, true))
+          {
+              this.spread -= 8.0f * elapsedPartOfSecond;
+              if (this.spread < 0.4f)
+                  this.spread = 0.4f;
+          }
 
-      float fact = MathHelper.PiOver2 * 0.5f;
+          float fact = MathHelper.PiOver2 * 0.5f;
 
-      // Right Stick - X-as
-      //this.xAim = fact * (GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.X * -1);
-			this.xAim = fact * (TierGame.InputXBOX.getStickVector2(Tier.Controls.GamePadStick.RIGHT).X * -1);
+          // Right Stick - X-as
+          //this.xAim = fact * (GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.X * -1);
+          this.xAim = fact * (TierGame.InputXBOX.getStickVector2(Tier.Controls.GamePadStick.RIGHT).X * -1);
 
-      // Right Stick - Y-as
-      //this.yAim = fact * GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.Y;
-			this.yAim = fact * TierGame.InputXBOX.getStickVector2(Tier.Controls.GamePadStick.RIGHT).Y;
-      
-      /*
-      // Right Stick - X-as
-      if (GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.X != 0f)
-      {
-        this.xAim += 1.5f * elapsedPartOfSecond * GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.X;
-        if (this.xAim > MathHelper.PiOver4)
-          this.xAim = MathHelper.PiOver4;
-        if (this.xAim < -MathHelper.PiOver4)
-          this.xAim = -MathHelper.PiOver4;
-      }
+          // Right Stick - Y-as
+          //this.yAim = fact * GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.Y;
+          this.yAim = fact * TierGame.InputXBOX.getStickVector2(Tier.Controls.GamePadStick.RIGHT).Y;
+
+          /*
+          // Right Stick - X-as
+          if (GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.X != 0f)
+          {
+            this.xAim += 1.5f * elapsedPartOfSecond * GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.X;
+            if (this.xAim > MathHelper.PiOver4)
+              this.xAim = MathHelper.PiOver4;
+            if (this.xAim < -MathHelper.PiOver4)
+              this.xAim = -MathHelper.PiOver4;
+          }
        
-      // Right Stick - Y-as
-      if (GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.Y != 0f)
-      {
-        this.yAim += 1.5f * elapsedPartOfSecond * GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.Y;
-        if (this.yAim > MathHelper.PiOver4)
-          this.yAim = MathHelper.PiOver4;
-        if (this.yAim < -MathHelper.PiOver4)
-          this.yAim = -MathHelper.PiOver4;
+          // Right Stick - Y-as
+          if (GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.Y != 0f)
+          {
+            this.yAim += 1.5f * elapsedPartOfSecond * GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.Y;
+            if (this.yAim > MathHelper.PiOver4)
+              this.yAim = MathHelper.PiOver4;
+            if (this.yAim < -MathHelper.PiOver4)
+              this.yAim = -MathHelper.PiOver4;
+          }
+          */
       }
-      */
-#else
-      //if (Keyboard.GetState().IsKeyDown(Keys.E))
-      if (TierGame.Input.checkKeyAction(Tier.Controls.GameAction.SPREAD_INCREASE, true))
+      else
       {
-        this.spread += 8.0f * elapsedPartOfSecond;
-        if (this.spread > 5)
-          this.spread = 5;
-      }
-      if (TierGame.Input.checkKeyAction(Tier.Controls.GameAction.SPREAD_DECREASE, true))
-      {
-        this.spread -= 8.0f * elapsedPartOfSecond;
-        if (this.spread < 0.4f)
-          this.spread = 0.4f;
-      }
+          //if (Keyboard.GetState().IsKeyDown(Keys.E))
+          if (TierGame.Input.checkKeyAction(Tier.Controls.GameAction.SPREAD_INCREASE, true))
+          {
+              this.spread += 8.0f * elapsedPartOfSecond;
+              if (this.spread > 5)
+                  this.spread = 5;
+          }
+          if (TierGame.Input.checkKeyAction(Tier.Controls.GameAction.SPREAD_DECREASE, true))
+          {
+              this.spread -= 8.0f * elapsedPartOfSecond;
+              if (this.spread < 0.4f)
+                  this.spread = 0.4f;
+          }
 
-      if (TierGame.Input.checkKeyAction(Tier.Controls.GameAction.SPREAD_LEFT, true))
-      {
-        this.xAim += 1.5f * elapsedPartOfSecond;
-        if (this.xAim > MathHelper.PiOver4)
-          this.xAim = MathHelper.PiOver4;
+          if (TierGame.Input.checkKeyAction(Tier.Controls.GameAction.SPREAD_LEFT, true))
+          {
+              this.xAim += 1.5f * elapsedPartOfSecond;
+              if (this.xAim > MathHelper.PiOver4)
+                  this.xAim = MathHelper.PiOver4;
+          }
+          if (TierGame.Input.checkKeyAction(Tier.Controls.GameAction.SPREAD_RIGHT, true))
+          {
+              this.xAim -= 1.5f * elapsedPartOfSecond;
+              if (this.xAim < -MathHelper.PiOver4)
+                  this.xAim = -MathHelper.PiOver4;
+          }
+          if (TierGame.Input.checkKeyAction(Tier.Controls.GameAction.SPREAD_DOWN, true))
+          {
+              this.yAim += 1.5f * elapsedPartOfSecond;
+              if (this.yAim > MathHelper.PiOver4)
+                  this.yAim = MathHelper.PiOver4;
+          }
+          if (TierGame.Input.checkKeyAction(Tier.Controls.GameAction.SPREAD_UP, true))
+          {
+              this.yAim -= 1.5f * elapsedPartOfSecond;
+              if (this.yAim < -MathHelper.PiOver4)
+                  this.yAim = -MathHelper.PiOver4;
+          }
       }
-      if (TierGame.Input.checkKeyAction(Tier.Controls.GameAction.SPREAD_RIGHT, true))
-      {
-        this.xAim -= 1.5f * elapsedPartOfSecond;
-        if (this.xAim < -MathHelper.PiOver4)
-          this.xAim = -MathHelper.PiOver4;
-      }
-      if (TierGame.Input.checkKeyAction(Tier.Controls.GameAction.SPREAD_DOWN, true))
-      {
-        this.yAim += 1.5f * elapsedPartOfSecond;
-        if (this.yAim > MathHelper.PiOver4)
-          this.yAim = MathHelper.PiOver4;
-      }
-      if (TierGame.Input.checkKeyAction(Tier.Controls.GameAction.SPREAD_UP, true))
-      {
-        this.yAim -= 1.5f * elapsedPartOfSecond;
-        if (this.yAim < -MathHelper.PiOver4)
-          this.yAim = -MathHelper.PiOver4;
-      }
-#endif
 
       this.aim = Quaternion.Concatenate(Quaternion.CreateFromAxisAngle(this.upVector, xAim),
         Quaternion.CreateFromAxisAngle(this.rightVector, yAim));

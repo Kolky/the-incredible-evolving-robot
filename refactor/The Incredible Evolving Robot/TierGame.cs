@@ -9,6 +9,7 @@ using Tier.Handlers;
 using Tier.Misc;
 using Tier.Objects;
 using Tier.Test;
+using Microsoft.Xna.Framework.Input;
 
 namespace Tier
 {
@@ -25,17 +26,14 @@ namespace Tier
         public static TextHandler TextHandler { get; private set; }
         public static TierGame Instance { get; private set; }
         public static Input Input { get; private set; }
-#if XBOX360
 		public static InputXBOX InputXBOX
         {
             get { return (InputXBOX)Input; }
         }
-#else
         public static InputPC InputPC
         {
             get { return (InputPC)Input; }
         }
-#endif
         private int fpsCurrent = 0;
         private int fpsElapsedMs = 0;
 
@@ -46,6 +44,22 @@ namespace Tier
 
         public static Audio Audio { get; private set; }
         #endregion
+
+        public static Input InitPCInput()
+        {
+            GamePadState state;
+            for(int i = 0; i < 4; i++)
+            {
+                state = GamePad.GetState((PlayerIndex)i);
+
+                if(state.IsConnected)
+                {
+                    return new InputXBOX((PlayerIndex)i);
+                }
+            }
+
+            return new InputPC();
+        }
 
         public TierGame()
         {
@@ -64,7 +78,8 @@ namespace Tier
 #if XBOX360
 			Input = new InputXBOX();
 #else
-            Input = new InputPC();
+            //Input = new InputPC();
+            Input = InitPCInput();
 #endif
             //Audio = new Audio("Content\\Audio\\Audio.xgs", "Content\\Audio\\Wave Bank.xwb", "Content\\Audio\\Sound Bank.xsb");
             Graphics = new GraphicsDeviceManager(this);

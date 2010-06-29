@@ -35,13 +35,8 @@ namespace Tier.Menus
     {
       base.Update(gameTime);
 
-#if XBOX360
-      if (TierGame.InputXBOX.checkKey(GamePadKey.A) || TierGame.InputXBOX.checkKey(GamePadKey.BACK))
+      if ((TierGame.Input.GetType() == typeof(InputXBOX) && TierGame.InputXBOX.checkKey(GamePadKey.A) || TierGame.InputXBOX.checkKey(GamePadKey.BACK)) || TierGame.Input.checkKey(Keys.Enter) || TierGame.Input.checkKey(Keys.Escape))
       {
-#else
-      if (TierGame.Input.checkKey(Keys.Enter) || TierGame.Input.checkKey(Keys.Escape))
-      {
-#endif
         if (this.type == typeof(StartMenu))
           GameHandler.MenuState = new StartMenu();
         else if (this.type == typeof(PauseMenu))

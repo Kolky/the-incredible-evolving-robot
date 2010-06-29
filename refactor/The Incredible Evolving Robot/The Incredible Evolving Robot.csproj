@@ -71,6 +71,7 @@
     <Reference Include="System">
       <Private>False</Private>
     </Reference>
+    <Reference Include="System.Data" />
     <Reference Include="System.Xml">
       <Private>False</Private>
     </Reference>
@@ -111,6 +112,7 @@
     <Compile Include="Misc\Audio.cs" />
     <Compile Include="Misc\BloomComponent.cs" />
     <Compile Include="Misc\BloomSettings.cs" />
+    <Compile Include="Misc\BoundingAbstractMeta.cs" />
     <Compile Include="Misc\BoundingBarMeta.cs" />
     <Compile Include="Misc\BoundingBoxMeta.cs" />
     <Compile Include="Misc\BoundingBoxRenderer.cs" />

@@ -12,79 +12,74 @@ using Tier.Misc;
 
 namespace Tier.Menus
 {
-  class HighScoreMenu : MenuState
-  {
-    #region Properties
-    private Type type;
-    private List<String> scoreEntries = new List<String>();
-    #endregion
-
-    public HighScoreMenu(Type type)
+    class HighScoreMenu : MenuState
     {
-      this.type = type;
-    }
+        #region Properties
+        private Type type;
+        private List<String> scoreEntries = new List<String>();
+        #endregion
 
-    public override void Initialize()
-    {
-      base.Initialize();
+        public HighScoreMenu(Type type)
+        {
+            this.type = type;
+        }
 
-      TierGame.TextHandler.ChangeText("headerText", "Highscores");
+        public override void Initialize()
+        {
+            base.Initialize();
 
-      this.MenuItems.AddItem("Back");
+            TierGame.TextHandler.ChangeText("headerText", "Highscores");
 
-      float vert = 210f;
+            this.MenuItems.AddItem("Back");
 
-      this.scoreEntries.Add("player");
-      this.scoreEntries.Add("score");
-      TierGame.TextHandler.AddItem("player", "Player", new Vector2(this.Center - 100 - TierGame.TextHandler.GetTextWidth("player").Y, 180f), Options.Colors.HighScoreMenu.HeaderColor, true, false);
-      TierGame.TextHandler.AddItem("score", "Score", new Vector2(this.Center + 100 + TierGame.TextHandler.GetTextWidth("score").Y, 180f), Options.Colors.HighScoreMenu.HeaderColor, true, false);
+            float vert = 210f;
 
-      LinkedList<HighScores.HighScoreEntry>.Enumerator iter = HighScores.ListEntries().GetEnumerator();
-      while (iter.MoveNext())
-      {
-        this.scoreEntries.Add("player" + iter.Current.Player + iter.Current.Score);
-        this.scoreEntries.Add("score" + iter.Current.Player + iter.Current.Score);
-        TierGame.TextHandler.AddItem("player" + iter.Current.Player + iter.Current.Score, iter.Current.Player, new Vector2(this.Center - 100 - TierGame.TextHandler.GetTextWidth("player" + iter.Current.Player + iter.Current.Score).Y, vert), Options.Colors.HighScoreMenu.ScoreColor, true, false);
-        TierGame.TextHandler.AddItem("score" + iter.Current.Player + iter.Current.Score, iter.Current.Score.ToString(), new Vector2(this.Center + 100 + TierGame.TextHandler.GetTextWidth("score" + iter.Current.Player + iter.Current.Score).Y, vert), Options.Colors.HighScoreMenu.ScoreColor, true, false);
-        vert += 30f;
-      }
-    }
+            this.scoreEntries.Add("player");
+            this.scoreEntries.Add("score");
+            TierGame.TextHandler.AddItem("player", "Player", new Vector2(this.Center - 100 - TierGame.TextHandler.GetTextWidth("player").Y, 180f), Options.Colors.HighScoreMenu.HeaderColor, true, false);
+            TierGame.TextHandler.AddItem("score", "Score", new Vector2(this.Center + 100 + TierGame.TextHandler.GetTextWidth("score").Y, 180f), Options.Colors.HighScoreMenu.HeaderColor, true, false);
 
-    public override void Update(GameTime gameTime)
-    {
-      base.Update(gameTime);
+            LinkedList<HighScores.HighScoreEntry>.Enumerator iter = HighScores.ListEntries().GetEnumerator();
+            while (iter.MoveNext())
+            {
+                this.scoreEntries.Add("player" + iter.Current.Player + iter.Current.Score);
+                this.scoreEntries.Add("score" + iter.Current.Player + iter.Current.Score);
+                TierGame.TextHandler.AddItem("player" + iter.Current.Player + iter.Current.Score, iter.Current.Player, new Vector2(this.Center - 100 - TierGame.TextHandler.GetTextWidth("player" + iter.Current.Player + iter.Current.Score).Y, vert), Options.Colors.HighScoreMenu.ScoreColor, true, false);
+                TierGame.TextHandler.AddItem("score" + iter.Current.Player + iter.Current.Score, iter.Current.Score.ToString(), new Vector2(this.Center + 100 + TierGame.TextHandler.GetTextWidth("score" + iter.Current.Player + iter.Current.Score).Y, vert), Options.Colors.HighScoreMenu.ScoreColor, true, false);
+                vert += 30f;
+            }
+        }
 
-#if XBOX360
-      if (TierGame.InputXBOX.checkKey(GamePadKey.A) || TierGame.InputXBOX.checkKey(GamePadKey.BACK))
-      {
-#else
-      if (TierGame.Input.checkKey(Keys.Enter) || TierGame.Input.checkKey(Keys.Escape))
-      {
-#endif
-        if (this.type == typeof(StartMenu))
-          GameHandler.MenuState = new StartMenu();
-        else if (this.type == typeof(PauseMenu))
-          GameHandler.MenuState = new PauseMenu();
-        else if (this.type == typeof(GameOverMenu))
-          GameHandler.MenuState = new GameOverMenu();
-        else if (this.type == typeof(NextLevelMenu))
-          GameHandler.MenuState = new NextLevelMenu();
-      }
-    }
+        public override void Update(GameTime gameTime)
+        {
+            base.Update(gameTime);
+
+            if ((TierGame.Input.GetType() == typeof(InputXBOX) && TierGame.InputXBOX.checkKey(GamePadKey.A) || TierGame.InputXBOX.checkKey(GamePadKey.BACK)) || TierGame.Input.checkKey(Keys.Enter) || TierGame.Input.checkKey(Keys.Escape))
+            {
+                if (this.type == typeof(StartMenu))
+                    GameHandler.MenuState = new StartMenu();
+                else if (this.type == typeof(PauseMenu))
+                    GameHandler.MenuState = new PauseMenu();
+                else if (this.type == typeof(GameOverMenu))
+                    GameHandler.MenuState = new GameOverMenu();
+                else if (this.type == typeof(NextLevelMenu))
+                    GameHandler.MenuState = new NextLevelMenu();
+            }
+        }
 
 #if DEBUG
-    public override void Draw(GameTime gameTime)
-    {
-      TierGame.Device.Clear(Options.Colors.HighScoreMenu.ClearColor);
-    }
+        public override void Draw(GameTime gameTime)
+        {
+            TierGame.Device.Clear(Options.Colors.HighScoreMenu.ClearColor);
+        }
 #endif
 
-    public override void Dispose()
-    {
-      base.Dispose();
+        public override void Dispose()
+        {
+            base.Dispose();
 
-      foreach (String entry in this.scoreEntries)
-        TierGame.TextHandler.RemoveItem(entry);
+            foreach (String entry in this.scoreEntries)
+                TierGame.TextHandler.RemoveItem(entry);
+        }
     }
-  }
 }

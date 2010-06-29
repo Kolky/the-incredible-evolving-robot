@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
 using Tier.Misc;
+using Tier.Controls;
 
 namespace Tier.Menus
 {
@@ -63,13 +64,8 @@ namespace Tier.Menus
         if (this.CurrentOption < this.Options.Count)
           TierGame.TextHandler.ChangeColor(this.Options[this.CurrentOption], Tier.Misc.Options.Colors.ActiveColor);
 
-#if XBOX360
-        if(TierGame.Input.checkKey(Tier.Controls.GamePadKey.DPADUP))
+        if ((TierGame.Input.GetType() == typeof(InputXBOX) && TierGame.Input.checkKey(Tier.Controls.GamePadKey.DPADUP)) || TierGame.Input.checkKey(Keys.Up))
         {
-#else
-        if (TierGame.Input.checkKey(Keys.Up))
-        {
-#endif
           if(this.CurrentOption > 0)
           {
             TierGame.TextHandler.ChangeColor(this.Options[this.CurrentOption], Tier.Misc.Options.Colors.MenuColor);
@@ -81,13 +77,8 @@ namespace Tier.Menus
             this.CurrentOption = (this.Options.Count - 1);
           }
         }
-#if XBOX360
-        else if (TierGame.Input.checkKey(Tier.Controls.GamePadKey.DPADDOWN))
+        else if ((TierGame.Input.GetType() == typeof(InputXBOX) && TierGame.Input.checkKey(Tier.Controls.GamePadKey.DPADDOWN)) || TierGame.Input.checkKey(Keys.Down))
         {
-#else
-        else if (TierGame.Input.checkKey(Keys.Down))
-        {
-#endif
           if (this.CurrentOption < (this.Options.Count - 1))
           {
             TierGame.TextHandler.ChangeColor(this.Options[this.CurrentOption], Tier.Misc.Options.Colors.MenuColor);
