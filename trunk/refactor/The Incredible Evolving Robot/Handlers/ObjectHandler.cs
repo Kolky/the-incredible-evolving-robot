@@ -92,22 +92,21 @@ namespace Tier.Handlers
                         LinkedList<BasicObject>.Enumerator iter2 = Objects.GetEnumerator();
                         while (iter2.MoveNext())
                         {
-                            if (iter2.Current.IsCollidable
-                              && iter2.Current.GetType().IsSubclassOf(typeof(DestroyableObject))
-                              && iter2.Current.GetType() != typeof(Player)
-                              && iter2.Current.GetType() != typeof(LaserCluster)
-                              && !((DestroyableObject)iter2.Current).Exploded)
+                            if (iter2.Current.GetType().IsSubclassOf(typeof(DestroyableObject)))
                             {
-                                if (lcluster.DetectCollision((DestroyableObject)iter2.Current))
+                                DestroyableObject destroyable = (DestroyableObject)iter2.Current;
+                                if (iter2.Current.IsCollidable && destroyable != null && !destroyable.Exploded
+                                  && iter2.Current.GetType() != typeof(Player) && iter2.Current.GetType() != typeof(LaserCluster))
                                 {
-                                    foreach (Laser laser in lcluster.Lasers)
+                                    if (lcluster.DetectCollision(destroyable))
                                     {
-                                        if (laser.DetectCollision((DestroyableObject)iter2.Current))
+                                        foreach (Laser laser in lcluster.Lasers)
                                         {
-                                            DestroyableObject obj = ((DestroyableObject)iter2.Current);
-                                            lcluster.RemoveLaser(laser);
-
-                                            obj.ObjectHit();
+                                            if (laser.DetectCollision(destroyable))
+                                            {
+                                                lcluster.RemoveLaser(laser);
+                                                destroyable.ObjectHit();
+                                            }
                                         }
                                     }
                                 }

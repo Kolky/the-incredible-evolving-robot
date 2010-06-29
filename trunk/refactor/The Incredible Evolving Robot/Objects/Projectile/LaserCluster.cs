@@ -102,7 +102,7 @@ namespace Tier.Objects.Destroyable.Projectile
             {
                 Lasers[i].Draw(gameTime);
 #if DEBUG && BOUNDRENDER
-                this.lasers[i].DrawBoundingObjects();
+                Lasers[i].DrawBoundingObjects();
 #endif
                 /*
 				foreach (ModelMesh mesh in Model.Meshes)

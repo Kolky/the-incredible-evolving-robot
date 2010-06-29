@@ -51,8 +51,7 @@ namespace Tier.Misc
 			}
 
 			// Initialize the vertex buffer, allocating memory for each vertex
-      this.buffer = new VertexBuffer(TierGame.Device, VertexPositionNormalTexture.SizeInBytes * (this.vertices.Length),
-					ResourceUsage.None, ResourceManagementMode.Automatic);
+      this.buffer = new VertexBuffer(TierGame.Device, VertexPositionNormalTexture.SizeInBytes * (this.vertices.Length), BufferUsage.Points);
 
 			// Set the vertex buffer data to the array of vertices
       this.buffer.SetData<VertexPositionNormalTexture>(this.vertices);
@@ -74,8 +73,7 @@ namespace Tier.Misc
 			lineStripIndices[CIRCLE_NUM_POINTS] = 1;
 
 			// Initialize the index buffer, allocating memory for each index
-      this.indexBuffer = new IndexBuffer(TierGame.Device, sizeof(short) * lineStripIndices.Length,
-					ResourceUsage.None, ResourceManagementMode.Automatic, IndexElementSize.SixteenBits);
+      this.indexBuffer = new IndexBuffer(TierGame.Device, sizeof(short) * lineStripIndices.Length, BufferUsage.Points, IndexElementSize.SixteenBits);
 
 			// Set the data in the index buffer to our array
       this.indexBuffer.SetData<short>(lineStripIndices);
