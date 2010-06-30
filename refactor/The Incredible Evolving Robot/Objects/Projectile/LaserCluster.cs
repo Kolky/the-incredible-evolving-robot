@@ -58,16 +58,16 @@ namespace Tier.Objects.Destroyable.Projectile
         {
             RemoveLasers();
 
-            for (int i = 0; i < BoundingBoxMetas.Count; i++)
+            for (int i = 0; i < BoundingVolumes.Count; i++)
             {
                 float fact = (gameTime.ElapsedGameTime.Milliseconds * 0.002f) * (1 * (RadSpread * 50));
 
-                if (BoundingBoxMetas[i].GetType() == typeof(BoundingBarMeta))
+                if (BoundingVolumes[i].GetType() == typeof(BoundingBarMeta))
                 {
-                    BoundingBarMeta bar = (BoundingBarMeta)BoundingBoxMetas[i];
+                    BoundingBarMeta bar = (BoundingBarMeta)BoundingVolumes[i];
 
-                    bar.BoundsLeft = new Vector3(bar.BoundsLeft.X + fact, bar.BoundsLeft.Y + fact, bar.BoundsLeft.Z);
-                    bar.BoundsRight = new Vector3(bar.BoundsRight.X + fact, bar.BoundsRight.Y + fact, bar.BoundsRight.Z);
+                    ((BoundingBarMeta)BoundingVolumes[i]).BoundsLeft = new Vector3(bar.BoundsLeft.X + fact, bar.BoundsLeft.Y + fact, bar.BoundsLeft.Z);
+                    ((BoundingBarMeta)BoundingVolumes[i]).BoundsRight = new Vector3(bar.BoundsRight.X + fact, bar.BoundsRight.Y + fact, bar.BoundsRight.Z);
                 }
             }
 

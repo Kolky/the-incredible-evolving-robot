@@ -21,15 +21,13 @@ namespace Tier.Objects
         public int MaxHealth { get; set; }
         public int Health { get; set; }
 
-        public List<BoundingAbstractMeta> BoundingBoxMetas { get; private set; }
-        public List<BoundingSphereMeta> BoundingSphereMetas { get; private set; }
+        public List<BoundingAbstractMeta> BoundingVolumes { get; private set; }
         #endregion
 
         public DestroyableObject(Game game, Boolean isCollidable)
             : base(game, isCollidable)
         {
-            BoundingBoxMetas = new List<BoundingAbstractMeta>();
-            BoundingSphereMetas = new List<BoundingSphereMeta>();
+            BoundingVolumes = new List<BoundingAbstractMeta>();
 
             Health = MaxHealth = 1000;	//Enemy should always have the most health      
         }
@@ -56,76 +54,47 @@ namespace Tier.Objects
         #region Bounding Objects
         public bool DetectCollision(DestroyableObject dest)
         {
-            // BoundingSphere
-            for (int i = 0; i < BoundingSphereMetas.Count; i++)
+            for (int i = 0; i < BoundingVolumes.Count; i++)
             {
-                // BoundingSphere
-                for (int n = 0; n < dest.BoundingSphereMetas.Count; n++)
-                    if (BoundingSphereMetas[i].Sphere.Intersects(dest.BoundingSphereMetas[n].Sphere))
+                for (int n = 0; n < dest.BoundingVolumes.Count; n++)
+                {
+                    if (BoundingVolumes[i].CheckCollision(dest.BoundingVolumes[n]))
                         return true;
-
-                // BoundingBox
-                for (int n = 0; n < dest.BoundingBoxMetas.Count; n++)
-                    if (BoundingSphereMetas[i].Sphere.Intersects(dest.BoundingBoxMetas[n].Box))
-                        return true;
+                }
             }
-
-            // BoundingBox
-            for (int i = 0; i < BoundingBoxMetas.Count; i++)
-            {
-                // BoundingSphere
-                for (int n = 0; n < dest.BoundingSphereMetas.Count; n++)
-                    if (BoundingBoxMetas[i].Box.Intersects(dest.BoundingSphereMetas[n].Sphere))
-                        return true;
-
-                // BoundingBox
-                for (int n = 0; n < dest.BoundingBoxMetas.Count; n++)
-                    if (BoundingBoxMetas[i].Box.Intersects(dest.BoundingBoxMetas[n].Box))
-                        return true;
-            }
-
             return false;
         }
 
         public void addBoundingShere(float radius, Vector3 offset)
         {
-            BoundingSphereMetas.Add(new BoundingSphereMeta(Position.Coordinate, radius, offset));
+            BoundingVolumes.Add(new BoundingSphereMeta(Position.Coordinate, radius, offset));
         }
 
         public void addBoundingBox(Vector3 bounds, Vector3 offset)
         {
-            BoundingBoxMetas.Add(new BoundingBoxMeta(Position.Coordinate, bounds, offset));
+            BoundingVolumes.Add(new BoundingBoxMeta(Position.Coordinate, bounds, offset));
         }
 
         public void addBoundingBar(Vector3 boundsLeft, Vector3 boundsRight, Vector3 offset)
         {
-            BoundingBoxMetas.Add(new BoundingBarMeta(Position.Coordinate, boundsLeft, boundsRight, offset));
+            BoundingVolumes.Add(new BoundingBarMeta(Position.Coordinate, boundsLeft, boundsRight, offset));
         }
 
         public virtual void UpdateBoundingObjects()
         {
-            for (int i = 0; i < BoundingSphereMetas.Count; i++)
-                BoundingSphereMetas[i].Center = Position.Coordinate + Vector3.Transform(BoundingSphereMetas[i].Offset, Position.Front);
-            for (int i = 0; i < BoundingBoxMetas.Count; i++)
-                BoundingBoxMetas[i].Center = Position.Coordinate + Vector3.Transform(BoundingBoxMetas[i].Offset, Position.Front);
+            for (int i = 0; i < BoundingVolumes.Count; i++)
+            {
+                BoundingVolumes[i].Update(Position.Coordinate, Position.Front);
+            }
         }
 
 #if DEBUG && BOUNDRENDER
         /// <summary>Only draws the customized boundingSphere's, NOT the parts</summary>
         public void DrawBoundingObjects()
         {
-            for (int i = 0; i < BoundingSphereMetas.Count; i++)
-                TierGame.BoundingSphereRender.Draw(BoundingSphereMetas[i].Sphere, Color.White);
-            for (int i = 0; i < BoundingBoxMetas.Count; i++)
+            for (int i = 0; i < BoundingVolumes.Count; i++)
             {
-                if(BoundingBoxMetas[i].GetType() == typeof(BoundingBoxMeta))
-                {
-                    TierGame.BoundingBoxRenderer.Draw((BoundingBoxMeta)BoundingBoxMetas[i], Color.White);
-                }
-                else
-                {
-                    TierGame.BoundingBoxRenderer.Draw((BoundingBarMeta)BoundingBoxMetas[i], Color.White);
-                }
+                BoundingVolumes[i].Draw();
             }
         }
 #endif

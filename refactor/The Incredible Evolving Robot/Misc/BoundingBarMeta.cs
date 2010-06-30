@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace Tier.Misc
 {
@@ -23,5 +24,29 @@ namespace Tier.Misc
             BoundsLeft = boundsLeft;
             BoundsRight = boundsRight;
         }
+
+#if DEBUG && BOUNDRENDER
+        public override void Draw()
+        {
+            Draw(Color.White);
+        }
+
+        public override void Draw(Color color)
+        {
+            VertexPositionColor[] vertices =
+            {
+                new VertexPositionColor(Center + BoundsRight, color),
+                new VertexPositionColor(new Vector3(Center.X - BoundsLeft.X, Center.Y + BoundsRight.Y, Center.Z + BoundsRight.Z), color),
+                new VertexPositionColor(new Vector3(Center.X - BoundsLeft.X, Center.Y + BoundsRight.Y, Center.Z - BoundsLeft.Z), color),
+                new VertexPositionColor(new Vector3(Center.X + BoundsRight.X, Center.Y + BoundsRight.Y, Center.Z - BoundsLeft.Z), color),
+                new VertexPositionColor(new Vector3(Center.X + BoundsRight.X, Center.Y - BoundsLeft.Y, Center.Z + BoundsRight.Z), color),
+                new VertexPositionColor(new Vector3(Center.X - BoundsLeft.X, Center.Y - BoundsLeft.Y, Center.Z + BoundsRight.Z), color),
+                new VertexPositionColor(Center - BoundsLeft, color),
+                new VertexPositionColor(new Vector3(Center.X + BoundsRight.X, Center.Y - BoundsLeft.Y, Center.Z - BoundsLeft.Z), color)
+            };
+
+            DrawVertices(vertices);
+        }
+#endif
     }
 }

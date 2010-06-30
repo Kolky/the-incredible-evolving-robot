@@ -115,7 +115,6 @@
     <Compile Include="Misc\BoundingAbstractMeta.cs" />
     <Compile Include="Misc\BoundingBarMeta.cs" />
     <Compile Include="Misc\BoundingBoxMeta.cs" />
-    <Compile Include="Misc\BoundingBoxRenderer.cs" />
     <Compile Include="Misc\BoundingSphereMeta.cs" />
     <Compile Include="Misc\BoundingSphereRenderer.cs" />
     <Compile Include="Misc\HighScores.cs" />
