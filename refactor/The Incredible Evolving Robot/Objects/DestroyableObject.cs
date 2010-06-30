@@ -89,7 +89,7 @@ namespace Tier.Objects
 
         public void addBoundingShere(float radius, Vector3 offset)
         {
-            BoundingSphereMetas.Add(new BoundingSphereMeta(new BoundingSphere(Position.Coordinate, radius), offset));
+            BoundingSphereMetas.Add(new BoundingSphereMeta(Position.Coordinate, radius, offset));
         }
 
         public void addBoundingBox(Vector3 bounds, Vector3 offset)

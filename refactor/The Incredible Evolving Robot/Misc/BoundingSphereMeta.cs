@@ -11,12 +11,20 @@ namespace Tier.Misc
         #region Properties
         public Vector3 Offset { get; set; }
         public Vector3 Center { get; set; }
-        public BoundingSphere Sphere { get; set; }
+        public float Radius { get; set; }
+        public BoundingSphere Sphere
+        {
+            get
+            {
+                return new BoundingSphere(Center, Radius);
+            }
+        }
         #endregion
 
-        public BoundingSphereMeta(BoundingSphere sphere, Vector3 offset)
+        public BoundingSphereMeta(Vector3 center, float radius, Vector3 offset)
         {
-            Sphere = sphere;
+            Center = center;
+            Radius = radius;
             Offset = offset;
         }
     }
