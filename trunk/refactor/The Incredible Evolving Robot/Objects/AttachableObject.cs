@@ -207,10 +207,10 @@ namespace Tier.Objects
 
         public override void UpdateBoundingObjects()
         {
-            for (int i = 0; i < BoundingSphereMetas.Count; i++)
-                BoundingSphereMetas[i].Center = Position.Coordinate + Vector3.Transform(BoundingSphereMetas[i].Offset, (Matrix.CreateFromQuaternion(Position.Front) * SpawnMatrix));
-            for (int i = 0; i < BoundingBoxMetas.Count; i++)
-                BoundingBoxMetas[i].Center = Position.Coordinate + Vector3.Transform(BoundingBoxMetas[i].Offset, (Matrix.CreateFromQuaternion(Position.Front) * SpawnMatrix));
+            for (int i = 0; i < BoundingVolumes.Count; i++)
+            {
+                BoundingVolumes[i].Update(Position.Coordinate, (Matrix.CreateFromQuaternion(Position.Front) * SpawnMatrix));
+            }
         }
 
         public override void Update(GameTime gameTime)

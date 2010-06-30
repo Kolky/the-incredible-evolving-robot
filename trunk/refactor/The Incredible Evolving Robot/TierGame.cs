@@ -39,7 +39,6 @@ namespace Tier
 
 #if DEBUG && BOUNDRENDER
 		public static BoundingSphereRenderer BoundingSphereRender { get; private set; }
-		public static BoundingBoxRenderer BoundingBoxRenderer { get; private set; }
 #endif
 
         public static Audio Audio { get; private set; }
@@ -178,10 +177,6 @@ namespace Tier
             Axis.Init();
 #endif
             base.Initialize();
-
-#if DEBUG && BOUNDRENDER
-            BoundingBoxRenderer = new BoundingBoxRenderer();
-#endif
         }
 
         /// <summary>

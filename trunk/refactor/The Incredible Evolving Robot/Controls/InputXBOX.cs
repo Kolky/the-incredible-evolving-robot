@@ -279,8 +279,11 @@ namespace Tier.Controls
                     return checkKey(Tier.Controls.GamePadKey.RIGHTSHOULDER, sticky);
                 case GameAction.SPREAD_DECREASE:
                     return checkKey(Tier.Controls.GamePadKey.LEFTSHOULDER, sticky);
+                case GameAction.GROW_BOSS:
+                    return checkKey(Tier.Controls.GamePadKey.Y);
+                default:
+                    return false;
             }
-            return false;
         }
         #endregion
 

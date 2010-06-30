@@ -40,11 +40,10 @@ namespace Tier.Handlers
                 boss.Connectors.Add(new Connector(conn.Position, conn.Pivot, boss));
             }
 
-            for (int i = 0; i < blueprintPiece.BoundingBoxMetas.Count; i++)
-                boss.BoundingBoxMetas.Add(blueprintPiece.BoundingBoxMetas[i]);
-
-            for (int i = 0; i < blueprintPiece.BoundingSphereMetas.Count; i++)
-                boss.BoundingSphereMetas.Add(blueprintPiece.BoundingSphereMetas[i]);
+            for (int i = 0; i < blueprintPiece.BoundingVolumes.Count; i++)
+            {
+                boss.BoundingVolumes.Add(blueprintPiece.BoundingVolumes[i]);
+            }
 
             boss.Model = blueprintPiece.Model;
             boss.ModelMeta = blueprintPiece.ModelMeta;
@@ -66,11 +65,10 @@ namespace Tier.Handlers
                 newPiece.Connectors.Add(new Connector(conn.Position, conn.Pivot, newPiece));
             }
 
-            for (int i = 0; i < blueprintPiece.BoundingBoxMetas.Count; i++)
-                newPiece.BoundingBoxMetas.Add(blueprintPiece.BoundingBoxMetas[i]);
-
-            for (int i = 0; i < blueprintPiece.BoundingSphereMetas.Count; i++)
-                newPiece.BoundingSphereMetas.Add(blueprintPiece.BoundingSphereMetas[i]);
+            for (int i = 0; i < blueprintPiece.BoundingVolumes.Count; i++)
+            {
+                newPiece.BoundingVolumes.Add(blueprintPiece.BoundingVolumes[i]);
+            }
 
             newPiece.Model = blueprintPiece.Model;
             newPiece.ModelMeta = blueprintPiece.ModelMeta;

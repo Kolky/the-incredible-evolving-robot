@@ -12,73 +12,52 @@ using Tier.Objects.Attachable;
 
 namespace Tier.Objects.Destroyable.Projectile
 {
-  public class Laser : Tier.Objects.Projectile
-  {
-    private Matrix transform;
-
-    public Laser(Game game, Position sourcePos)
-      : base(game, sourcePos,40)
+    public class Laser : Tier.Objects.Projectile
     {
-      this.TimeToLive = 750;
-      this.ModelName = "Laser";
-      this.Model = TierGame.ContentHandler.GetModel(this.ModelName);
-      this.Scale = 0.075f;
-      this.Sort = SortFilter.Other;
-
-      this.addBoundingShere(0.1f, Vector3.Zero);
-      this.Initialize();
-    }
-
-    public override void Initialize()
-    {      
-      base.Initialize();
-
-      this.RotationFix = Matrix.CreateFromAxisAngle(Vector3.UnitX, MathHelper.PiOver2 + MathHelper.Pi);
-    }
-
-    public override void Update(GameTime gameTime)
-    {
-      transform = Matrix.CreateScale(this.Scale) *
-              RotationFix *
-              Matrix.CreateFromQuaternion(this.Position.Front) *
-              Matrix.CreateTranslation(this.Position.Coordinate);
-
-
-      this.UpdateBoundingObjects();
-      base.Update(gameTime);
-
-      /*
-      foreach (BasicObject o in GameHandler.ObjectHandler.Objects)
-      {
-        if (o.GetType().IsSubclassOf(typeof(BlockPiece)))
+        public Laser(Game game, Position sourcePos)
+            : base(game, sourcePos, 40)
         {
-          BlockPiece p = (BlockPiece)o;
+            TimeToLive = 750;
+            ModelName = "Laser";
+            Model = TierGame.ContentHandler.GetModel(ModelName);
+            Scale = 0.075f;
+            Sort = SortFilter.Other;
 
-          if (!p.Exploded && p.DetectCollision(this))
-          {
-            this.TimeToLive = 0;
-            p.Explode();
-          }
+            addBoundingShere(0.1f, Vector3.Zero);
+            Initialize();
         }
-      }
-      */
-    }
 
-    public override void Draw(GameTime gameTime)
-    {
-      if (this.Model != null)
-      {
-        for (int i = 0; i < this.Model.Meshes.Count; i++)
+        public override void Initialize()
         {
-          foreach (BasicEffect effect in this.Model.Meshes[i].Effects)
-          {
-            effect.World = transform;
-            effect.View = GameHandler.Camera.View;
-            effect.Projection = GameHandler.Camera.Projection;
-          }
-          this.Model.Meshes[i].Draw();
+            base.Initialize();
+
+            RotationFix = Matrix.CreateFromAxisAngle(Vector3.UnitX, MathHelper.PiOver2 + MathHelper.Pi);
         }
-      }
+
+        public override void Update(GameTime gameTime)
+        {
+            UpdateBoundingObjects();
+            base.Update(gameTime);
+        }
+
+        public override void Draw(GameTime gameTime)
+        {
+            if (Model != null)
+            {
+                for (int i = 0; i < Model.Meshes.Count; i++)
+                {
+                    foreach (BasicEffect effect in Model.Meshes[i].Effects)
+                    {
+                        effect.World = Matrix.CreateScale(Scale) *
+                            RotationFix *
+                            Matrix.CreateFromQuaternion(Position.Front) *
+                            Matrix.CreateTranslation(Position.Coordinate);
+                        effect.View = GameHandler.Camera.View;
+                        effect.Projection = GameHandler.Camera.Projection;
+                    }
+                    Model.Meshes[i].Draw();
+                }
+            }
+        }
     }
-  }
 }

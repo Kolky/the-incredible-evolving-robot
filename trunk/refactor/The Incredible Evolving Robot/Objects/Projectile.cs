@@ -10,46 +10,34 @@ using Tier.Objects.Destroyable.Projectile;
 
 namespace Tier.Objects
 {
-  public class Projectile : DestroyableObject
-  {
-    #region Properties
-    private int timeToLive;
-    public int TimeToLive
+    public class Projectile : DestroyableObject
     {
-      get { return timeToLive; }
-      set { timeToLive = value; }
+        #region Properties
+        public int TimeToLive { get; protected set; }
+        public int CurrentTime { get; private set; }
+        #endregion
+
+        public Projectile(Game game, Position sourcePos, int speed)
+            : this(game, true, sourcePos, speed)
+        {
+        }
+
+        public Projectile(Game game, Boolean isCollidable, Position sourcePos, int speed)
+            : base(game, isCollidable)
+        {
+            Position = new Position(sourcePos);
+            Movement.Velocity = Vector3.Transform(Vector3.Forward, Matrix.CreateFromQuaternion(sourcePos.Front));
+            Movement.Velocity.Normalize();
+            Movement.Velocity *= speed;
+        }
+
+        public override void Update(GameTime gameTime)
+        {
+            if (CurrentTime >= TimeToLive)
+                GameHandler.ObjectHandler.RemoveObject(this);
+            CurrentTime += gameTime.ElapsedGameTime.Milliseconds;
+
+            base.Update(gameTime);
+        }
     }
-    private int currentTime;
-    public int CurrentTime
-    {
-      get { return currentTime; }
-    }
-    #endregion
-
-		public Projectile(Game game, Position sourcePos, int speed)
-			: this(game, true, sourcePos, speed)
-		{
-		}
-
-		public Projectile(Game game, Boolean isCollidable, Position sourcePos, int speed)
-      : base(game, isCollidable)
-    {
-      this.Position = new Position(sourcePos);
-      this.Movement.Velocity = Vector3.Transform(Vector3.Forward, Matrix.CreateFromQuaternion(sourcePos.Front));
-      this.Movement.Velocity.Normalize();
-      this.Movement.Velocity *= speed;
-    }
-
-    public override void Update(GameTime gameTime)
-    {
-			//Time To Live
-      if (this.currentTime >= this.TimeToLive)
-        GameHandler.ObjectHandler.RemoveObject(this);
-      this.currentTime += gameTime.ElapsedGameTime.Milliseconds;
-			// ---
-
-      base.Update(gameTime);
-    }
-
-  }
 }
