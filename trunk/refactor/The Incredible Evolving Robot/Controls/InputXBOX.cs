@@ -12,6 +12,7 @@ namespace Tier.Controls
         private PlayerIndex playerIndex;
         private List<GamePadKey> lastState;
         private float lastTriggerLeft, lastTriggerRight;
+        private float stickDeadzone, triggerDeadzone;
 
         public InputXBOX()
             : this(PlayerIndex.One)
@@ -20,17 +21,19 @@ namespace Tier.Controls
 
         public InputXBOX(PlayerIndex player)
         {
-            this.playerIndex = player;
-            this.lastState = new List<GamePadKey>();
-            this.lastTriggerLeft = 0.0f;
-            this.lastTriggerRight = 0.0f;
+            playerIndex = player;
+            lastState = new List<GamePadKey>();
+            lastTriggerLeft = 0.0f;
+            lastTriggerRight = 0.0f;
+            stickDeadzone = 0.15f;
+            triggerDeadzone = 0.05f;
         }
 
         #region Vibration
         public Boolean setVibration(float left, float right)
         {
-            if (GamePad.GetState(this.playerIndex).IsConnected)
-                return GamePad.SetVibration(this.playerIndex, left, right);
+            if (GamePad.GetState(playerIndex).IsConnected)
+                return GamePad.SetVibration(playerIndex, left, right);
             else
                 return false;
         }
@@ -39,31 +42,32 @@ namespace Tier.Controls
         #region Trigger
         public Boolean checkTrigger(GamePadTrigger trigger)
         {
-            return this.checkTrigger(trigger, false);
+            return checkTrigger(trigger, false);
         }
         public Boolean checkTrigger(GamePadTrigger trigger, Boolean sticky)
         {
-            if (GamePad.GetState(this.playerIndex).IsConnected)
+            GamePadState state = GamePad.GetState(playerIndex);
+            if (state.IsConnected)
             {
                 switch (trigger)
                 {
                     case GamePadTrigger.LEFT:
                         if (sticky)
-                            return (GamePad.GetState(this.playerIndex).Triggers.Left > 0.0f ? true : false);
+                            return (state.Triggers.Left > triggerDeadzone ? true : false);
                         else
                         {
-                            if (this.lastTriggerLeft == 0.0f || this.lastTriggerLeft == 0.0 || this.lastTriggerLeft == 0)
-                                return (GamePad.GetState(this.playerIndex).Triggers.Left > 0.0f ? true : false);
+                            if (lastTriggerLeft < triggerDeadzone)
+                                return (state.Triggers.Left > triggerDeadzone ? true : false);
                             else
                                 return false;
                         }
                     case GamePadTrigger.RIGHT:
                         if (sticky)
-                            return (GamePad.GetState(this.playerIndex).Triggers.Right > 0.0f ? true : false);
+                            return (state.Triggers.Right > triggerDeadzone ? true : false);
                         else
                         {
-                            if (this.lastTriggerRight == 0.0f || this.lastTriggerRight == 0.0 || this.lastTriggerRight == 0)
-                                return (GamePad.GetState(this.playerIndex).Triggers.Right > 0.0f ? true : false);
+                            if (lastTriggerRight < triggerDeadzone)
+                                return (state.Triggers.Right > triggerDeadzone ? true : false);
                             else
                                 return false;
                         }
@@ -76,14 +80,15 @@ namespace Tier.Controls
         }
         public float getTriggerDepth(GamePadTrigger trigger)
         {
-            if (GamePad.GetState(this.playerIndex).IsConnected)
+            GamePadState state = GamePad.GetState(playerIndex);
+            if (state.IsConnected)
             {
                 switch (trigger)
                 {
                     case GamePadTrigger.LEFT:
-                        return GamePad.GetState(this.playerIndex).Triggers.Left;
+                        return state.Triggers.Left;
                     case GamePadTrigger.RIGHT:
-                        return GamePad.GetState(this.playerIndex).Triggers.Right;
+                        return state.Triggers.Right;
                     default:
                         return 0.0f;
                 }
@@ -96,35 +101,35 @@ namespace Tier.Controls
         #region Thumbstick
         private GamePadDirection getDirection(float x, float y)
         {
-            if (x > 0.0f)
+            if (x > stickDeadzone)
             {
-                if (y > 0.0f)
+                if (y > stickDeadzone)
                     return GamePadDirection.RIGHTUP;
-                else if (y < 0.0f)
+                else if (y < -stickDeadzone)
                     return GamePadDirection.RIGHTDOWN;
-                else if (y == 0.0f)
+                else if (y > -stickDeadzone && y < stickDeadzone)
                     return GamePadDirection.RIGHT;
                 else
                     return GamePadDirection.NONE;
             }
-            else if (x < 0.0f)
+            else if (x < -stickDeadzone)
             {
-                if (y > 0.0f)
+                if (y > stickDeadzone)
                     return GamePadDirection.LEFTUP;
-                else if (y < 0.0f)
+                else if (y < -stickDeadzone)
                     return GamePadDirection.LEFTDOWN;
-                else if (y == 0.0f)
+                else if (y > -stickDeadzone && y < stickDeadzone)
                     return GamePadDirection.LEFT;
                 else
                     return GamePadDirection.NONE;
             }
-            else if (x == 0.0f)
+            else if (x > -stickDeadzone && x < stickDeadzone)
             {
-                if (y > 0.0f)
+                if (y > stickDeadzone)
                     return GamePadDirection.UP;
-                else if (y < 0.0f)
+                else if (y < -stickDeadzone)
                     return GamePadDirection.DOWN;
-                else if (y == 0.0f)
+                else if (y > -stickDeadzone && y < stickDeadzone)
                     return GamePadDirection.NONE;
                 else
                     return GamePadDirection.NONE;
@@ -134,14 +139,15 @@ namespace Tier.Controls
         }
         private GamePadDirection getStickDirection(GamePadStick stick)
         {
-            if (GamePad.GetState(this.playerIndex).IsConnected)
+            GamePadState state = GamePad.GetState(playerIndex);
+            if (state.IsConnected)
             {
                 switch (stick)
                 {
                     case GamePadStick.LEFT:
-                        return this.getDirection(GamePad.GetState(this.playerIndex).ThumbSticks.Left.X, GamePad.GetState(this.playerIndex).ThumbSticks.Left.Y);
+                        return this.getDirection(state.ThumbSticks.Left.X, state.ThumbSticks.Left.Y);
                     case GamePadStick.RIGHT:
-                        return this.getDirection(GamePad.GetState(this.playerIndex).ThumbSticks.Right.X, GamePad.GetState(this.playerIndex).ThumbSticks.Right.Y);
+                        return this.getDirection(state.ThumbSticks.Right.X, state.ThumbSticks.Right.Y);
                     default:
                         return GamePadDirection.NONE;
                 }
@@ -151,14 +157,15 @@ namespace Tier.Controls
         }
         public Vector2 getStickVector2(GamePadStick stick)
         {
-            if (GamePad.GetState(this.playerIndex).IsConnected)
+            GamePadState state = GamePad.GetState(playerIndex);
+            if (state.IsConnected)
             {
                 switch (stick)
                 {
                     case GamePadStick.LEFT:
-                        return GamePad.GetState(this.playerIndex).ThumbSticks.Left;
+                        return state.ThumbSticks.Left;
                     case GamePadStick.RIGHT:
-                        return GamePad.GetState(this.playerIndex).ThumbSticks.Right;
+                        return state.ThumbSticks.Right;
                     default:
                         return Vector2.Zero;
                 }
@@ -171,9 +178,10 @@ namespace Tier.Controls
         #region Buttons
         public override Boolean checkKey(GamePadKey key, Boolean sticky)
         {
-            if (GamePad.GetState(this.playerIndex).IsConnected)
+            GamePadState state = GamePad.GetState(playerIndex);
+            if (state.IsConnected)
             {
-                if (this.lastState.Contains(key))
+                if (lastState.Contains(key))
                 {
                     if (sticky)
                         return true;
@@ -182,33 +190,33 @@ namespace Tier.Controls
                         switch (key)
                         {
                             case GamePadKey.A:
-                                return (GamePad.GetState(this.playerIndex).Buttons.A == ButtonState.Released);
+                                return (state.Buttons.A == ButtonState.Released);
                             case GamePadKey.B:
-                                return (GamePad.GetState(this.playerIndex).Buttons.B == ButtonState.Released);
+                                return (state.Buttons.B == ButtonState.Released);
                             case GamePadKey.BACK:
-                                return (GamePad.GetState(this.playerIndex).Buttons.Back == ButtonState.Released);
+                                return (state.Buttons.Back == ButtonState.Released);
                             case GamePadKey.DPADDOWN:
-                                return (GamePad.GetState(this.playerIndex).DPad.Down == ButtonState.Released);
+                                return (state.DPad.Down == ButtonState.Released);
                             case GamePadKey.DPADLEFT:
-                                return (GamePad.GetState(this.playerIndex).DPad.Left == ButtonState.Released);
+                                return (state.DPad.Left == ButtonState.Released);
                             case GamePadKey.DPADRIGHT:
-                                return (GamePad.GetState(this.playerIndex).DPad.Right == ButtonState.Released);
+                                return (state.DPad.Right == ButtonState.Released);
                             case GamePadKey.DPADUP:
-                                return (GamePad.GetState(this.playerIndex).DPad.Up == ButtonState.Released);
+                                return (state.DPad.Up == ButtonState.Released);
                             case GamePadKey.LEFTSHOULDER:
-                                return (GamePad.GetState(this.playerIndex).Buttons.LeftShoulder == ButtonState.Released);
+                                return (state.Buttons.LeftShoulder == ButtonState.Released);
                             case GamePadKey.LEFTSTICK:
-                                return (GamePad.GetState(this.playerIndex).Buttons.LeftStick == ButtonState.Released);
+                                return (state.Buttons.LeftStick == ButtonState.Released);
                             case GamePadKey.RIGHTSHOULDER:
-                                return (GamePad.GetState(this.playerIndex).Buttons.RightShoulder == ButtonState.Released);
+                                return (state.Buttons.RightShoulder == ButtonState.Released);
                             case GamePadKey.RIGHTSTICK:
-                                return (GamePad.GetState(this.playerIndex).Buttons.RightStick == ButtonState.Released);
+                                return (state.Buttons.RightStick == ButtonState.Released);
                             case GamePadKey.START:
-                                return (GamePad.GetState(this.playerIndex).Buttons.Start == ButtonState.Released);
+                                return (state.Buttons.Start == ButtonState.Released);
                             case GamePadKey.X:
-                                return (GamePad.GetState(this.playerIndex).Buttons.X == ButtonState.Released);
+                                return (state.Buttons.X == ButtonState.Released);
                             case GamePadKey.Y:
-                                return (GamePad.GetState(this.playerIndex).Buttons.Y == ButtonState.Released);
+                                return (state.Buttons.Y == ButtonState.Released);
                             default:
                                 return false;
                         }
@@ -227,19 +235,50 @@ namespace Tier.Controls
 
             switch (action)
             {
-                case GameAction.MOVE_UP: gpd = getStickDirection(GamePadStick.LEFT); return ((gpd == GamePadDirection.UP) || (gpd == GamePadDirection.LEFTUP) || (gpd == GamePadDirection.RIGHTUP));
-                case GameAction.MOVE_DOWN: gpd = getStickDirection(GamePadStick.LEFT); return (gpd == GamePadDirection.DOWN || (gpd == GamePadDirection.LEFTDOWN) || (gpd == GamePadDirection.RIGHTDOWN));
-                case GameAction.MOVE_LEFT: gpd = getStickDirection(GamePadStick.LEFT); return (gpd == GamePadDirection.LEFT || (gpd == GamePadDirection.LEFTDOWN) || (gpd == GamePadDirection.LEFTUP));
-                case GameAction.MOVE_RIGHT: gpd = getStickDirection(GamePadStick.LEFT); return (gpd == GamePadDirection.RIGHT || (gpd == GamePadDirection.RIGHTDOWN) || (gpd == GamePadDirection.RIGHTUP));
-                case GameAction.ROLL_LEFT: gpd = getStickDirection(GamePadStick.RIGHT); return (gpd == GamePadDirection.UP || (gpd == GamePadDirection.LEFTUP) || (gpd == GamePadDirection.RIGHTUP));
-                case GameAction.ROLL_RIGHT: gpd = getStickDirection(GamePadStick.RIGHT); return (gpd == GamePadDirection.DOWN || (gpd == GamePadDirection.LEFTDOWN) || (gpd == GamePadDirection.RIGHTDOWN));
-                case GameAction.FIRE: return checkKey(GamePadKey.A);
-                case GameAction.SPREAD_DOWN: return checkKey(Tier.Controls.GamePadKey.RIGHTSHOULDER, sticky);
-                case GameAction.SPREAD_UP: return checkKey(Tier.Controls.GamePadKey.RIGHTSHOULDER, sticky);
-                case GameAction.SPREAD_LEFT: return checkKey(Tier.Controls.GamePadKey.RIGHTSHOULDER, sticky);
-                case GameAction.SPREAD_RIGHT: return checkKey(Tier.Controls.GamePadKey.RIGHTSHOULDER, sticky);
-                case GameAction.SPREAD_INCREASE: return checkKey(Tier.Controls.GamePadKey.RIGHTSHOULDER, sticky);
-                case GameAction.SPREAD_DECREASE: return checkKey(Tier.Controls.GamePadKey.LEFTSHOULDER, sticky);
+                case GameAction.MOVE_UP:
+                    gpd = getStickDirection(GamePadStick.LEFT);
+                    return ((gpd == GamePadDirection.UP) ||
+                        (gpd == GamePadDirection.LEFTUP) ||
+                        (gpd == GamePadDirection.RIGHTUP));
+                case GameAction.MOVE_DOWN:
+                    gpd = getStickDirection(GamePadStick.LEFT);
+                    return (gpd == GamePadDirection.DOWN ||
+                        (gpd == GamePadDirection.LEFTDOWN) ||
+                        (gpd == GamePadDirection.RIGHTDOWN));
+                case GameAction.MOVE_LEFT:
+                    gpd = getStickDirection(GamePadStick.LEFT);
+                    return (gpd == GamePadDirection.LEFT ||
+                        (gpd == GamePadDirection.LEFTDOWN) ||
+                        (gpd == GamePadDirection.LEFTUP));
+                case GameAction.MOVE_RIGHT:
+                    gpd = getStickDirection(GamePadStick.LEFT);
+                    return (gpd == GamePadDirection.RIGHT ||
+                        (gpd == GamePadDirection.RIGHTDOWN) ||
+                        (gpd == GamePadDirection.RIGHTUP));
+                case GameAction.ROLL_LEFT:
+                    gpd = getStickDirection(GamePadStick.RIGHT);
+                    return (gpd == GamePadDirection.UP ||
+                        (gpd == GamePadDirection.LEFTUP) ||
+                        (gpd == GamePadDirection.RIGHTUP));
+                case GameAction.ROLL_RIGHT:
+                    gpd = getStickDirection(GamePadStick.RIGHT);
+                    return (gpd == GamePadDirection.DOWN ||
+                        (gpd == GamePadDirection.LEFTDOWN) ||
+                        (gpd == GamePadDirection.RIGHTDOWN));
+                case GameAction.FIRE:
+                    return checkKey(GamePadKey.A);
+                case GameAction.SPREAD_DOWN:
+                    return checkKey(Tier.Controls.GamePadKey.RIGHTSHOULDER, sticky);
+                case GameAction.SPREAD_UP:
+                    return checkKey(Tier.Controls.GamePadKey.RIGHTSHOULDER, sticky);
+                case GameAction.SPREAD_LEFT:
+                    return checkKey(Tier.Controls.GamePadKey.RIGHTSHOULDER, sticky);
+                case GameAction.SPREAD_RIGHT:
+                    return checkKey(Tier.Controls.GamePadKey.RIGHTSHOULDER, sticky);
+                case GameAction.SPREAD_INCREASE:
+                    return checkKey(Tier.Controls.GamePadKey.RIGHTSHOULDER, sticky);
+                case GameAction.SPREAD_DECREASE:
+                    return checkKey(Tier.Controls.GamePadKey.LEFTSHOULDER, sticky);
             }
             return false;
         }
@@ -247,39 +286,41 @@ namespace Tier.Controls
 
         public override void Update()
         {
-            this.lastTriggerLeft = GamePad.GetState(this.playerIndex).Triggers.Left;
-            this.lastTriggerRight = GamePad.GetState(this.playerIndex).Triggers.Right;
+            GamePadState state = GamePad.GetState(playerIndex);
 
-            this.lastState.Clear();
+            lastTriggerLeft = state.Triggers.Left;
+            lastTriggerRight = state.Triggers.Right;
 
-            if (GamePad.GetState(this.playerIndex).Buttons.A == ButtonState.Pressed)
-                this.lastState.Add(GamePadKey.A);
-            if (GamePad.GetState(this.playerIndex).Buttons.B == ButtonState.Pressed)
-                this.lastState.Add(GamePadKey.B);
-            if (GamePad.GetState(this.playerIndex).Buttons.Back == ButtonState.Pressed)
-                this.lastState.Add(GamePadKey.BACK);
-            if (GamePad.GetState(this.playerIndex).DPad.Down == ButtonState.Pressed)
-                this.lastState.Add(GamePadKey.DPADDOWN);
-            if (GamePad.GetState(this.playerIndex).DPad.Left == ButtonState.Pressed)
-                this.lastState.Add(GamePadKey.DPADLEFT);
-            if (GamePad.GetState(this.playerIndex).DPad.Right == ButtonState.Pressed)
-                this.lastState.Add(GamePadKey.DPADRIGHT);
-            if (GamePad.GetState(this.playerIndex).DPad.Up == ButtonState.Pressed)
-                this.lastState.Add(GamePadKey.DPADUP);
-            if (GamePad.GetState(this.playerIndex).Buttons.LeftShoulder == ButtonState.Pressed)
-                this.lastState.Add(GamePadKey.LEFTSHOULDER);
-            if (GamePad.GetState(this.playerIndex).Buttons.LeftStick == ButtonState.Pressed)
-                this.lastState.Add(GamePadKey.LEFTSTICK);
-            if (GamePad.GetState(this.playerIndex).Buttons.RightShoulder == ButtonState.Pressed)
-                this.lastState.Add(GamePadKey.RIGHTSHOULDER);
-            if (GamePad.GetState(this.playerIndex).Buttons.RightStick == ButtonState.Pressed)
-                this.lastState.Add(GamePadKey.RIGHTSTICK);
-            if (GamePad.GetState(this.playerIndex).Buttons.Start == ButtonState.Pressed)
-                this.lastState.Add(GamePadKey.START);
-            if (GamePad.GetState(this.playerIndex).Buttons.X == ButtonState.Pressed)
-                this.lastState.Add(GamePadKey.X);
-            if (GamePad.GetState(this.playerIndex).Buttons.Y == ButtonState.Pressed)
-                this.lastState.Add(GamePadKey.Y);
+            lastState.Clear();
+
+            if (state.Buttons.A == ButtonState.Pressed)
+                lastState.Add(GamePadKey.A);
+            if (state.Buttons.B == ButtonState.Pressed)
+                lastState.Add(GamePadKey.B);
+            if (state.Buttons.Back == ButtonState.Pressed)
+                lastState.Add(GamePadKey.BACK);
+            if (state.DPad.Down == ButtonState.Pressed)
+                lastState.Add(GamePadKey.DPADDOWN);
+            if (state.DPad.Left == ButtonState.Pressed)
+                lastState.Add(GamePadKey.DPADLEFT);
+            if (state.DPad.Right == ButtonState.Pressed)
+                lastState.Add(GamePadKey.DPADRIGHT);
+            if (state.DPad.Up == ButtonState.Pressed)
+                lastState.Add(GamePadKey.DPADUP);
+            if (state.Buttons.LeftShoulder == ButtonState.Pressed)
+                lastState.Add(GamePadKey.LEFTSHOULDER);
+            if (state.Buttons.LeftStick == ButtonState.Pressed)
+                lastState.Add(GamePadKey.LEFTSTICK);
+            if (state.Buttons.RightShoulder == ButtonState.Pressed)
+                lastState.Add(GamePadKey.RIGHTSHOULDER);
+            if (state.Buttons.RightStick == ButtonState.Pressed)
+                lastState.Add(GamePadKey.RIGHTSTICK);
+            if (state.Buttons.Start == ButtonState.Pressed)
+                lastState.Add(GamePadKey.START);
+            if (state.Buttons.X == ButtonState.Pressed)
+                lastState.Add(GamePadKey.X);
+            if (state.Buttons.Y == ButtonState.Pressed)
+                lastState.Add(GamePadKey.Y);
         }
     }
 }
