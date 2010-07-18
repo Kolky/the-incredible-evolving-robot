@@ -14,14 +14,91 @@ namespace TryOut
     /// </summary>
     public class TierGame : Game
     {
-        public GraphicsDeviceManager Graphics { get; set; }
-        public static Dictionary<ActionType, BaseAction> Actions { get; set; }
-        private List<MiscObject> Objects;
+        #region Input Actions
+        private static Dictionary<ActionType, List<BaseAction>> Actions;
+        private static List<KeyValuePair<ActionType, BaseAction>> QueuedActions;
+        private static Boolean InActionUpdate;
 
         static TierGame()
         {
-            Actions = new Dictionary<ActionType, BaseAction>();
+            Actions = new Dictionary<ActionType, List<BaseAction>>();
+            QueuedActions = new List<KeyValuePair<ActionType, BaseAction>>();
+            InActionUpdate = false;
+
+            foreach (PlayerIndex player in Enum.GetValues(typeof(PlayerIndex)))
+            {
+                AddPlayerAction(ActionType.ActionType_JoinGame, BaseAction.Create(player, JoinGameController, Buttons.Start));
+            }
+            AddPlayerAction(ActionType.ActionType_JoinGame, BaseAction.Create(PlayerIndex.One, JoinGameKeyboard, Keys.Enter));
         }
+
+        public static void AddPlayerAction(ActionType type, BaseAction action)
+        {
+            if (InActionUpdate)
+            {
+                QueuedActions.Add(new KeyValuePair<ActionType, BaseAction>(type, action));
+            }
+            else
+            {
+                if (Actions.ContainsKey(type))
+                {
+                    Actions[type].Add(action);
+                }
+                else
+                {
+                    List<BaseAction> playerActions = new List<BaseAction>();
+                    playerActions.Add(action);
+
+                    Actions.Add(type, playerActions);
+                }
+            }
+        }
+
+        public static void RemovePlayerActions(PlayerIndex player)
+        {
+            Dictionary<ActionType, List<BaseAction>>.Enumerator iter = Actions.GetEnumerator();
+            while (iter.MoveNext())
+            {
+                for (int i = 0; i < iter.Current.Value.Count; )
+                {
+                    if (iter.Current.Value[i].Player == caller.Player)
+                    {
+                        iter.Current.Value.RemoveAt(i);
+                    }
+                    else
+                    {
+                        i++;
+                    }
+                }
+            }
+        }
+
+        private static void UpdatePlayerActions()
+        {
+            InActionUpdate = true;
+
+            Dictionary<ActionType, List<BaseAction>>.Enumerator iter = Actions.GetEnumerator();
+            while(iter.MoveNext())
+            {
+                foreach (BaseAction action in iter.Current.Value)
+                {
+                    action.Execute(iter.Current.Key);
+                    action.Update();
+                }
+            }
+
+            InActionUpdate = false;
+
+            while(QueuedActions.Count > 0)
+            {
+                AddPlayerAction(QueuedActions[0].Key, QueuedActions[0].Value);
+                QueuedActions.RemoveAt(0);
+            }
+        }
+        #endregion
+
+        public GraphicsDeviceManager Graphics { get; set; }
+        private List<MiscObject> Objects;
 
         public TierGame()
         {
@@ -115,23 +192,38 @@ namespace TryOut
 
         private void InitActions()
         {
-            Actions.Add(ActionType.ActionType_Fire, BaseAction.Create(ActionHandler, MouseButton.MouseButton_Right, ActionState.ActionState_Pressed));
-            Actions.Add(ActionType.ActionType_AltFire, BaseAction.Create(ActionHandler, MouseButton.MouseButton_Right, ActionState.ActionState_Released));
-            Actions.Add(ActionType.ActionType_MegaFire, BaseAction.Create(ActionHandler, MouseButton.MouseButton_Right, ActionState.ActionState_Held));
-            Actions.Add(ActionType.ActionType_Exit, BaseAction.Create(ExitHandler, Keys.Escape));
         }
 
-        private void ActionHandler(BaseAction caller)
+        private void JoinGameController(ActionType type, BaseAction caller)
+        {
+            AddPlayerAction(ActionType.ActionType_LeaveGame, BaseAction.Create(caller.Player, LeaveGame, Buttons.Back));
+
+            AddPlayerAction(ActionType.ActionType_Fire, BaseAction.Create(caller.Player, ActionHandler, GamePadTrigger.GamePadTrigger_Right, 0.3f));
+            AddPlayerAction(ActionType.ActionType_AltFire, BaseAction.Create(caller.Player, ActionHandler, Buttons.RightShoulder));
+            AddPlayerAction(ActionType.ActionType_MegaFire, BaseAction.Create(caller.Player, ActionHandler, GamePadTrigger.GamePadTrigger_Right, 0.9f));
+
+            AddPlayerAction(ActionType.ActionType_Exit, BaseAction.Create(caller.Player, ExitHandler, Buttons.Back));
+        }
+
+        private void JoinGameKeyboard(ActionType type, BaseAction caller)
+        {
+
+        }
+
+        private void LeaveGame(ActionType type, BaseAction caller)
+        {
+        }
+
+        private void ActionHandler(ActionType type, BaseAction caller)
         {
             Console.WriteLine(caller);
         }
 
-        private void ExitHandler(BaseAction caller)
+        private void ExitHandler(ActionType type, BaseAction caller)
         {
             Console.WriteLine(caller);
             Exit();
         }
-
         /// <summary>
         /// Allows the game to run logic such as updating the world,
         /// checking for collisions, gathering input, and playing audio.
@@ -139,11 +231,7 @@ namespace TryOut
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            foreach (BaseAction action in Actions.Values)
-            {
-                action.Execute();
-                action.Update();
-            } 
+            UpdatePlayerActions();
 
             base.Update(gameTime);
         }
