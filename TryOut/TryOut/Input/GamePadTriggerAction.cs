@@ -16,27 +16,27 @@ namespace TryOut.Input
         public GamePadTrigger Trigger { get; private set; }
         public float TriggerDepth { get; private set; }
 
-        public GamePadTriggerAction(ActionMethod method, GamePadTrigger trigger, float triggerDepth)
-            : base(method, ActionState.ActionState_Pressed)
+        public GamePadTriggerAction(PlayerIndex player, ActionMethod method, GamePadTrigger trigger, float triggerDepth)
+            : base(player, method, ActionState.ActionState_Pressed)
         {
             Trigger = trigger;
             TriggerDepth = triggerDepth;
         }
 
-        public override void Execute(PlayerIndex player)
+        public override void Execute(ActionType type)
         {
             switch (Trigger)
             {
                 case GamePadTrigger.GamePadTrigger_Left:
-                    if (GamePad.GetState(player).Triggers.Left >= TriggerDepth)
+                    if (GamePad.GetState(Player).Triggers.Left >= TriggerDepth)
                     {
-                        Method(this);
+                        Method(type, this);
                     }
                     break;
                 case GamePadTrigger.GamePadTrigger_Right:
-                    if (GamePad.GetState(player).Triggers.Right >= TriggerDepth)
+                    if (GamePad.GetState(Player).Triggers.Right >= TriggerDepth)
                     {
-                        Method(this);
+                        Method(type, this);
                     }
                     break;
                 default:
@@ -44,7 +44,7 @@ namespace TryOut.Input
             }
         }
 
-        public override void Update(PlayerIndex player)
+        public override void Update()
         {
         }
 

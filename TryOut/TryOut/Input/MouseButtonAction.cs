@@ -18,38 +18,38 @@ namespace TryOut.Input
         public MouseButton Button { get; private set; }
         private Boolean Pressed;
 
-        public MouseButtonAction(ActionMethod method, MouseButton button)
-            : this(method, button, ActionState.ActionState_Pressed)
+        public MouseButtonAction(PlayerIndex player, ActionMethod method, MouseButton button)
+            : this(player, method, button, ActionState.ActionState_Pressed)
         {
         }
 
-        public MouseButtonAction(ActionMethod method, MouseButton button, ActionState state)
-            : base(method, state)
+        public MouseButtonAction(PlayerIndex player, ActionMethod method, MouseButton button, ActionState state)
+            : base(player, method, state)
         {
             Button = button;
             Pressed = false;
         }
 
-        public override void Execute(PlayerIndex player)
+        public override void Execute(ActionType type)
         {
             switch (State)
             {
                 case ActionState.ActionState_Pressed:
                     if (IsMouseButtonDown(Button) && !Pressed)
                     {
-                        Method(this);
+                        Method(type, this);
                     }
                     break;
                 case ActionState.ActionState_Held:
                     if (IsMouseButtonDown(Button) && Pressed)
                     {
-                        Method(this);
+                        Method(type, this);
                     }
                     break;
                 case ActionState.ActionState_Released:
                     if (IsMouseButtonUp(Button) && Pressed)
                     {
-                        Method(this);
+                        Method(type, this);
                     }
                     break;
                 default:
@@ -57,7 +57,7 @@ namespace TryOut.Input
             }
         }
 
-        public override void Update(PlayerIndex player)
+        public override void Update()
         {
             Pressed = IsMouseButtonDown(Button);
         }

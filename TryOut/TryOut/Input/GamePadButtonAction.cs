@@ -11,38 +11,38 @@ namespace TryOut.Input
         public Buttons Button { get; private set; }
         private Boolean Pressed;
 
-        public GamePadButtonAction(ActionMethod method, Buttons button)
-            : this(method, button, ActionState.ActionState_Pressed)
+        public GamePadButtonAction(PlayerIndex player, ActionMethod method, Buttons button)
+            : this(player, method, button, ActionState.ActionState_Pressed)
         {
         }
 
-        public GamePadButtonAction(ActionMethod method, Buttons button, ActionState state)
-            : base(method, state)
+        public GamePadButtonAction(PlayerIndex player, ActionMethod method, Buttons button, ActionState state)
+            : base(player, method, state)
         {
             Button = button;
             Pressed = false;
         }
 
-        public override void Execute(PlayerIndex player)
+        public override void Execute(ActionType type)
         {
             switch (State)
             {
                 case ActionState.ActionState_Pressed:
-                    if (GamePad.GetState(player).IsButtonDown(Button) && !Pressed)
+                    if (GamePad.GetState(Player).IsButtonDown(Button) && !Pressed)
                     {
-                        Method(this);
+                        Method(type, this);
                     }
                     break;
                 case ActionState.ActionState_Held:
-                    if (GamePad.GetState(player).IsButtonDown(Button) && Pressed)
+                    if (GamePad.GetState(Player).IsButtonDown(Button) && Pressed)
                     {
-                        Method(this);
+                        Method(type, this);
                     }
                     break;
                 case ActionState.ActionState_Released:
-                    if (GamePad.GetState(player).IsButtonUp(Button) && Pressed)
+                    if (GamePad.GetState(Player).IsButtonUp(Button) && Pressed)
                     {
-                        Method(this);
+                        Method(type, this);
                     }
                     break;
                 default:
@@ -50,9 +50,9 @@ namespace TryOut.Input
             }
         }
 
-        public override void Update(PlayerIndex player)
+        public override void Update()
         {
-            Pressed = GamePad.GetState(player).IsButtonDown(Button);
+            Pressed = GamePad.GetState(Player).IsButtonDown(Button);
         }
 
         public override string ToString()
