@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<object name="T" type="bosspiece" xmlns="Objects">
+  <model name="TedrisT"/>
+  <effect name="Transparent"/>
+  <color x="0" y="1" z="0"/>
+  <rotation/>
+
+  <collision>
+    <boundingbox >
+      <position x="0" y="0" z="0"/>
+      <bottomleft x="-3.0" y="2" z="-0.65"/>
+      <topright x="3.0" y="0" z="1.35"/>
+    </boundingbox>
+    <boundingbox >
+      <position x="0" y="0" z="0"/>
+      <bottomleft x="-1.0" y="2" z="-0.65"/>
+      <topright x="1.0" y="-2" z="1.35"/>
+    </boundingbox>
+  </collision>
+
+  <movable/>
+  
+  <growable>
+    <growth_templates id="testboss">
+      <growth_template>0_1_+Bar</growth_template>
+      <growth_template>1_0_+L</growth_template>
+      <growth_template>2_1_+L</growth_template>
+      <growth_template>0_1_+L</growth_template>
+      <growth_template>1_0_+T</growth_template>
+      <growth_template>2_0_+T</growth_template>
+      <growth_template>1_0_+Step</growth_template>
+      <growth_template>2_0_+Step</growth_template>
+      <growth_template>2_0_+Wing</growth_template>
+      
+      <growth_template>2_0_-PlasmaTurret</growth_template>
+      <growth_template>3_0_-PlasmaTurret</growth_template>
+      <!--
+      <growth_template>0_1_-PlasmaTurret</growth_template>
+      <growth_template>0_1_~Swirl</growth_template>
+      -->
+    </growth_templates>
+  </growable>
+  
+  <attachable>
+	<connection>
+		<position x="3" y="1.0" z="0"/>
+		<pivot x="1" y="0" z="0"/>
+	</connection>
+
+	<connection>
+		<position x="-3" y="1.0" z="0"/>
+		<pivot x="-1" y="0" z="0"/>
+	</connection>
+
+	<connection>
+		<position x="0" y="-2.0" z="0"/>
+		<pivot x="0" y="-1" z="0"/>
+	</connection>
+
+    <connection>
+      <position x="0" y="0.0" z="0.5"/>
+      <pivot x="0" y="0" z="1"/>
+    </connection>
+  </attachable>
+
+  <specific>
+    <name>TedrisT</name>
+    <diffuse_map>TedrisT-color</diffuse_map>
+    <specular_map>TedrisT-specular</specular_map>
+    <normal_map>TedrisT-normal</normal_map>
+    
+    <lights>
+      <light>
+        <position x="0" y="0" z="1"/>
+        <color x="255" y="0" z="0"/>
+      </light>
+    </lights>
+  </specific>
+</object>

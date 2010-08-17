@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<object name="Explosion" type="billboard" xmlns="Objects">
+  <effect name="AlphaBlend"/>
+  
+
+  <temporary>
+    <ttl>2000</ttl>
+  </temporary>
+
+  
+  <specific>
+    <animatedtexture assetname="BigExplosion" count="27"/>    
+  </specific>
+</object>

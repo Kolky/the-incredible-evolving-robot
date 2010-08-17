@@ -1,0 +1,2189 @@
+Signature = XACT2;
+Version = 16;
+Content Version = 43;
+Release = August 2007;
+
+Options
+{
+    Report File = test.txt;
+    Verbose Report = 1;
+    Generate C/C++ Headers = 1;
+}
+
+Global Settings
+{
+    Xbox File = Xbox\Tier.xgs;
+    Windows File = Win\Tier.xgs;
+    Header File = C:\Documents and Settings\Administrator\Desktop\Test.h;
+    Exclude Category Names = 0;
+    Exclude Variable Names = 0;
+    Last Modified Low = 2481084356;
+    Last Modified High = 29981639;
+
+    Category
+    {
+        Name = Global;
+        Public = 1;
+        Background Music = 0;
+        Volume = 0;
+
+        Category Entry
+        {
+        }
+
+        Instance Limit
+        {
+            Max Instances = 255;
+            Behavior = 0;
+
+            Crossfade
+            {
+                Fade In = 0;
+                Fade Out = 0;
+                Crossfade Type = 0;
+            }
+        }
+    }
+
+    Category
+    {
+        Name = Default;
+        Public = 1;
+        Background Music = 0;
+        Volume = 0;
+
+        Category Entry
+        {
+            Name = Global;
+        }
+
+        Instance Limit
+        {
+            Max Instances = 255;
+            Behavior = 0;
+
+            Crossfade
+            {
+                Fade In = 0;
+                Fade Out = 0;
+                Crossfade Type = 0;
+            }
+        }
+    }
+
+    Category
+    {
+        Name = Music;
+        Public = 1;
+        Background Music = 1;
+        Volume = 0;
+
+        Category Entry
+        {
+            Name = Global;
+        }
+
+        Instance Limit
+        {
+            Max Instances = 255;
+            Behavior = 0;
+
+            Crossfade
+            {
+                Fade In = 0;
+                Fade Out = 0;
+                Crossfade Type = 0;
+            }
+        }
+    }
+
+    Variable
+    {
+        Name = OrientationAngle;
+        Public = 1;
+        Global = 0;
+        Internal = 0;
+        External = 0;
+        Monitored = 1;
+        Reserved = 1;
+        Read Only = 0;
+        Time = 0;
+        Value = 0.000000;
+        Initial Value = 0.000000;
+        Min = -180.000000;
+        Max = 180.000000;
+    }
+
+    Variable
+    {
+        Name = DopplerPitchScalar;
+        Public = 1;
+        Global = 0;
+        Internal = 0;
+        External = 0;
+        Monitored = 1;
+        Reserved = 1;
+        Read Only = 0;
+        Time = 0;
+        Value = 1.000000;
+        Initial Value = 1.000000;
+        Min = 0.000000;
+        Max = 4.000000;
+    }
+
+    Variable
+    {
+        Name = SpeedOfSound;
+        Public = 1;
+        Global = 1;
+        Internal = 0;
+        External = 0;
+        Monitored = 1;
+        Reserved = 1;
+        Read Only = 0;
+        Time = 0;
+        Value = 343.500000;
+        Initial Value = 343.500000;
+        Min = 0.000000;
+        Max = 1000000.000000;
+    }
+
+    Variable
+    {
+        Name = ReleaseTime;
+        Public = 1;
+        Global = 0;
+        Internal = 1;
+        External = 1;
+        Monitored = 1;
+        Reserved = 1;
+        Read Only = 1;
+        Time = 1;
+        Value = 0.000000;
+        Initial Value = 0.000000;
+        Min = 0.000000;
+        Max = 15.000001;
+    }
+
+    Variable
+    {
+        Name = AttackTime;
+        Public = 1;
+        Global = 0;
+        Internal = 1;
+        External = 1;
+        Monitored = 1;
+        Reserved = 1;
+        Read Only = 1;
+        Time = 1;
+        Value = 0.000000;
+        Initial Value = 0.000000;
+        Min = 0.000000;
+        Max = 15.000001;
+    }
+
+    Variable
+    {
+        Name = NumCueInstances;
+        Public = 1;
+        Global = 0;
+        Internal = 1;
+        External = 1;
+        Monitored = 1;
+        Reserved = 1;
+        Read Only = 1;
+        Time = 0;
+        Value = 0.000000;
+        Initial Value = 0.000000;
+        Min = 0.000000;
+        Max = 1024.000000;
+    }
+
+    Variable
+    {
+        Name = Distance;
+        Public = 1;
+        Global = 0;
+        Internal = 0;
+        External = 0;
+        Monitored = 1;
+        Reserved = 1;
+        Read Only = 0;
+        Time = 0;
+        Value = 0.000000;
+        Initial Value = 0.000000;
+        Min = 0.000000;
+        Max = 1000000.000000;
+    }
+
+    Compression Preset
+    {
+        Name = Tier compression;
+        Xbox Format Tag = 357;
+        Target Sample Rate = 48000;
+        Quality = 60;
+        Find Best Quality = 0;
+        High Freq Cut = 0;
+        Loop = 0;
+        PC Format Tag = 2;
+        Samples Per Block = 128;
+    }
+}
+
+Wave Bank
+{
+    Name = Wave Bank;
+    Xbox File = Xbox\Wave Bank.xwb;
+    Windows File = Win\Wave Bank.xwb;
+    Xbox Bank Path Edited = 1;
+    Windows Bank Path Edited = 1;
+    Seek Tables = 1;
+    Compression Preset Name = Tier compression;
+    Xbox Bank Last Modified Low = 2953402166;
+    Xbox Bank Last Modified High = 29980654;
+    PC Bank Last Modified Low = 3613395402;
+    PC Bank Last Modified High = 29981638;
+    Header Last Modified Low = 0;
+    Header Last Modified High = 0;
+    Bank Last Revised Low = 2953402166;
+    Bank Last Revised High = 29980654;
+
+    Wave
+    {
+        Name = explosion_enormous;
+        File = explosion_enormous.wav;
+        Build Settings Last Modified Low = 3861556136;
+        Build Settings Last Modified High = 29980459;
+
+        Cache
+        {
+            Format Tag = 0;
+            Channels = 1;
+            Sampling Rate = 44100;
+            Bits Per Sample = 1;
+            Play Region Offset = 44;
+            Play Region Length = 322560;
+            Loop Region Offset = 0;
+            Loop Region Length = 0;
+            File Type = 1;
+            Last Modified Low = 475997092;
+            Last Modified High = 29953123;
+        }
+    }
+
+    Wave
+    {
+        Name = gun_plasmafire;
+        File = gun_plasmafire.wav;
+        Build Settings Last Modified Low = 3861556136;
+        Build Settings Last Modified High = 29980459;
+
+        Cache
+        {
+            Format Tag = 0;
+            Channels = 1;
+            Sampling Rate = 44100;
+            Bits Per Sample = 1;
+            Play Region Offset = 44;
+            Play Region Length = 135936;
+            Loop Region Offset = 0;
+            Loop Region Length = 0;
+            File Type = 1;
+            Last Modified Low = 216309592;
+            Last Modified High = 29953123;
+        }
+    }
+
+    Wave
+    {
+        Name = TED_INGAME;
+        File = TED_INGAME.wav;
+        Build Settings Last Modified Low = 3861868636;
+        Build Settings Last Modified High = 29980459;
+
+        Cache
+        {
+            Format Tag = 0;
+            Channels = 2;
+            Sampling Rate = 44100;
+            Bits Per Sample = 1;
+            Play Region Offset = 44;
+            Play Region Length = 42336000;
+            Loop Region Offset = 0;
+            Loop Region Length = 0;
+            File Type = 1;
+            Last Modified Low = 3897257040;
+            Last Modified High = 29951260;
+        }
+    }
+
+    Wave
+    {
+        Name = TED_MENU;
+        File = TED_MENU.wav;
+        Build Settings Last Modified Low = 3861868636;
+        Build Settings Last Modified High = 29980459;
+
+        Cache
+        {
+            Format Tag = 0;
+            Channels = 2;
+            Sampling Rate = 44100;
+            Bits Per Sample = 1;
+            Play Region Offset = 44;
+            Play Region Length = 16934400;
+            Loop Region Offset = 0;
+            Loop Region Length = 0;
+            File Type = 1;
+            Last Modified Low = 1136944540;
+            Last Modified High = 29951260;
+        }
+    }
+
+    Wave
+    {
+        Name = charge;
+        File = charge.wav;
+        Build Settings Last Modified Low = 1320930216;
+        Build Settings Last Modified High = 29957354;
+
+        Cache
+        {
+            Format Tag = 0;
+            Channels = 1;
+            Sampling Rate = 22050;
+            Bits Per Sample = 1;
+            Play Region Offset = 44;
+            Play Region Length = 89412;
+            Loop Region Offset = 0;
+            Loop Region Length = 0;
+            File Type = 1;
+            Last Modified Low = 197961466;
+            Last Modified High = 29957354;
+        }
+    }
+
+    Wave
+    {
+        Name = dodge;
+        File = dodge.wav;
+        Build Settings Last Modified Low = 1320930216;
+        Build Settings Last Modified High = 29957354;
+
+        Cache
+        {
+            Format Tag = 0;
+            Channels = 1;
+            Sampling Rate = 22050;
+            Bits Per Sample = 1;
+            Play Region Offset = 44;
+            Play Region Length = 19968;
+            Loop Region Offset = 0;
+            Loop Region Length = 0;
+            File Type = 1;
+            Last Modified Low = 2732772512;
+            Last Modified High = 29957353;
+        }
+    }
+
+    Wave
+    {
+        Name = select;
+        File = select.wav;
+        Build Settings Last Modified Low = 2701711466;
+        Build Settings Last Modified High = 29957354;
+        Compression Preset Name = <none>;
+
+        Cache
+        {
+            Format Tag = 0;
+            Channels = 1;
+            Sampling Rate = 22050;
+            Bits Per Sample = 0;
+            Play Region Offset = 44;
+            Play Region Length = 7936;
+            Loop Region Offset = 0;
+            Loop Region Length = 0;
+            File Type = 1;
+            Last Modified Low = 2004836466;
+            Last Modified High = 29957354;
+        }
+    }
+
+    Wave
+    {
+        Name = menu;
+        File = menu.wav;
+        Build Settings Last Modified Low = 2726086466;
+        Build Settings Last Modified High = 29957354;
+        Compression Preset Name = <none>;
+
+        Cache
+        {
+            Format Tag = 0;
+            Channels = 2;
+            Sampling Rate = 22050;
+            Bits Per Sample = 0;
+            Play Region Offset = 44;
+            Play Region Length = 11154;
+            Loop Region Offset = 0;
+            Loop Region Length = 0;
+            File Type = 1;
+            Last Modified Low = 2491555216;
+            Last Modified High = 29957354;
+        }
+    }
+
+    Wave
+    {
+        Name = laserfire3_;
+        File = laserfire3.wav;
+        Build Settings Last Modified Low = 3595117182;
+        Build Settings Last Modified High = 29980458;
+        Compression Preset Name = <none>;
+
+        Cache
+        {
+            Format Tag = 0;
+            Channels = 1;
+            Sampling Rate = 8000;
+            Bits Per Sample = 0;
+            Play Region Offset = 44;
+            Play Region Length = 11925;
+            Loop Region Offset = 0;
+            Loop Region Length = 0;
+            File Type = 1;
+            Last Modified Low = 1578939902;
+            Last Modified High = 29952138;
+        }
+    }
+
+    Wave
+    {
+        Name = Voice_Healthupgrade;
+        File = Voice_Healthupgrade.wav;
+        Build Settings Last Modified Low = 2380117182;
+        Build Settings Last Modified High = 29980458;
+
+        Cache
+        {
+            Format Tag = 0;
+            Channels = 2;
+            Sampling Rate = 44100;
+            Bits Per Sample = 1;
+            Play Region Offset = 44;
+            Play Region Length = 261376;
+            Loop Region Offset = 0;
+            Loop Region Length = 0;
+            File Type = 1;
+            Last Modified Low = 656992182;
+            Last Modified High = 29980458;
+        }
+    }
+
+    Wave
+    {
+        Name = Voice_Laserbeam;
+        File = Voice_Laserbeam.wav;
+        Build Settings Last Modified Low = 2802148432;
+        Build Settings Last Modified High = 29980458;
+
+        Cache
+        {
+            Format Tag = 0;
+            Channels = 2;
+            Sampling Rate = 44100;
+            Bits Per Sample = 1;
+            Play Region Offset = 44;
+            Play Region Length = 181248;
+            Loop Region Offset = 0;
+            Loop Region Length = 0;
+            File Type = 1;
+            Last Modified Low = 3251178228;
+            Last Modified High = 29980457;
+        }
+    }
+
+    Wave
+    {
+        Name = Voice_level2;
+        File = Voice_level2.wav;
+        Build Settings Last Modified Low = 2837304682;
+        Build Settings Last Modified High = 29980458;
+
+        Cache
+        {
+            Format Tag = 0;
+            Channels = 2;
+            Sampling Rate = 44100;
+            Bits Per Sample = 1;
+            Play Region Offset = 44;
+            Play Region Length = 235760;
+            Loop Region Offset = 0;
+            Loop Region Length = 0;
+            File Type = 1;
+            Last Modified Low = 3719303228;
+            Last Modified High = 29980457;
+        }
+    }
+
+    Wave
+    {
+        Name = Voice_level3;
+        File = Voice_level3.wav;
+        Build Settings Last Modified Low = 2837304682;
+        Build Settings Last Modified High = 29980458;
+
+        Cache
+        {
+            Format Tag = 0;
+            Channels = 2;
+            Sampling Rate = 44100;
+            Bits Per Sample = 1;
+            Play Region Offset = 44;
+            Play Region Length = 246784;
+            Loop Region Offset = 0;
+            Loop Region Length = 0;
+            File Type = 1;
+            Last Modified Low = 3994771978;
+            Last Modified High = 29980457;
+        }
+    }
+
+    Wave
+    {
+        Name = Voice_level4;
+        File = Voice_level4.wav;
+        Build Settings Last Modified Low = 2837304682;
+        Build Settings Last Modified High = 29980458;
+
+        Cache
+        {
+            Format Tag = 0;
+            Channels = 2;
+            Sampling Rate = 44100;
+            Bits Per Sample = 1;
+            Play Region Offset = 44;
+            Play Region Length = 233888;
+            Loop Region Offset = 0;
+            Loop Region Length = 0;
+            File Type = 1;
+            Last Modified Low = 4293365728;
+            Last Modified High = 29980457;
+        }
+    }
+
+    Wave
+    {
+        Name = Voice_Quad;
+        File = Voice_Quad.wav;
+        Build Settings Last Modified Low = 2837304682;
+        Build Settings Last Modified High = 29980458;
+
+        Cache
+        {
+            Format Tag = 0;
+            Channels = 2;
+            Sampling Rate = 44100;
+            Bits Per Sample = 1;
+            Play Region Offset = 44;
+            Play Region Length = 159232;
+            Loop Region Offset = 0;
+            Loop Region Length = 0;
+            File Type = 1;
+            Last Modified Low = 960429682;
+            Last Modified High = 29980458;
+        }
+    }
+
+    Wave
+    {
+        Name = Voice_Rocketlauncher;
+        File = Voice_Rocketlauncher.wav;
+        Build Settings Last Modified Low = 2837460932;
+        Build Settings Last Modified High = 29980458;
+
+        Cache
+        {
+            Format Tag = 0;
+            Channels = 2;
+            Sampling Rate = 44100;
+            Bits Per Sample = 1;
+            Play Region Offset = 44;
+            Play Region Length = 221780;
+            Loop Region Offset = 0;
+            Loop Region Length = 0;
+            File Type = 1;
+            Last Modified Low = 1389960932;
+            Last Modified High = 29980458;
+        }
+    }
+
+    Wave
+    {
+        Name = Voice_Weaponupgrade;
+        File = Voice_Weaponupgrade.wav;
+        Build Settings Last Modified Low = 2837460932;
+        Build Settings Last Modified High = 29980458;
+
+        Cache
+        {
+            Format Tag = 0;
+            Channels = 2;
+            Sampling Rate = 44100;
+            Bits Per Sample = 1;
+            Play Region Offset = 44;
+            Play Region Length = 214880;
+            Loop Region Offset = 0;
+            Loop Region Length = 0;
+            File Type = 1;
+            Last Modified Low = 1706835932;
+            Last Modified High = 29980458;
+        }
+    }
+
+    Wave
+    {
+        Name = TutorialLoop;
+        File = TutorialLoop.wav;
+        Build Settings Last Modified Low = 2215204488;
+        Build Settings Last Modified High = 29980647;
+
+        Cache
+        {
+            Format Tag = 0;
+            Channels = 2;
+            Sampling Rate = 44100;
+            Bits Per Sample = 1;
+            Play Region Offset = 198;
+            Play Region Length = 9672192;
+            Loop Region Offset = 0;
+            Loop Region Length = 0;
+            File Type = 1;
+            Last Modified Low = 461610738;
+            Last Modified High = 29980647;
+        }
+    }
+
+    Wave
+    {
+        Name = Shotgun;
+        File = Shotgun.wav;
+        Build Settings Last Modified Low = 2246298238;
+        Build Settings Last Modified High = 29980647;
+
+        Cache
+        {
+            Format Tag = 0;
+            Channels = 2;
+            Sampling Rate = 44100;
+            Bits Per Sample = 1;
+            Play Region Offset = 210;
+            Play Region Length = 126752;
+            Loop Region Offset = 0;
+            Loop Region Length = 0;
+            File Type = 1;
+            Last Modified Low = 1748329488;
+            Last Modified High = 29980647;
+        }
+    }
+
+    Wave
+    {
+        Name = RobotTurnforward;
+        File = RobotTurnforward.wav;
+        Build Settings Last Modified Low = 4011519896;
+        Build Settings Last Modified High = 29980649;
+
+        Cache
+        {
+            Format Tag = 0;
+            Channels = 1;
+            Sampling Rate = 44100;
+            Bits Per Sample = 1;
+            Play Region Offset = 262;
+            Play Region Length = 92640;
+            Loop Region Offset = 0;
+            Loop Region Length = 0;
+            File Type = 1;
+            Last Modified Low = 3499644896;
+            Last Modified High = 29980649;
+        }
+    }
+
+    Wave
+    {
+        Name = RobotTurnbackward;
+        File = RobotTurnbackward.wav;
+        Build Settings Last Modified Low = 4011519896;
+        Build Settings Last Modified High = 29980649;
+
+        Cache
+        {
+            Format Tag = 0;
+            Channels = 1;
+            Sampling Rate = 44100;
+            Bits Per Sample = 1;
+            Play Region Offset = 262;
+            Play Region Length = 88408;
+            Loop Region Offset = 0;
+            Loop Region Length = 0;
+            File Type = 1;
+            Last Modified Low = 3855426146;
+            Last Modified High = 29980649;
+        }
+    }
+}
+
+Sound Bank
+{
+    Name = Sound Bank;
+    Xbox File = Xbox\Sound Bank.xsb;
+    Windows File = Win\Sound Bank.xsb;
+    Xbox Bank Path Edited = 1;
+    Windows Bank Path Edited = 1;
+    Bank Last Modified Low = 1229652672;
+    Bank Last Modified High = 29981643;
+    Header Last Modified High = 0;
+    Header Last Modified Low = 0;
+
+    Sound
+    {
+        Name = explosion_enormous;
+        Volume = -2000;
+        Pitch = 0;
+        Priority = 0;
+
+        Category Entry
+        {
+            Name = Default;
+        }
+
+        Track
+        {
+            Volume = 0;
+
+            Play Wave Event
+            {
+                Break Loop = 0;
+                Use Speaker Position = 0;
+                Use Center Speaker = 1;
+                New Speaker Position On Loop = 1;
+                Speaker Position Angle = 0.000000;
+                Speaer Position Arc = 0.000000;
+
+                Event Header
+                {
+                    Timestamp = 0;
+                    Relative = 0;
+                    Random Recurrence = 0;
+                    Random Offset = 0;
+                }
+
+                Wave Entry
+                {
+                    Bank Name = Wave Bank;
+                    Bank Index = 0;
+                    Entry Name = explosion_enormous;
+                    Entry Index = 0;
+                    Weight = 255;
+                    Weight Min = 0;
+                }
+            }
+        }
+    }
+
+    Sound
+    {
+        Name = gun_plasmafire;
+        Volume = -2000;
+        Pitch = 0;
+        Priority = 0;
+
+        Category Entry
+        {
+            Name = Default;
+        }
+
+        Track
+        {
+            Volume = 0;
+
+            Play Wave Event
+            {
+                Break Loop = 0;
+                Use Speaker Position = 0;
+                Use Center Speaker = 1;
+                New Speaker Position On Loop = 1;
+                Speaker Position Angle = 0.000000;
+                Speaer Position Arc = 0.000000;
+
+                Event Header
+                {
+                    Timestamp = 0;
+                    Relative = 0;
+                    Random Recurrence = 0;
+                    Random Offset = 0;
+                }
+
+                Wave Entry
+                {
+                    Bank Name = Wave Bank;
+                    Bank Index = 0;
+                    Entry Name = gun_plasmafire;
+                    Entry Index = 1;
+                    Weight = 255;
+                    Weight Min = 0;
+                }
+            }
+        }
+    }
+
+    Sound
+    {
+        Name = TED_INGAME;
+        Volume = -1200;
+        Pitch = 0;
+        Priority = 0;
+
+        Category Entry
+        {
+            Name = Default;
+        }
+
+        Track
+        {
+            Volume = 0;
+
+            Play Wave Event
+            {
+                Loop Count = 255;
+                Break Loop = 0;
+                Use Speaker Position = 0;
+                Use Center Speaker = 1;
+                New Speaker Position On Loop = 1;
+                Speaker Position Angle = 0.000000;
+                Speaer Position Arc = 0.000000;
+
+                Event Header
+                {
+                    Timestamp = 0;
+                    Relative = 0;
+                    Random Recurrence = 0;
+                    Random Offset = 0;
+                }
+
+                Wave Entry
+                {
+                    Bank Name = Wave Bank;
+                    Bank Index = 0;
+                    Entry Name = TED_INGAME;
+                    Entry Index = 2;
+                    Weight = 255;
+                    Weight Min = 0;
+                }
+            }
+        }
+    }
+
+    Sound
+    {
+        Name = TED_MENU;
+        Volume = -600;
+        Pitch = 0;
+        Priority = 0;
+
+        Category Entry
+        {
+            Name = Default;
+        }
+
+        Track
+        {
+            Volume = 0;
+
+            Play Wave Event
+            {
+                Break Loop = 0;
+                Use Speaker Position = 0;
+                Use Center Speaker = 1;
+                New Speaker Position On Loop = 1;
+                Speaker Position Angle = 0.000000;
+                Speaer Position Arc = 0.000000;
+
+                Event Header
+                {
+                    Timestamp = 0;
+                    Relative = 0;
+                    Random Recurrence = 0;
+                    Random Offset = 0;
+                }
+
+                Wave Entry
+                {
+                    Bank Name = Wave Bank;
+                    Bank Index = 0;
+                    Entry Name = TED_MENU;
+                    Entry Index = 3;
+                    Weight = 255;
+                    Weight Min = 0;
+                }
+            }
+        }
+    }
+
+    Sound
+    {
+        Name = dodge;
+        Volume = -1200;
+        Pitch = 0;
+        Priority = 0;
+
+        Category Entry
+        {
+            Name = Default;
+        }
+
+        Track
+        {
+            Volume = 0;
+
+            Play Wave Event
+            {
+                Break Loop = 0;
+                Use Speaker Position = 0;
+                Use Center Speaker = 1;
+                New Speaker Position On Loop = 1;
+                Speaker Position Angle = 0.000000;
+                Speaer Position Arc = 0.000000;
+
+                Event Header
+                {
+                    Timestamp = 0;
+                    Relative = 0;
+                    Random Recurrence = 0;
+                    Random Offset = 0;
+                }
+
+                Wave Entry
+                {
+                    Bank Name = Wave Bank;
+                    Bank Index = 0;
+                    Entry Name = dodge;
+                    Entry Index = 5;
+                    Weight = 255;
+                    Weight Min = 0;
+                }
+            }
+        }
+    }
+
+    Sound
+    {
+        Name = charge;
+        Volume = -600;
+        Pitch = 0;
+        Priority = 0;
+
+        Category Entry
+        {
+            Name = Default;
+        }
+
+        Track
+        {
+            Volume = 0;
+
+            Play Wave Event
+            {
+                Break Loop = 0;
+                Use Speaker Position = 0;
+                Use Center Speaker = 1;
+                New Speaker Position On Loop = 1;
+                Speaker Position Angle = 0.000000;
+                Speaer Position Arc = 0.000000;
+
+                Event Header
+                {
+                    Timestamp = 0;
+                    Relative = 0;
+                    Random Recurrence = 0;
+                    Random Offset = 0;
+                }
+
+                Wave Entry
+                {
+                    Bank Name = Wave Bank;
+                    Bank Index = 0;
+                    Entry Name = charge;
+                    Entry Index = 4;
+                    Weight = 255;
+                    Weight Min = 0;
+                }
+            }
+        }
+    }
+
+    Sound
+    {
+        Name = menu;
+        Volume = -1200;
+        Pitch = 0;
+        Priority = 0;
+
+        Category Entry
+        {
+            Name = Default;
+        }
+
+        Track
+        {
+            Volume = 0;
+
+            Play Wave Event
+            {
+                Break Loop = 0;
+                Use Speaker Position = 0;
+                Use Center Speaker = 1;
+                New Speaker Position On Loop = 1;
+                Speaker Position Angle = 0.000000;
+                Speaer Position Arc = 0.000000;
+
+                Event Header
+                {
+                    Timestamp = 0;
+                    Relative = 0;
+                    Random Recurrence = 0;
+                    Random Offset = 0;
+                }
+
+                Wave Entry
+                {
+                    Bank Name = Wave Bank;
+                    Bank Index = 0;
+                    Entry Name = menu;
+                    Entry Index = 7;
+                    Weight = 255;
+                    Weight Min = 0;
+                }
+            }
+        }
+    }
+
+    Sound
+    {
+        Name = select;
+        Volume = -1200;
+        Pitch = 0;
+        Priority = 0;
+
+        Category Entry
+        {
+            Name = Default;
+        }
+
+        Track
+        {
+            Volume = 0;
+
+            Play Wave Event
+            {
+                Break Loop = 0;
+                Use Speaker Position = 0;
+                Use Center Speaker = 1;
+                New Speaker Position On Loop = 1;
+                Speaker Position Angle = 0.000000;
+                Speaer Position Arc = 0.000000;
+
+                Event Header
+                {
+                    Timestamp = 0;
+                    Relative = 0;
+                    Random Recurrence = 0;
+                    Random Offset = 0;
+                }
+
+                Wave Entry
+                {
+                    Bank Name = Wave Bank;
+                    Bank Index = 0;
+                    Entry Name = select;
+                    Entry Index = 6;
+                    Weight = 255;
+                    Weight Min = 0;
+                }
+            }
+        }
+    }
+
+    Sound
+    {
+        Name = laserfire3_;
+        Volume = -1500;
+        Pitch = 0;
+        Priority = 0;
+
+        Category Entry
+        {
+            Name = Default;
+        }
+
+        Track
+        {
+            Volume = 0;
+
+            Play Wave Event
+            {
+                Break Loop = 0;
+                Use Speaker Position = 0;
+                Use Center Speaker = 1;
+                New Speaker Position On Loop = 1;
+                Speaker Position Angle = 0.000000;
+                Speaer Position Arc = 0.000000;
+
+                Event Header
+                {
+                    Timestamp = 0;
+                    Relative = 0;
+                    Random Recurrence = 0;
+                    Random Offset = 0;
+                }
+
+                Wave Entry
+                {
+                    Bank Name = Wave Bank;
+                    Bank Index = 0;
+                    Entry Name = laserfire3_;
+                    Entry Index = 8;
+                    Weight = 255;
+                    Weight Min = 0;
+                }
+            }
+        }
+    }
+
+    Sound
+    {
+        Name = Voice_Healthupgrade;
+        Volume = 400;
+        Pitch = 0;
+        Priority = 0;
+
+        Category Entry
+        {
+            Name = Default;
+        }
+
+        Track
+        {
+            Volume = 0;
+
+            Play Wave Event
+            {
+                Break Loop = 0;
+                Use Speaker Position = 0;
+                Use Center Speaker = 1;
+                New Speaker Position On Loop = 1;
+                Speaker Position Angle = 0.000000;
+                Speaer Position Arc = 0.000000;
+
+                Event Header
+                {
+                    Timestamp = 0;
+                    Relative = 0;
+                    Random Recurrence = 0;
+                    Random Offset = 0;
+                }
+
+                Wave Entry
+                {
+                    Bank Name = Wave Bank;
+                    Bank Index = 0;
+                    Entry Name = Voice_Healthupgrade;
+                    Entry Index = 9;
+                    Weight = 255;
+                    Weight Min = 0;
+                }
+            }
+        }
+    }
+
+    Sound
+    {
+        Name = Voice_Laserbeam;
+        Volume = 400;
+        Pitch = 0;
+        Priority = 0;
+
+        Category Entry
+        {
+            Name = Default;
+        }
+
+        Track
+        {
+            Volume = 0;
+
+            Play Wave Event
+            {
+                Break Loop = 0;
+                Use Speaker Position = 0;
+                Use Center Speaker = 1;
+                New Speaker Position On Loop = 1;
+                Speaker Position Angle = 0.000000;
+                Speaer Position Arc = 0.000000;
+
+                Event Header
+                {
+                    Timestamp = 0;
+                    Relative = 0;
+                    Random Recurrence = 0;
+                    Random Offset = 0;
+                }
+
+                Wave Entry
+                {
+                    Bank Name = Wave Bank;
+                    Bank Index = 0;
+                    Entry Name = Voice_Laserbeam;
+                    Entry Index = 10;
+                    Weight = 255;
+                    Weight Min = 0;
+                }
+            }
+        }
+    }
+
+    Sound
+    {
+        Name = Voice_level2;
+        Volume = 400;
+        Pitch = 0;
+        Priority = 0;
+
+        Category Entry
+        {
+            Name = Default;
+        }
+
+        Track
+        {
+            Volume = 0;
+
+            Play Wave Event
+            {
+                Break Loop = 0;
+                Use Speaker Position = 0;
+                Use Center Speaker = 1;
+                New Speaker Position On Loop = 1;
+                Speaker Position Angle = 0.000000;
+                Speaer Position Arc = 0.000000;
+
+                Event Header
+                {
+                    Timestamp = 0;
+                    Relative = 0;
+                    Random Recurrence = 0;
+                    Random Offset = 0;
+                }
+
+                Wave Entry
+                {
+                    Bank Name = Wave Bank;
+                    Bank Index = 0;
+                    Entry Name = Voice_level2;
+                    Entry Index = 11;
+                    Weight = 255;
+                    Weight Min = 0;
+                }
+            }
+        }
+    }
+
+    Sound
+    {
+        Name = Voice_level3;
+        Volume = 400;
+        Pitch = 0;
+        Priority = 0;
+
+        Category Entry
+        {
+            Name = Default;
+        }
+
+        Track
+        {
+            Volume = 0;
+
+            Play Wave Event
+            {
+                Break Loop = 0;
+                Use Speaker Position = 0;
+                Use Center Speaker = 1;
+                New Speaker Position On Loop = 1;
+                Speaker Position Angle = 0.000000;
+                Speaer Position Arc = 0.000000;
+
+                Event Header
+                {
+                    Timestamp = 0;
+                    Relative = 0;
+                    Random Recurrence = 0;
+                    Random Offset = 0;
+                }
+
+                Wave Entry
+                {
+                    Bank Name = Wave Bank;
+                    Bank Index = 0;
+                    Entry Name = Voice_level3;
+                    Entry Index = 12;
+                    Weight = 255;
+                    Weight Min = 0;
+                }
+            }
+        }
+    }
+
+    Sound
+    {
+        Name = Voice_level4;
+        Volume = 400;
+        Pitch = 0;
+        Priority = 0;
+
+        Category Entry
+        {
+            Name = Default;
+        }
+
+        Track
+        {
+            Volume = 0;
+
+            Play Wave Event
+            {
+                Break Loop = 0;
+                Use Speaker Position = 0;
+                Use Center Speaker = 1;
+                New Speaker Position On Loop = 1;
+                Speaker Position Angle = 0.000000;
+                Speaer Position Arc = 0.000000;
+
+                Event Header
+                {
+                    Timestamp = 0;
+                    Relative = 0;
+                    Random Recurrence = 0;
+                    Random Offset = 0;
+                }
+
+                Wave Entry
+                {
+                    Bank Name = Wave Bank;
+                    Bank Index = 0;
+                    Entry Name = Voice_level4;
+                    Entry Index = 13;
+                    Weight = 255;
+                    Weight Min = 0;
+                }
+            }
+        }
+    }
+
+    Sound
+    {
+        Name = Voice_Quad;
+        Volume = 400;
+        Pitch = 0;
+        Priority = 0;
+
+        Category Entry
+        {
+            Name = Default;
+        }
+
+        Track
+        {
+            Volume = 0;
+
+            Play Wave Event
+            {
+                Break Loop = 0;
+                Use Speaker Position = 0;
+                Use Center Speaker = 1;
+                New Speaker Position On Loop = 1;
+                Speaker Position Angle = 0.000000;
+                Speaer Position Arc = 0.000000;
+
+                Event Header
+                {
+                    Timestamp = 0;
+                    Relative = 0;
+                    Random Recurrence = 0;
+                    Random Offset = 0;
+                }
+
+                Wave Entry
+                {
+                    Bank Name = Wave Bank;
+                    Bank Index = 0;
+                    Entry Name = Voice_Quad;
+                    Entry Index = 14;
+                    Weight = 255;
+                    Weight Min = 0;
+                }
+            }
+        }
+    }
+
+    Sound
+    {
+        Name = Voice_Rocketlauncher;
+        Volume = 400;
+        Pitch = 0;
+        Priority = 0;
+
+        Category Entry
+        {
+            Name = Default;
+        }
+
+        Track
+        {
+            Volume = 0;
+
+            Play Wave Event
+            {
+                Break Loop = 0;
+                Use Speaker Position = 0;
+                Use Center Speaker = 1;
+                New Speaker Position On Loop = 1;
+                Speaker Position Angle = 0.000000;
+                Speaer Position Arc = 0.000000;
+
+                Event Header
+                {
+                    Timestamp = 0;
+                    Relative = 0;
+                    Random Recurrence = 0;
+                    Random Offset = 0;
+                }
+
+                Wave Entry
+                {
+                    Bank Name = Wave Bank;
+                    Bank Index = 0;
+                    Entry Name = Voice_Rocketlauncher;
+                    Entry Index = 15;
+                    Weight = 255;
+                    Weight Min = 0;
+                }
+            }
+        }
+    }
+
+    Sound
+    {
+        Name = Voice_Weaponupgrade;
+        Volume = 400;
+        Pitch = 0;
+        Priority = 0;
+
+        Category Entry
+        {
+            Name = Default;
+        }
+
+        Track
+        {
+            Volume = 0;
+
+            Play Wave Event
+            {
+                Break Loop = 0;
+                Use Speaker Position = 0;
+                Use Center Speaker = 1;
+                New Speaker Position On Loop = 1;
+                Speaker Position Angle = 0.000000;
+                Speaer Position Arc = 0.000000;
+
+                Event Header
+                {
+                    Timestamp = 0;
+                    Relative = 0;
+                    Random Recurrence = 0;
+                    Random Offset = 0;
+                }
+
+                Wave Entry
+                {
+                    Bank Name = Wave Bank;
+                    Bank Index = 0;
+                    Entry Name = Voice_Weaponupgrade;
+                    Entry Index = 16;
+                    Weight = 255;
+                    Weight Min = 0;
+                }
+            }
+        }
+    }
+
+    Sound
+    {
+        Name = TutorialLoop;
+        Volume = -1200;
+        Pitch = 0;
+        Priority = 0;
+
+        Category Entry
+        {
+            Name = Default;
+        }
+
+        Track
+        {
+            Volume = 0;
+
+            Play Wave Event
+            {
+                Loop Count = 255;
+                Break Loop = 0;
+                Use Speaker Position = 0;
+                Use Center Speaker = 1;
+                New Speaker Position On Loop = 1;
+                Speaker Position Angle = 0.000000;
+                Speaer Position Arc = 0.000000;
+
+                Event Header
+                {
+                    Timestamp = 0;
+                    Relative = 0;
+                    Random Recurrence = 0;
+                    Random Offset = 0;
+                }
+
+                Wave Entry
+                {
+                    Bank Name = Wave Bank;
+                    Bank Index = 0;
+                    Entry Name = TutorialLoop;
+                    Entry Index = 17;
+                    Weight = 255;
+                    Weight Min = 0;
+                }
+            }
+        }
+    }
+
+    Sound
+    {
+        Name = Shotgun;
+        Volume = -1300;
+        Pitch = 0;
+        Priority = 0;
+
+        Category Entry
+        {
+            Name = Default;
+        }
+
+        Track
+        {
+            Volume = 0;
+
+            Play Wave Event
+            {
+                Break Loop = 0;
+                Use Speaker Position = 0;
+                Use Center Speaker = 1;
+                New Speaker Position On Loop = 1;
+                Speaker Position Angle = 0.000000;
+                Speaer Position Arc = 0.000000;
+
+                Event Header
+                {
+                    Timestamp = 0;
+                    Relative = 0;
+                    Random Recurrence = 0;
+                    Random Offset = 0;
+                }
+
+                Wave Entry
+                {
+                    Bank Name = Wave Bank;
+                    Bank Index = 0;
+                    Entry Name = Shotgun;
+                    Entry Index = 18;
+                    Weight = 255;
+                    Weight Min = 0;
+                }
+            }
+        }
+    }
+
+    Sound
+    {
+        Name = RobotTurnforward;
+        Volume = 0;
+        Pitch = 0;
+        Priority = 0;
+
+        Category Entry
+        {
+            Name = Default;
+        }
+
+        Track
+        {
+            Volume = 0;
+
+            Play Wave Event
+            {
+                Break Loop = 0;
+                Use Speaker Position = 0;
+                Use Center Speaker = 1;
+                New Speaker Position On Loop = 1;
+                Speaker Position Angle = 0.000000;
+                Speaer Position Arc = 0.000000;
+
+                Event Header
+                {
+                    Timestamp = 0;
+                    Relative = 0;
+                    Random Recurrence = 0;
+                    Random Offset = 0;
+                }
+
+                Wave Entry
+                {
+                    Bank Name = Wave Bank;
+                    Bank Index = 0;
+                    Entry Name = RobotTurnforward;
+                    Entry Index = 19;
+                    Weight = 255;
+                    Weight Min = 0;
+                }
+            }
+        }
+    }
+
+    Sound
+    {
+        Name = RobotTurnbackward;
+        Volume = 0;
+        Pitch = 0;
+        Priority = 0;
+
+        Category Entry
+        {
+            Name = Default;
+        }
+
+        Track
+        {
+            Volume = 0;
+
+            Play Wave Event
+            {
+                Break Loop = 0;
+                Use Speaker Position = 0;
+                Use Center Speaker = 1;
+                New Speaker Position On Loop = 1;
+                Speaker Position Angle = 0.000000;
+                Speaer Position Arc = 0.000000;
+
+                Event Header
+                {
+                    Timestamp = 0;
+                    Relative = 0;
+                    Random Recurrence = 0;
+                    Random Offset = 0;
+                }
+
+                Wave Entry
+                {
+                    Bank Name = Wave Bank;
+                    Bank Index = 0;
+                    Entry Name = RobotTurnbackward;
+                    Entry Index = 20;
+                    Weight = 255;
+                    Weight Min = 0;
+                }
+            }
+        }
+    }
+
+    Cue
+    {
+        Name = Explosion;
+
+        Variation
+        {
+            Variation Type = 3;
+            Variation Table Type = 1;
+            New Variation on Loop = 0;
+        }
+
+        Sound Entry
+        {
+            Name = explosion_enormous;
+            Index = 0;
+            Weight Min = 0;
+            Weight Max = 255;
+        }
+
+        Instance Limit
+        {
+            Max Instances = 5;
+            Behavior = 2;
+
+            Crossfade
+            {
+                Fade In = 0;
+                Fade Out = 0;
+                Crossfade Type = 0;
+            }
+        }
+    }
+
+    Cue
+    {
+        Name = PlayerGunfire;
+
+        Variation
+        {
+            Variation Type = 3;
+            Variation Table Type = 1;
+            New Variation on Loop = 0;
+        }
+
+        Sound Entry
+        {
+            Name = gun_plasmafire;
+            Index = 1;
+            Weight Min = 0;
+            Weight Max = 255;
+        }
+
+        Instance Limit
+        {
+            Max Instances = 5;
+            Behavior = 3;
+
+            Crossfade
+            {
+                Fade In = 0;
+                Fade Out = 0;
+                Crossfade Type = 0;
+            }
+        }
+    }
+
+    Cue
+    {
+        Name = IngameMusic;
+
+        Variation
+        {
+            Variation Type = 3;
+            Variation Table Type = 1;
+            New Variation on Loop = 0;
+        }
+
+        Sound Entry
+        {
+            Name = TED_INGAME;
+            Index = 2;
+            Weight Min = 0;
+            Weight Max = 255;
+        }
+    }
+
+    Cue
+    {
+        Name = MenuMusic;
+
+        Variation
+        {
+            Variation Type = 3;
+            Variation Table Type = 1;
+            New Variation on Loop = 0;
+        }
+
+        Sound Entry
+        {
+            Name = TED_MENU;
+            Index = 3;
+            Weight Min = 0;
+            Weight Max = 255;
+        }
+    }
+
+    Cue
+    {
+        Name = Charge;
+
+        Variation
+        {
+            Variation Type = 3;
+            Variation Table Type = 1;
+            New Variation on Loop = 0;
+        }
+
+        Sound Entry
+        {
+            Name = charge;
+            Index = 5;
+            Weight Min = 0;
+            Weight Max = 255;
+        }
+    }
+
+    Cue
+    {
+        Name = Dodge;
+
+        Variation
+        {
+            Variation Type = 3;
+            Variation Table Type = 1;
+            New Variation on Loop = 0;
+        }
+
+        Sound Entry
+        {
+            Name = dodge;
+            Index = 4;
+            Weight Min = 0;
+            Weight Max = 255;
+        }
+    }
+
+    Cue
+    {
+        Name = Menu;
+
+        Variation
+        {
+            Variation Type = 3;
+            Variation Table Type = 1;
+            New Variation on Loop = 0;
+        }
+
+        Sound Entry
+        {
+            Name = menu;
+            Index = 6;
+            Weight Min = 0;
+            Weight Max = 255;
+        }
+    }
+
+    Cue
+    {
+        Name = Select;
+
+        Variation
+        {
+            Variation Type = 3;
+            Variation Table Type = 1;
+            New Variation on Loop = 0;
+        }
+
+        Sound Entry
+        {
+            Name = select;
+            Index = 7;
+            Weight Min = 0;
+            Weight Max = 255;
+        }
+    }
+
+    Cue
+    {
+        Name = BossFire;
+
+        Variation
+        {
+            Variation Type = 3;
+            Variation Table Type = 1;
+            New Variation on Loop = 0;
+        }
+
+        Sound Entry
+        {
+            Name = laserfire3_;
+            Index = 8;
+            Weight Min = 0;
+            Weight Max = 255;
+        }
+
+        Instance Limit
+        {
+            Max Instances = 5;
+            Behavior = 0;
+
+            Crossfade
+            {
+                Fade In = 0;
+                Fade Out = 0;
+                Crossfade Type = 0;
+            }
+        }
+    }
+
+    Cue
+    {
+        Name = VoiceHealthupgrade;
+
+        Variation
+        {
+            Variation Type = 3;
+            Variation Table Type = 1;
+            New Variation on Loop = 0;
+        }
+
+        Sound Entry
+        {
+            Name = Voice_Healthupgrade;
+            Index = 9;
+            Weight Min = 0;
+            Weight Max = 255;
+        }
+    }
+
+    Cue
+    {
+        Name = VoiceLaserbeam;
+
+        Variation
+        {
+            Variation Type = 3;
+            Variation Table Type = 1;
+            New Variation on Loop = 0;
+        }
+
+        Sound Entry
+        {
+            Name = Voice_Laserbeam;
+            Index = 10;
+            Weight Min = 0;
+            Weight Max = 255;
+        }
+    }
+
+    Cue
+    {
+        Name = VoiceLevel2;
+
+        Variation
+        {
+            Variation Type = 3;
+            Variation Table Type = 1;
+            New Variation on Loop = 0;
+        }
+
+        Sound Entry
+        {
+            Name = Voice_level2;
+            Index = 11;
+            Weight Min = 0;
+            Weight Max = 255;
+        }
+    }
+
+    Cue
+    {
+        Name = VoiceLevel3;
+
+        Variation
+        {
+            Variation Type = 3;
+            Variation Table Type = 1;
+            New Variation on Loop = 0;
+        }
+
+        Sound Entry
+        {
+            Name = Voice_level3;
+            Index = 12;
+            Weight Min = 0;
+            Weight Max = 255;
+        }
+    }
+
+    Cue
+    {
+        Name = VoiceLlevel4;
+
+        Variation
+        {
+            Variation Type = 3;
+            Variation Table Type = 1;
+            New Variation on Loop = 0;
+        }
+
+        Sound Entry
+        {
+            Name = Voice_level4;
+            Index = 13;
+            Weight Min = 0;
+            Weight Max = 255;
+        }
+    }
+
+    Cue
+    {
+        Name = VoiceQuad;
+
+        Variation
+        {
+            Variation Type = 3;
+            Variation Table Type = 1;
+            New Variation on Loop = 0;
+        }
+
+        Sound Entry
+        {
+            Name = Voice_Quad;
+            Index = 14;
+            Weight Min = 0;
+            Weight Max = 255;
+        }
+    }
+
+    Cue
+    {
+        Name = VoiceRocketlauncher;
+
+        Variation
+        {
+            Variation Type = 3;
+            Variation Table Type = 1;
+            New Variation on Loop = 0;
+        }
+
+        Sound Entry
+        {
+            Name = Voice_Rocketlauncher;
+            Index = 15;
+            Weight Min = 0;
+            Weight Max = 255;
+        }
+    }
+
+    Cue
+    {
+        Name = VoiceWeaponupgrade;
+
+        Variation
+        {
+            Variation Type = 3;
+            Variation Table Type = 1;
+            New Variation on Loop = 0;
+        }
+
+        Sound Entry
+        {
+            Name = Voice_Weaponupgrade;
+            Index = 16;
+            Weight Min = 0;
+            Weight Max = 255;
+        }
+    }
+
+    Cue
+    {
+        Name = TutorialLoop;
+
+        Variation
+        {
+            Variation Type = 3;
+            Variation Table Type = 1;
+            New Variation on Loop = 0;
+        }
+
+        Sound Entry
+        {
+            Name = TutorialLoop;
+            Index = 17;
+            Weight Min = 0;
+            Weight Max = 255;
+        }
+    }
+
+    Cue
+    {
+        Name = Shotgun;
+
+        Variation
+        {
+            Variation Type = 3;
+            Variation Table Type = 1;
+            New Variation on Loop = 0;
+        }
+
+        Sound Entry
+        {
+            Name = Shotgun;
+            Index = 18;
+            Weight Min = 0;
+            Weight Max = 255;
+        }
+
+        Instance Limit
+        {
+            Max Instances = 5;
+            Behavior = 0;
+
+            Crossfade
+            {
+                Fade In = 0;
+                Fade Out = 0;
+                Crossfade Type = 0;
+            }
+        }
+    }
+
+    Cue
+    {
+        Name = RobotTurnforward;
+
+        Variation
+        {
+            Variation Type = 3;
+            Variation Table Type = 1;
+            New Variation on Loop = 0;
+        }
+
+        Sound Entry
+        {
+            Name = RobotTurnforward;
+            Index = 19;
+            Weight Min = 0;
+            Weight Max = 255;
+        }
+    }
+
+    Cue
+    {
+        Name = RobotTurnbackward;
+
+        Variation
+        {
+            Variation Type = 3;
+            Variation Table Type = 1;
+            New Variation on Loop = 0;
+        }
+
+        Sound Entry
+        {
+            Name = RobotTurnbackward;
+            Index = 20;
+            Weight Min = 0;
+            Weight Max = 255;
+        }
+    }
+}

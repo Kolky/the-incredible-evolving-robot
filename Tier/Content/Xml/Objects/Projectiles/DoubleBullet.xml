@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<object name="DoubleBullet" type="projectile" xmlns="Objects">
+  <model name="DoubleBullet"/>
+  <effect name="RenderGBuffer"/>
+  <color x="255" y="255" z="0"/>
+  <rotation x="90" y="0" z="0"/>
+
+  <collision>
+    <boundingbox >
+      <position x="0" y="0" z="0"/>
+      <bottomleft x="-2" y="0" z="-1"/>
+      <topright x="2" y="4.5" z="1"/>
+    </boundingbox>
+  </collision>
+
+  <movable/>
+
+  <temporary>
+    <ttl>2000</ttl>
+  </temporary>
+  
+  <specific>
+    <speed>20</speed>
+  </specific>
+</object>

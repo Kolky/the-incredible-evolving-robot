@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<object name="PowerupQuad" type="poweruphealth" xmlns="Objects">
+  <model name="Powerup-quad"/> 
+  <effect name="DefaultTextured"/>
+  <scale x="0.01" y="0.01" z="0.01"/>
+
+  <movable/>
+  
+  <temporary>
+    <ttl>10000</ttl>
+  </temporary>
+
+  <specific>
+    <texture name="Powerup-quad"/>
+  </specific>
+</object>

@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<object name="Bar" type="bosspiece" xmlns="Objects">
+  <model name="TedrisBar"/>
+  <effect name="Transparent"/>  
+  <color x="1" y="0.5" z="0"/>
+  <scale x="0.5" y="0.5" z="0.5"/>
+  
+  <rotation/>
+
+  <collision>
+    <boundingbox >
+      <position x="0" y="0" z="0"/>
+      <bottomleft x="-4" y="-1" z="-1"/>
+      <topright x="4" y="1" z="1"/>
+    </boundingbox>
+  </collision>
+
+  <growable>
+    <growth_templates id="testboss">
+      <growth_template>0_0_+L</growth_template>
+      <growth_template>1_0_+L</growth_template>
+      <growth_template>0_0_+T</growth_template>    
+      <growth_template>1_0_+T</growth_template>
+      <growth_template>0_0_+L</growth_template>
+      <growth_template>1_0_+L</growth_template>
+      <growth_template>0_0_+T</growth_template>
+      <growth_template>1_0_+T</growth_template>
+      <growth_template>0_0_+Step</growth_template>
+      <growth_template>1_0_+Step</growth_template>
+
+
+      <growth_template>1_0_+Wing</growth_template>
+      <growth_template>2_0_-PlasmaTurret</growth_template>
+      <!--
+      <growth_template>0_1_-PlasmaTurret</growth_template>
+      <growth_template>0_1_~Swirl</growth_template>
+      -->
+    </growth_templates>
+  </growable>
+  
+  <movable/>
+
+  <attachable>
+	  <connection>
+		  <position x="4.1" y="0" z="0"/>
+		  <pivot x="1" y="0" z="0"/>
+	  </connection>
+	  <connection>
+		  <position x="-4.1" y="0" z="0"/>
+		  <pivot x="-1" y="0" z="0"/>
+	  </connection>
+    <connection>
+      <position x="0" y="0" z="1"/>
+      <pivot x="0" y="0" z="1"/>
+    </connection>    
+  </attachable>
+
+  <specific>
+    <name>TedrisBar</name>
+    <diffuse_map>TedrisBar-color</diffuse_map>
+    <specular_map>TedrisBar-specular</specular_map>
+    <normal_map>TedrisBar-normal</normal_map>
+  </specific>
+</object>

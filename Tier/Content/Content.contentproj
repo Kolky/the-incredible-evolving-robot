@@ -1,0 +1,1036 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+  <PropertyGroup>
+    <ProjectGuid>2d1912a3-9ea9-4453-be37-5c46dab61b26</ProjectGuid>
+    <ProjectTypeGuids>{96E2B04D-8817-42c6-938A-82C39BA4D311};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <XnaFrameworkVersion>v3.0</XnaFrameworkVersion>
+    <PlatformTarget>x86</PlatformTarget>
+    <OutputPath>bin\$(Platform)\$(Configuration)</OutputPath>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <XnaPlatform>Windows</XnaPlatform>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <XnaPlatform>Windows</XnaPlatform>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Tier 64|x86' ">
+    <OutputPath>bin\x86\Tier 64\</OutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Xna.Framework.Content.Pipeline.EffectImporter, Version=3.0.0.0, Culture=neutral, PublicKeyToken=6d5c3888ef60e27d, processorArchitecture=MSIL">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.Xna.Framework.Content.Pipeline.FBXImporter, Version=3.0.0.0, Culture=neutral, PublicKeyToken=6d5c3888ef60e27d, processorArchitecture=MSIL">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.Xna.Framework.Content.Pipeline.TextureImporter, Version=3.0.0.0, Culture=neutral, PublicKeyToken=6d5c3888ef60e27d, processorArchitecture=MSIL">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.Xna.Framework.Content.Pipeline.XImporter, Version=3.0.0.0, Culture=neutral, PublicKeyToken=6d5c3888ef60e27d, processorArchitecture=MSIL">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.Xna.Framework.Content.Pipeline.AudioImporters, Version=3.0.0.0, Culture=neutral, PublicKeyToken=6d5c3888ef60e27d, processorArchitecture=MSIL">
+      <Private>False</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Xml\Objects\BossPieces\Tedris\Bar.xml">
+      <Name>Bar</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>PassThroughProcessor</Processor>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Xml\Objects\BossPieces\Tedris\Core.xml">
+      <Name>Core</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>PassThroughProcessor</Processor>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Xml\Objects\BossPieces\Tedris\L.xml">
+      <Name>L</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>PassThroughProcessor</Processor>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Xml\Objects\BossPieces\Tedris\T.xml">
+      <Name>T</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>PassThroughProcessor</Processor>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Xml\DataCollections\ControlsState.xml">
+      <Name>ControlsState</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>PassThroughProcessor</Processor>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Xml\GrowthPatterns\TierBoss.xsd">
+      <SubType>
+      </SubType>
+      <Name>TierBoss</Name>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Models\Bar.x">
+      <Name>Bar</Name>
+      <Importer>XImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+    </Compile>
+    <None Include="Xml\GrowthPatterns\Default.xml">
+      <Name>Default</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>PassThroughProcessor</Processor>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Xml\GrowthPatterns\TierBoss.xsx">
+      <DependentUpon>TierBoss.xsd</DependentUpon>
+      <Name>TierBoss</Name>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Fonts\Bold.bmp">
+      <Name>Bold</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>FontTextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Xml\Objects\Turrets\LaserBeamTurret.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <Name>LaserBeamTurret</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>PassThroughProcessor</Processor>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Models\RocketTurret.FBX">
+      <Name>RocketTurret</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Xml\Objects\Player.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <Name>Player</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>PassThroughProcessor</Processor>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Models\Fighter.fbx">
+      <Name>Fighter</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+      <ProcessorParameters_RotationY>180</ProcessorParameters_RotationY>
+    </Compile>
+    <Compile Include="Models\Laser.x">
+      <Name>Laser</Name>
+      <Importer>XImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+    </Compile>
+    <None Include="Xml\Objects\Projectiles\DoubleBullet.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <Name>DoubleBullet</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>PassThroughProcessor</Processor>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Xml\Objects\Projectiles\PlayerLaserProjectile.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <Name>PlayerLaserProjectile</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>PassThroughProcessor</Processor>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Models\TedrisT.FBX">
+      <Name>TedrisT</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+    </Compile>
+    <Compile Include="Textures\Explosion\BigExplosion0001.dds">
+      <Name>BigExplosion0001</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Textures\Explosion\BigExplosion0002.dds">
+      <Name>BigExplosion0002</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Textures\Explosion\BigExplosion0003.dds">
+      <Name>BigExplosion0003</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Textures\Explosion\BigExplosion0004.dds">
+      <Name>BigExplosion0004</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Textures\Explosion\BigExplosion0005.dds">
+      <Name>BigExplosion0005</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Textures\Explosion\BigExplosion0006.dds">
+      <Name>BigExplosion0006</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Textures\Explosion\BigExplosion0007.dds">
+      <Name>BigExplosion0007</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Textures\Explosion\BigExplosion0008.dds">
+      <Name>BigExplosion0008</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Textures\Explosion\BigExplosion0009.dds">
+      <Name>BigExplosion0009</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Textures\Explosion\BigExplosion0010.dds">
+      <Name>BigExplosion0010</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Textures\Explosion\BigExplosion0011.dds">
+      <Name>BigExplosion0011</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Textures\Explosion\BigExplosion0012.dds">
+      <Name>BigExplosion0012</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Textures\Explosion\BigExplosion0013.dds">
+      <Name>BigExplosion0013</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Textures\Explosion\BigExplosion0014.dds">
+      <Name>BigExplosion0014</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Textures\Explosion\BigExplosion0015.dds">
+      <Name>BigExplosion0015</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Textures\Explosion\BigExplosion0016.dds">
+      <Name>BigExplosion0016</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Textures\Explosion\BigExplosion0017.dds">
+      <Name>BigExplosion0017</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Textures\Explosion\BigExplosion0018.dds">
+      <Name>BigExplosion0018</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Textures\Explosion\BigExplosion0019.dds">
+      <Name>BigExplosion0019</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Textures\Explosion\BigExplosion0020.dds">
+      <Name>BigExplosion0020</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Textures\Explosion\BigExplosion0021.dds">
+      <Name>BigExplosion0021</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Textures\Explosion\BigExplosion0022.dds">
+      <Name>BigExplosion0022</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Textures\Explosion\BigExplosion0023.dds">
+      <Name>BigExplosion0023</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Textures\Explosion\BigExplosion0024.dds">
+      <Name>BigExplosion0024</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Textures\Explosion\BigExplosion0025.dds">
+      <Name>BigExplosion0025</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Textures\Explosion\BigExplosion0026.dds">
+      <Name>BigExplosion0026</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Textures\Explosion\BigExplosion0027.dds">
+      <Name>BigExplosion0027</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Effects\AlphaBlend.fx">
+      <Name>AlphaBlend</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+    <Compile Include="Models\TedrisBar.FBX">
+      <Name>TedrisBar</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+    </Compile>
+    <Compile Include="Models\TedrisNico.FBX">
+      <Name>TedrisNico</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+    </Compile>
+    <None Include="Xml\Objects\Explosion.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <Name>Explosion</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>PassThroughProcessor</Processor>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Effects\DefaultTextured.fx">
+      <Name>DefaultTextured</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+    <Compile Include="Effects\Skybox.fx">
+      <Name>Skybox</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+    <Compile Include="Models\Skybox.x">
+      <Name>Skybox</Name>
+      <Importer>XImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Audio\Win\Sound Bank.xsb">
+      <Name>Sound Bank</Name>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Audio\Win\Tier.xgs">
+      <Name>Tier</Name>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Audio\Win\Wave Bank.xwb">
+      <Name>Wave Bank</Name>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Models\TedrisWing.FBX">
+      <Name>TedrisWing</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Models\Rocket.fbx">
+      <Name>Rocket</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Textures\Smoke.dds">
+      <Name>Smoke</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <None Include="Xml\Objects\Projectiles\Rocket.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <Name>Rocket</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>PassThroughProcessor</Processor>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Models\Ship.FBX">
+      <Name>Ship</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+      <ProcessorParameters_GenerateTangentFrames>True</ProcessorParameters_GenerateTangentFrames>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Textures\Animated\Smoke0000.dds">
+      <Name>Smoke0000</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Models\EnergyShield.FBX">
+      <Name>EnergyShield</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+    </Compile>
+    <None Include="Xml\Objects\Smoke.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <Name>Smoke</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>PassThroughProcessor</Processor>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Effects\Transparent.fx">
+      <Name>Transparent</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+    <Compile Include="Models\TedrisCore.FBX">
+      <Name>TedrisCore</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+    </Compile>
+    <Compile Include="Textures\crosshair.dds">
+      <Name>crosshair</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <None Include="Xml\Objects\EnergyShield.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <Name>EnergyShield</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>PassThroughProcessor</Processor>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Textures\Xbox-lts-Left.png">
+      <Name>Xbox-lts-Left</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Textures\Xbox-lts-Right.png">
+      <Name>Xbox-lts-Right</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Textures\Xbox-lts-Down.png">
+      <Name>Xbox-lts-Down</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Textures\Xbox-lts-Up.png">
+      <Name>Xbox-lts-Up</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Models\cube.FBX">
+      <Name>cube</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Effects\DeferredRendering\PointLight.fx">
+      <Name>PointLight</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+    <Compile Include="Effects\DeferredRendering\ClearGBuffer.fx">
+      <Name>ClearGBuffer</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+    <Compile Include="Effects\DeferredRendering\CombineFinal.fx">
+      <Name>CombineFinal</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+    <Compile Include="Effects\DeferredRendering\DirectionalLight.fx">
+      <Name>DirectionalLight</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+    <Compile Include="Effects\DeferredRendering\RenderGBuffer.fx">
+      <Name>RenderGBuffer</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Xml\Objects\Projectiles\LaserBeamProjectile.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <Name>LaserBeamProjectile</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>PassThroughProcessor</Processor>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Textures\Player-color.png">
+      <Name>Player-color</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Textures\Turret-color.png">
+      <Name>Turret-color</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Effects\DeferredRendering\RenderDepth.fx">
+      <Name>RenderDepth</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Textures\LaserBeamFire.dds">
+      <Name>LaserBeamFire</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <None Include="Xml\Objects\LaserBeamFire.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <Name>LaserBeamFire</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>PassThroughProcessor</Processor>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Xml\Objects\Turrets\PlasmaTurret.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <Name>PlasmaTurret</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>PassThroughProcessor</Processor>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Xml\Objects\Projectiles\Plasma.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <Name>Plasma</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>PassThroughProcessor</Processor>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Textures\button_a.png">
+      <Name>button_a</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Textures\button_b.png">
+      <Name>button_b</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Textures\button_x.png">
+      <Name>button_x</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Textures\button_y.png">
+      <Name>button_y</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Xml\GameSettings.xml">
+      <Name>GameSettings</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>PassThroughProcessor</Processor>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Models\TedrisStep.FBX">
+      <Name>TedrisStep</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+    </Compile>
+    <None Include="Xml\Objects\BossPieces\Tedris\Wing.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <Name>Wing</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>PassThroughProcessor</Processor>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Models\TedrisCube.FBX">
+      <Name>TedrisCube</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+    </Compile>
+    <None Include="Xml\Objects\BossPieces\Tedris\Step.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <Name>Step</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>PassThroughProcessor</Processor>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Models\TedrisSharpT.fbx">
+      <Name>TedrisSharpT</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Models\Turret.fbx">
+      <Name>Turret</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+    </Compile>
+    <Compile Include="Models\TedrisL.FBX">
+      <Name>TedrisL</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Textures\TurretPlasma-color.png">
+      <Name>TurretPlasma-color</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Textures\EnergyShield.png">
+      <Name>EnergyShield</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Textures\g02_cube.dds">
+      <Name>g02_cube</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Effects\Bloom\BloomCombine.fx">
+      <Name>BloomCombine</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+    <Compile Include="Effects\Bloom\BloomExtract.fx">
+      <Name>BloomExtract</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+    <Compile Include="Effects\Bloom\GaussianBlur.fx">
+      <Name>GaussianBlur</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Textures\PlayerLaser.png">
+      <Name>PlayerLaser</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Audio\Xbox360\Sound Bank.xsb">
+      <Name>Sound Bank</Name>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Audio\Xbox360\Tier.xgs">
+      <Name>Tier</Name>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Audio\Xbox360\Wave Bank.xwb">
+      <Name>Wave Bank</Name>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Xml\Objects\Projectiles\RocketComboRocket.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <Name>RocketComboRocket</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>PassThroughProcessor</Processor>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Models\TedrisTank.FBX">
+      <Name>TedrisTank</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+    </Compile>
+    <None Include="Xml\DataCollections\Default.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <Name>Default</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>PassThroughProcessor</Processor>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Textures\Controls\controls.png">
+      <Name>controls</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Xml\Objects\Skybox.xml">
+      <Name>Skybox</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>PassThroughProcessor</Processor>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Textures\Rocket-color.png">
+      <Name>Rocket-color</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Textures\Healthbar.tga">
+      <Name>Healthbar</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Models\Powerup-health.FBX">
+      <Name>Powerup-health</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+    </Compile>
+    <None Include="Xml\Objects\Turrets\PlasmaSpreadTurret.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <Name>PlasmaSpreadTurret</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>PassThroughProcessor</Processor>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Textures\Powerup-health.png">
+      <Name>Powerup-health</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Xml\Objects\Powerups\PowerupHealth.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <Name>PowerupHealth</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>PassThroughProcessor</Processor>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Xml\Objects\Projectiles\ShotgunProjectile.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <Name>ShotgunProjectile</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>PassThroughProcessor</Processor>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Models\Powerup-laser.FBX">
+      <Name>Powerup-laser</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+    </Compile>
+    <None Include="Xml\Objects\Turrets\ShotgunTurret.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <Name>ShotgunTurret</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>PassThroughProcessor</Processor>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Textures\Powerup-laser.png">
+      <Name>Powerup-laser</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Models\Powerup-rocket.FBX">
+      <Name>Powerup-rocket</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+    </Compile>
+    <None Include="Xml\Objects\Powerups\PowerupLaser.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <Name>PowerupLaser</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>PassThroughProcessor</Processor>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Textures\Laserbeam-boss.png">
+      <Name>Laserbeam-boss</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Textures\Laserbeam-player.png">
+      <Name>Laserbeam-player</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Textures\Powerup-rocket.png">
+      <Name>Powerup-rocket</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Models\Powerup-weaponupgrade.FBX">
+      <Name>Powerup-weaponupgrade</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+    </Compile>
+    <None Include="Xml\Objects\Powerups\PowerupRocket.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <Name>PowerupRocket</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>PassThroughProcessor</Processor>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Textures\laserfront.tga">
+      <Name>laserfront</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <None Include="Xml\Objects\Powerups\PowerupWeaponUpgrade.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <Name>PowerupWeaponUpgrade</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>PassThroughProcessor</Processor>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Textures\Powerup-weaponupgrade.png">
+      <Name>Powerup-weaponupgrade</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Textures\laser.tga">
+      <Name>laser</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <None Include="Xml\Objects\Turrets\LaserTurret.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <Name>LaserTurret</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>PassThroughProcessor</Processor>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Models\Powerup-quad.FBX">
+      <Name>Powerup-quad</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+    </Compile>
+    <None Include="Xml\Objects\Projectiles\LaserProjectile.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <Name>LaserProjectile</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>PassThroughProcessor</Processor>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Textures\Powerup-quad.png">
+      <Name>Powerup-quad</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Textures\xboxControllerLeftTrigger.tga">
+      <Name>xboxControllerLeftTrigger</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Textures\xboxControllerRightTrigger.tga">
+      <Name>xboxControllerRightTrigger</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Models\Tedris-Afterburner.FBX">
+      <Name>Tedris-Afterburner</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+    </Compile>
+    <Compile Include="Textures\Tedris\TedrisCore-color.tga">
+      <Name>TedrisCore-color</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Textures\LaserbeamTurret-color.tga">
+      <Name>LaserbeamTurret-color</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Textures\Logo.dds">
+      <Name>Logo</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Models\sphere.FBX">
+      <Name>sphere</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+    </Compile>
+    <None Include="Xml\Objects\Powerups\PowerupQuad.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <Name>PowerupQuad</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>PassThroughProcessor</Processor>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Textures\ShotgunProjectile.png">
+      <Name>ShotgunProjectile</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Textures\PlayerPlasmaProjectile.png">
+      <Name>PlayerPlasmaProjectile</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Textures\WeaponUpgrades\WeaponUpgradeFrame.png">
+      <Name>WeaponUpgradeFrame</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Textures\WeaponUpgrades\WeaponUpgradeLevel1.png">
+      <Name>WeaponUpgradeLevel1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Textures\WeaponUpgrades\WeaponUpgradeLevel2.png">
+      <Name>WeaponUpgradeLevel2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Textures\WeaponUpgrades\WeaponUpgradeLevel3.png">
+      <Name>WeaponUpgradeLevel3</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Textures\WeaponUpgrades\WeaponUpgradeLevel4.png">
+      <Name>WeaponUpgradeLevel4</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Textures\WeaponUpgrades\WeaponUpgradeSlot.png">
+      <Name>WeaponUpgradeSlot</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Textures\Tedris-Afterburner.png">
+      <Name>Tedris-Afterburner</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Textures\Plasma.png">
+      <Name>Plasma</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Textures\Tedris\TedrisBar-color.png">
+      <Name>TedrisBar-color</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Textures\Tedris\TedrisCube-diffuse.png">
+      <Name>TedrisCube-diffuse</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Textures\Tedris\TedrisL-color.png">
+      <Name>TedrisL-color</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Textures\Tedris\TedrisNico-diffuse.png">
+      <Name>TedrisNico-diffuse</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Textures\Tedris\TedrisStep-color.png">
+      <Name>TedrisStep-color</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Textures\Tedris\TedrisT-color.png">
+      <Name>TedrisT-color</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Textures\Tedris\TedrisTank-color.jpg">
+      <Name>TedrisTank-color</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Textures\Tedris\TedrisWing-color.jpg">
+      <Name>TedrisWing-color</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Textures\ShotgunTurret-color.png">
+      <Name>ShotgunTurret-color</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\v3.0\Microsoft.Xna.GameStudio.ContentPipeline.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

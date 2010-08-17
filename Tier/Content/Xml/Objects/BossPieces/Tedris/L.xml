@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<object name="L" type="bosspiece" xmlns="Objects">
+  <model name="TedrisL"/>
+  <effect name="Transparent"/>
+  <color x="1" y="0" z="0.5"/>
+  
+  <rotation/>
+
+  <collision>
+    <boundingbox >
+      <position x="0" y="0" z="0"/>
+      <bottomleft x="-3" y="-0.0" z="-1"/>
+      <topright x="3" y="2.0" z="1"/>
+    </boundingbox>
+    
+    <boundingbox >
+      <position x="0" y="0" z="0"/>
+      <bottomleft x="-3" y="2.0" z="-1"/>
+      <topright x="-1" y="-2.0" z="1"/>
+    </boundingbox>
+  </collision>
+
+  <growable>
+    <growth_templates id="testboss">
+      <growth_template>0_0_+T</growth_template>
+      <growth_template>0_0_+L</growth_template>
+      <growth_template>1_0_+Bar</growth_template>
+      <growth_template>2_0_+L</growth_template>
+      <growth_template>3_0_+L</growth_template>
+      <growth_template>2_0_+Bar</growth_template>
+      <growth_template>3_0_+Bar</growth_template>
+
+      <growth_template>0_0_+Step</growth_template>
+      <growth_template>1_0_+Step</growth_template>
+
+      <growth_template>2_0_-PlasmaTurret</growth_template>
+      <growth_template>3_0_-PlasmaTurret</growth_template>
+      <!--
+      <growth_template>0_1_-PlasmaTurret</growth_template>
+      <growth_template>0_1_~Swirl</growth_template>
+      -->
+    </growth_templates>
+  </growable>
+  
+  <movable/>
+
+  <attachable>
+    <connection>
+      <position x="3" y="1" z="0"/>
+      <pivot x="1" y="0" z="0"/>
+    </connection>
+    <connection>
+      <position x="-3" y="1" z="0"/>
+      <pivot x="-1" y="0" z="0"/>
+    </connection>
+	<connection>
+	  <position x="-2" y="-2.0" z="0"/>
+	  <pivot x="0" y="-1" z="0"/>
+	</connection>
+	  <connection>
+		  <position x="0" y="1" z="1"/>
+		  <pivot x="0" y="0" z="1"/>
+	  </connection>
+  </attachable>
+
+  <specific>
+    <name>TedrisL</name>
+    <diffuse_map>TedrisL-color</diffuse_map>
+    <specular_map>TedrisL-specular</specular_map>
+    <normal_map>TedrisL-normal</normal_map>
+  </specific>
+</object>

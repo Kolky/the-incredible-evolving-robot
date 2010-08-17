@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<object name="LaserBeamTurret" type="laserbeamturret" xmlns="Objects">
+  <model name="Turret"/>
+  <effect name="DefaultTextured"/>    
+
+  <collision>
+    <boundingbox >
+      <position x="0" y="0" z="0"/>
+      <bottomleft x="-2" y="0" z="-1"/>
+      <topright x="2" y="4.5" z="1"/>
+    </boundingbox>
+  </collision>
+
+  <destroyable>
+    <health>1</health>
+  </destroyable>
+  
+  <movable/>
+
+  <attachable>
+    <connection>
+      <position x="0" y="0" z="-1"/>
+      <pivot x="0" y="0" z="-1"/>
+    </connection>
+  </attachable>
+
+  <specific>
+    <shoot_angle>45</shoot_angle>
+    <cooldown>500</cooldown>
+    <range>250</range>
+    
+    <projectile>LaserBeamProjectile</projectile>
+    <projectile_color x="255" y="0" z="0"/>
+    <projectile_origin x="0" y="0" z="4"/>
+    <turn_speed>0.01</turn_speed>
+    <texture>LaserbeamTurret-color</texture>
+  </specific>
+</object>

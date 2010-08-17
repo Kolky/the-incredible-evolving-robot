@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<boss xmlns="TierBoss">
+	<name>Default</name>
+	<model>Core</model>
+
+	<templates>
+		<template name="Split" pieceIndex="2">
+			<definition>T(1_0_+Step,0_0_+Step)</definition>
+		</template>
+
+		<template name="Arm" pieceIndex="0">
+			<definition>Bar(1_2_+T(0_0_+L,1_0_+L))</definition>
+		</template>
+
+		<template name="Swirl" pieceIndex="0">
+			<definition>T(2_0_+Step(1_1_rot090_+Step))</definition>
+		</template>
+	</templates>
+	
+	<growthpattern base="Core" iscore="true">
+	<connector index="0">
+	  <block name="Nico" blockconnector="0"/>
+	  <block name="Nico" blockconnector="0"/>
+	  <block name="L" blockconnector="0"/>
+	  <block name="T" blockconnector="0"/>
+	</connector>
+
+	<connector index="1">
+	  <block name="T" blockconnector="0"/>
+	  <block name="Nico" blockconnector="0"/>
+	  <block name="L" blockconnector="0"/>
+	  <block name="T" blockconnector="0"/>
+	</connector>
+
+	<connector index="2">
+	  <block name="T" blockconnector="0"/>
+	  <block name="Nico" blockconnector="0"/>
+	  <block name="L" blockconnector="0"/>
+	  <block name="T" blockconnector="0"/>
+	</connector>
+
+	<connector index="3">
+	  <block name="T" blockconnector="0"/>
+	  <block name="Nico" blockconnector="0"/>
+	  <block name="L" blockconnector="0"/>
+	  <block name="T" blockconnector="0"/>
+	</connector>
+
+	<weaponconnector index="4">
+	  <weapon name="BulletTurret"/>
+	</weaponconnector>
+
+	<weaponconnector index="5">
+	  <weapon name="BulletTurret"/>
+	</weaponconnector>
+
+	<weaponconnector index="6">
+	  <weapon name="BulletTurret"/>
+	</weaponconnector>
+
+	<weaponconnector index="7">
+	  <weapon name="BulletTurret"/>
+	</weaponconnector>    
+	</growthpattern>
+
+	<growthpattern base="Bar">
+	<connector index="1">      
+	  <block name="Nico" blockconnector="0"/>
+	  <block name="L" blockconnector="0" parentconnector="0"/>
+	  <block name="T" blockconnector="0"/>
+	</connector>
+
+	<weaponconnector index="2">
+	  <weapon name="LaserBeamTurret"/>
+	</weaponconnector>
+
+	<weaponconnector index="3">
+	  <weapon name="LaserBeamTurret"/>
+	</weaponconnector>
+	</growthpattern>
+
+	<growthpattern base="Wing">
+	<connector index="1">
+	  <block name="Bar" blockconnector="0"/>
+	</connector>
+	</growthpattern>
+
+	<growthpattern base="L">
+	<connector index="1">
+	  <block name="Bar" blockconnector="0"/>
+	  <block name="Nico" blockconnector="0"/>      
+	  <block name="T" blockconnector="0"/>
+	</connector>
+
+	<weaponconnector index="2">
+	  <weapon name="LaserBeamTurret"/>
+	</weaponconnector>
+	</growthpattern>
+
+	<growthpattern base="Nico">
+	<connector index="1">
+	  <block name="Bar" blockconnector="0"/>
+	  <block name="L" blockconnector="0"/>
+	  <block name="T" blockconnector="0"/>
+	</connector>    
+	</growthpattern>
+
+	<growthpattern base="T">
+	<connector index="1">
+	  <block name="Bar" blockconnector="0"/>
+	  <block name="Nico" blockconnector="0"/>
+	  <block name="L" blockconnector="0"/>
+	</connector>
+	<connector index="2">
+	  <block name="Bar" blockconnector="0"/>
+	  <block name="Nico" blockconnector="0"/>
+	  <block name="L" blockconnector="0"/>
+	</connector> 
+	</growthpattern>
+</boss>

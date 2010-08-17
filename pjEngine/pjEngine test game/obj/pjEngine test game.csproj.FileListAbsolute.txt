@@ -1,0 +1,45 @@
+C:\Documents and Settings\Administrator\My Documents\Visual Studio 2005\Projects\Pipboy\pjEngine test game\bin\x86\Release\pjEngine test game.exe
+C:\Documents and Settings\Administrator\My Documents\Visual Studio 2005\Projects\Pipboy\pjEngine test game\bin\x86\Release\pjEngine test game.pdb
+C:\Documents and Settings\Administrator\My Documents\Visual Studio 2005\Projects\Pipboy\pjEngine test game\bin\x86\Release\pjEngine 2.0.dll
+C:\Documents and Settings\Administrator\My Documents\Visual Studio 2005\Projects\Pipboy\pjEngine test game\bin\x86\Release\pjEngine 2.0.pdb
+C:\Documents and Settings\Administrator\My Documents\Visual Studio 2005\Projects\Pipboy\pjEngine test game\obj\x86\Release\ResolveAssemblyReference.cache
+C:\Documents and Settings\Administrator\My Documents\Visual Studio 2005\Projects\Pipboy\pjEngine test game\obj\x86\Release\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Documents and Settings\Administrator\My Documents\Visual Studio 2005\Projects\Pipboy\pjEngine test game\obj\x86\Release\pjEngine_test_game.obj.x86.Release.Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Documents and Settings\Administrator\My Documents\Visual Studio 2005\Projects\Pipboy\pjEngine test game\obj\x86\Release\pjEngine test game.exe
+C:\Documents and Settings\Administrator\My Documents\Visual Studio 2005\Projects\Pipboy\pjEngine test game\obj\x86\Release\pjEngine test game.pdb
+C:\Documents and Settings\Administrator\My Documents\Visual Studio 2005\Projects\Pipboy\pjEngine test game\bin\x86\Debug\pjEngine test game.exe
+C:\Documents and Settings\Administrator\My Documents\Visual Studio 2005\Projects\Pipboy\pjEngine test game\bin\x86\Debug\pjEngine test game.pdb
+C:\Documents and Settings\Administrator\My Documents\Visual Studio 2005\Projects\Pipboy\pjEngine test game\bin\x86\Debug\pjEngine 2.0.dll
+C:\Documents and Settings\Administrator\My Documents\Visual Studio 2005\Projects\Pipboy\pjEngine test game\bin\x86\Debug\pjEngine 2.0.pdb
+C:\Documents and Settings\Administrator\My Documents\Visual Studio 2005\Projects\Pipboy\pjEngine test game\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\Administrator\My Documents\Visual Studio 2005\Projects\Pipboy\pjEngine test game\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Documents and Settings\Administrator\My Documents\Visual Studio 2005\Projects\Pipboy\pjEngine test game\obj\x86\Debug\pjEngine_test_game.obj.x86.Debug.Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Documents and Settings\Administrator\My Documents\Visual Studio 2005\Projects\Pipboy\pjEngine test game\obj\x86\Debug\pjEngine test game.exe
+C:\Documents and Settings\Administrator\My Documents\Visual Studio 2005\Projects\Pipboy\pjEngine test game\obj\x86\Debug\pjEngine test game.pdb
+C:\Documents and Settings\Administrator\My Documents\Visual Studio 2005\Projects\Tier 2.0\pjEngine\pjEngine test game\bin\x86\Release\pjEngine test game.exe
+C:\Documents and Settings\Administrator\My Documents\Visual Studio 2005\Projects\Tier 2.0\pjEngine\pjEngine test game\bin\x86\Release\pjEngine test game.pdb
+C:\Documents and Settings\Administrator\My Documents\Visual Studio 2005\Projects\Tier 2.0\pjEngine\pjEngine test game\bin\x86\Release\pjEngine 2.0.dll
+C:\Documents and Settings\Administrator\My Documents\Visual Studio 2005\Projects\Tier 2.0\pjEngine\pjEngine test game\bin\x86\Release\pjEngine 2.0.pdb
+C:\Documents and Settings\Administrator\My Documents\Visual Studio 2005\Projects\Tier 2.0\pjEngine\pjEngine test game\obj\x86\Release\ResolveAssemblyReference.cache
+C:\Documents and Settings\Administrator\My Documents\Visual Studio 2005\Projects\Tier 2.0\pjEngine\pjEngine test game\obj\x86\Release\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Documents and Settings\Administrator\My Documents\Visual Studio 2005\Projects\Tier 2.0\pjEngine\pjEngine test game\obj\x86\Release\pjEngine_test_game.obj.x86.Release.Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Documents and Settings\Administrator\My Documents\Visual Studio 2005\Projects\Tier 2.0\pjEngine\pjEngine test game\obj\x86\Release\pjEngine test game.exe
+C:\Documents and Settings\Administrator\My Documents\Visual Studio 2005\Projects\Tier 2.0\pjEngine\pjEngine test game\obj\x86\Release\pjEngine test game.pdb
+C:\Users\ted\Desktop\Projects\Tier 2\pjEngine\pjEngine test game\bin\x86\Release\pjEngine test game.exe
+C:\Users\ted\Desktop\Projects\Tier 2\pjEngine\pjEngine test game\bin\x86\Release\pjEngine test game.pdb
+C:\Users\ted\Desktop\Projects\Tier 2\pjEngine\pjEngine test game\bin\x86\Release\pjEngine 2.0.dll
+C:\Users\ted\Desktop\Projects\Tier 2\pjEngine\pjEngine test game\bin\x86\Release\pjEngine 2.0.pdb
+C:\Users\ted\Desktop\Projects\Tier 2\pjEngine\pjEngine test game\obj\x86\Release\ResolveAssemblyReference.cache
+C:\Users\ted\Desktop\Projects\Tier 2\pjEngine\pjEngine test game\obj\x86\Release\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\ted\Desktop\Projects\Tier 2\pjEngine\pjEngine test game\obj\x86\Release\pjEngine_test_game.obj.x86.Release.Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\ted\Desktop\Projects\Tier 2\pjEngine\pjEngine test game\obj\x86\Release\pjEngine test game.exe
+C:\Users\ted\Desktop\Projects\Tier 2\pjEngine\pjEngine test game\obj\x86\Release\pjEngine test game.pdb
+C:\Users\ted\Desktop\Projects\Tier 2\pjEngine\pjEngine test game\bin\x86\Debug\pjEngine test game.exe
+C:\Users\ted\Desktop\Projects\Tier 2\pjEngine\pjEngine test game\bin\x86\Debug\pjEngine test game.pdb
+C:\Users\ted\Desktop\Projects\Tier 2\pjEngine\pjEngine test game\bin\x86\Debug\pjEngine 2.0.dll
+C:\Users\ted\Desktop\Projects\Tier 2\pjEngine\pjEngine test game\bin\x86\Debug\pjEngine 2.0.pdb
+C:\Users\ted\Desktop\Projects\Tier 2\pjEngine\pjEngine test game\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\ted\Desktop\Projects\Tier 2\pjEngine\pjEngine test game\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\ted\Desktop\Projects\Tier 2\pjEngine\pjEngine test game\obj\x86\Debug\pjEngine_test_game.obj.x86.Debug.Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\ted\Desktop\Projects\Tier 2\pjEngine\pjEngine test game\obj\x86\Debug\pjEngine test game.exe
+C:\Users\ted\Desktop\Projects\Tier 2\pjEngine\pjEngine test game\obj\x86\Debug\pjEngine test game.pdb

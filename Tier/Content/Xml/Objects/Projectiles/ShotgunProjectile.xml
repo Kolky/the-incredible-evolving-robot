@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<object name="ShotgunProjectile" type="projectile" xmlns="Objects">
+  <effect name="AlphaBlend"/>
+  <scale x="0.25" y="0.25" z="0.25"/>
+  
+  <movable/>
+
+  <temporary>
+    <ttl>2500</ttl>
+  </temporary>
+
+  <specific>
+    <speed>60</speed>
+    <damage>5</damage>
+  </specific> 
+</object>

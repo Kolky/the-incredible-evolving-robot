@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<object name="PlasmaTurret" type="plasmaturret" xmlns="Objects">
+  <model name="Turret"/>
+  <effect name="DefaultTextured"/>
+
+  <collision>
+    <boundingbox >
+      <position x="0" y="0" z="0"/>
+      <bottomleft x="-1" y="-1" z="-1"/>
+      <topright x="1" y="1" z="1"/>
+    </boundingbox>
+  </collision>
+
+  <movable/>
+
+  <destroyable>
+    <health>1</health>
+  </destroyable>
+
+  <attachable>
+    <connection>
+      <position x="0" y="0" z="0"/>
+      <pivot x="0" y="0" z="-1"/>      
+    </connection>
+  </attachable>
+
+  <specific>
+	<turn_speed>0.1</turn_speed>
+	<shoot_angle>75</shoot_angle>
+    <cooldown>500</cooldown>
+    <range>100</range>
+    <projectile>Plasma</projectile>
+    <projectile_color x="0" y="255" z="0"/>
+    <projectile_origin x="0" y="0" z="4"/>
+    <texture>Turret-color</texture>
+  </specific>
+</object>
