@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<object name="LaserBeamFire" type="billboard" xmlns="Objects">
+  <effect name="AlphaBlend"/>
+  <rotation x="0" y="0" z="0"/>
+  
+  <specific>
+    <animatedtexture assetname="LaserBeamFire" count="0"/>
+  </specific>
+</object>

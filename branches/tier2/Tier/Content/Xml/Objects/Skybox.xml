@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<object name="Skybox" type="skybox" xmlns="Objects">
+  <model name="Skybox"/>
+  <effect name="Skybox"/>
+
+  <specific>
+    <skyboxtexture>Lagoon</skyboxtexture>
+  </specific>
+</object>

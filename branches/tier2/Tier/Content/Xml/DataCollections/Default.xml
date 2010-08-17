@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<datacollection name="Default" rootfolder="Content">
+	<models rootfolder="Models//"/>
+
+	<effects rootfolder="Effects//"/>
+	
+	<effects rootfolder="Effects//Bloom//"/>
+	
+  <textures rootfolder="Textures//"/>
+
+  <textures rootfolder="Textures//Tedris//"/>
+
+  <textures rootfolder="Textures//Animated//"/>
+  
+  <textures rootfolder="Textures//Explosion//"/>
+  
+  <textures rootfolder="Textures//WeaponUpgrades//"/>
+  
+  <fonts rootfolder="Fonts//"/>
+
+</datacollection >

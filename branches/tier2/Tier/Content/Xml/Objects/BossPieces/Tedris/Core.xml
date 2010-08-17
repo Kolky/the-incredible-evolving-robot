@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<object name="Core" type="bosspiece" xmlns="Objects">
+  <model name="TedrisCore"/>
+  <effect name="Transparent"/>
+  
+  <collision>
+    <boundingbox >
+      <position x="0" y="0" z="0"/>
+      <bottomleft x="-4" y="-1" z="-1.0"/>
+      <topright x="4" y="1" z="1.0"/>
+    </boundingbox>
+
+	  <boundingbox >
+		  <position x="0" y="0" z="0"/>
+		  <bottomleft x="-4" y="-3.5" z="-1.0"/>
+		  <topright x="-2" y="3" z="1.0"/>
+	  </boundingbox>
+
+	  <boundingbox >
+		  <position x="0" y="0" z="0"/>
+		  <bottomleft x="2" y="-3.5" z="-1.0"/>
+		  <topright x="4" y="3.5" z="1.0"/>
+	  </boundingbox>
+  </collision>
+
+  <movable/>
+
+  <growable>
+    <growth_templates id="testboss">
+      <growth_template>0_0_+L</growth_template>
+      <growth_template>1_0_+Bar</growth_template>
+      <growth_template>2_0_+L</growth_template>
+      <growth_template>3_0_+T</growth_template>
+      
+      <growth_template>0_1_+L</growth_template>
+      <growth_template>1_1_+Bar</growth_template>
+      <growth_template>2_1_+L</growth_template>
+      <growth_template>3_1_+T</growth_template>
+
+      <growth_template>0_1_+Bar</growth_template>
+      <growth_template>1_1_+L</growth_template>
+      <growth_template>2_0_+Bar</growth_template>
+      <growth_template>3_1_+L</growth_template>
+
+      <growth_template>0_1_+Step</growth_template>
+      <growth_template>1_1_+Step</growth_template>
+      <growth_template>2_0_+Step</growth_template>
+      <growth_template>3_1_+Step</growth_template>
+
+
+      <growth_template>4_0_-PlasmaTurret</growth_template>
+      <growth_template>5_0_-PlasmaTurret</growth_template>
+      <!--
+      <growth_template>0_1_-PlasmaTurret</growth_template>
+      <growth_template>0_1_~Swirl</growth_template>
+      -->
+    </growth_templates>
+  </growable>
+  
+ <!-- <destroyable/>-->
+  
+  <attachable>
+    <connection>
+      <position x="2.75" y="4.0" z="0"/>
+      <pivot x="0" y="1" z="0"/>
+    </connection>
+
+    <connection>
+      <position x="-2.75" y="4.0" z="0"/>
+      <pivot x="0" y="1" z="0"/>
+    </connection>
+    
+    <connection>
+      <position x="2.75" y="-4.0" z="0"/>
+      <pivot x="0" y="-1" z="0"/>
+    </connection>
+
+    <connection>
+      <position x="-2.75" y="-4.0" z="0"/>
+      <pivot x="0" y="-1" z="0"/>
+    </connection>
+	  
+	  <connection>
+		  <position x="-3" y="0" z="0"/>
+		  <pivot x="-1" y="0" z="0"/>
+	  </connection>
+	  
+	  <connection>
+		  <position x="3" y="0" z="0"/>
+		  <pivot x="1" y="0" z="0"/>
+	  </connection>
+
+    <connection>
+      <position x="2.5" y="0" z="1"/>
+      <pivot x="0" y="0" z="1"/>
+    </connection>
+
+    <connection>
+      <position x="-2.5" y="0" z="1"/>
+      <pivot x="0" y="0" z="1"/>
+    </connection>
+
+    <connection>
+      <position x="2.5" y="0" z="-1"/>
+      <pivot x="0" y="0" z="-1"/>
+    </connection>
+
+    <connection>
+      <position x="-2.5" y="0" z="-1"/>
+      <pivot x="0" y="0" z="-1"/>
+    </connection>
+    
+  </attachable>
+
+  <specific>
+    <name>TedrisCore</name>
+    <core/>
+    <diffuse_map>TedrisCore-color</diffuse_map>
+    <specular_map>TedrisCore-specular</specular_map>
+    <normal_map>TedrisCore-normal</normal_map>
+  </specific>
+</object>

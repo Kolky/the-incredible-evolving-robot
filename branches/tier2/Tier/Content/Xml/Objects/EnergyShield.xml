@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<object name="EnergyShield" type="energyshield" xmlns="Objects">
+  <model name="EnergyShield"/>
+  <effect name="Transparent"/>
+</object>

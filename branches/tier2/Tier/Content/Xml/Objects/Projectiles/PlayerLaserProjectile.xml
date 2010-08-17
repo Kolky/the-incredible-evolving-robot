@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<object name="PlayerLaserProjectile" type="playerlaserprojectile" xmlns="Objects">
+  <model name="Laser"/>
+  <effect name="AlphaBlend"/>
+	<scale x="0.2" y="0.2" z="0.2"/>
+	
+  <temporary>
+    <ttl>1500</ttl>
+  </temporary>
+  
+  <movable/>
+
+  <specific>
+    <speed>40</speed>
+    <damage>400</damage>
+  </specific>
+</object>

@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<object name="Rocket" type="rocketprojectile" xmlns="Objects">
+  <model name="Rocket"/>
+  <effect name="DefaultTextured"/>
+  
+  <temporary>
+    <ttl>10000</ttl>
+  </temporary>
+  
+  <movable/>
+
+  <collision>
+    <boundingbox >
+      <position x="0" y="0" z="0"/>
+      <bottomleft x="-1" y="-1" z="-1"/>
+      <topright x="1" y="1" z="1"/>
+    </boundingbox>
+  </collision>
+  
+  <specific>
+    <speed>40</speed>
+    <damage>300</damage>
+    <behaviour>heatseaking</behaviour>
+  </specific>
+</object>

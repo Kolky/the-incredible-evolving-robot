@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<object name="Plasma" type="projectile" xmlns="Objects">  
+  <effect name="AlphaBlend"/>
+  <scale x="0.5" y="0.5" z="0.5"/>
+  <movable/>
+
+  <temporary>
+    <ttl>2500</ttl>
+  </temporary>
+  
+  <specific>
+    <speed>30</speed>
+    <damage>2</damage>
+  </specific>
+</object>

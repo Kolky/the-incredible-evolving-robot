@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<object name="Wing" type="bosspiece" xmlns="Objects">
+  <model name="TedrisWing"/>
+  <effect name="Transparent"/>
+  <color x="0" y="1" z="0"/>  
+  <rotation/>
+
+  <collision>
+    <boundingbox >
+      <position x="0" y="0" z="0"/>
+      <bottomleft x="-1.0" y="4.5" z="-1.0"/>
+      <topright x="1.0" y="0" z="1.0"/>
+    </boundingbox>
+  </collision>
+
+  <movable/>
+  
+  <attachable>
+    <connection>
+      <position x="0" y="0.0" z="0"/>
+      <pivot x="0" y="-1" z="0"/>
+    </connection>
+  </attachable>
+
+  <specific>
+    <name>TedrisWing</name>
+    <diffuse_map>TedrisWing-color</diffuse_map>
+    <specular_map>TedrisWing-specular</specular_map>
+    <normal_map>TedrisWing-normal</normal_map>
+  </specific>
+</object>

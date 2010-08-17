@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<object name="Step" type="bosspiece" xmlns="Objects">
+  <model name="TedrisStep"/>
+  <effect name="Transparent"/>
+  <color x="0" y="1" z="1"/>
+  
+  <rotation/>
+
+  <collision>
+    <boundingbox >
+      <position x="0" y="0" z="0"/>
+      <bottomleft x="-2" y="-1.0" z="-1"/>
+      <topright x="0" y="3.0" z="1"/>
+    </boundingbox>
+    <boundingbox >
+      <position x="0" y="0" z="0"/>
+      <bottomleft x="2" y="-3.0" z="-1"/>
+      <topright x="0" y="1.0" z="1"/>
+    </boundingbox>
+  </collision>
+
+  <movable/>
+
+  <growable>
+    <growth_templates id="testboss">
+      <growth_template>0_0_+T</growth_template>
+      <growth_template>1_0_+T</growth_template>
+
+      <growth_template>0_0_+Bar</growth_template>
+      <growth_template>1_0_+Bar</growth_template>
+
+      <growth_template>0_0_+L</growth_template>
+      <growth_template>1_0_+L</growth_template>
+
+      <growth_template>1_0_+Wing</growth_template>
+      <growth_template>1_0_+Step</growth_template>
+
+    </growth_templates>
+  </growable>
+  
+  <attachable>
+    <connection>
+      <position x="-1" y="3" z="0"/>
+      <pivot x="0" y="1" z="0"/>
+    </connection>
+    <connection>
+      <position x="1" y="-3" z="0"/>
+      <pivot x="0" y="-1" z="0"/>
+    </connection>
+  </attachable>
+
+  <specific>
+    <name>TedrisStep</name>
+    <diffuse_map>TedrisStep-color</diffuse_map>
+    <specular_map>TedrisStep-specular</specular_map>
+    <normal_map>TedrisStep-normal</normal_map>
+  </specific>
+</object>

@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<object name="Player" type="player" xmlns="Objects">
+  <model name="Fighter"/>
+  <effect name="DefaultTextured"/>  
+  <scale x="0.1" y="0.1" z="0.1"/>
+  
+  <collision>
+    <boundingbox >
+      <position x="0" y="0" z="0"/>
+      <bottomleft x="-2" y="0" z="-1"/>
+      <topright x="2" y="4.5" z="1"/>
+    </boundingbox>
+  </collision>
+
+  <destroyable>
+    <health>100</health>
+  </destroyable>
+  
+  <movable/>
+
+  <specific>
+    <movementspeed_circle>0.6</movementspeed_circle>
+    <movementspeed_zoom>40</movementspeed_zoom>
+    <player_weapon_cooldown>100</player_weapon_cooldown>
+    <diffuse_map>Player-color</diffuse_map>
+    <specular_map>Player-specular</specular_map>
+    <normal_map>Player-normal</normal_map>
+  </specific>
+</object>
