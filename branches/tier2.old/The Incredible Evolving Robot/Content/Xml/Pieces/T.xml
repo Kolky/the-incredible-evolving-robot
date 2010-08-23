@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<piece xmlns="TierPieces">
+	<name>T</name>
+	<connection>
+		<position x="-1.5" y="0.0" z="0.5"/>
+		<pivot x="-1" y="0" z="0"/>
+	</connection>
+	<connection>
+		<position x="1.5" y="0" z="0.5"/>
+		<pivot x="1" y="0" z="0"/>
+	</connection>
+	<connection>
+		<position x="0" y="0" z="-1"/>
+		<pivot x="0" y="0" z="-1"/>
+	</connection>
+
+	<collisionvolumes>
+		<bar>
+			<boundsleft x="1.5" y="0.5" z="0.5"/>
+			<boundsright x="1.5" y="0.5" z="0.5"/>
+			<offset x="0" y="0" z="0.5"/>
+		</bar>
+		<box>
+			<bounds x="0.5" y="0.5" z="0.5"/>
+			<offset x="0" y="0" z="-0.5"/>
+		</box>
+	</collisionvolumes>
+</piece>

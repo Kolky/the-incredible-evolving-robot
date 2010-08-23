@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<piece xmlns="TierPieces">
+	<name>Bar</name>
+	<connection>
+		<position x="-2" y="0" z="0"/>
+		<pivot x="-1" y="0" z="0"/>
+	</connection>
+	<connection>
+		<position x="2" y="0" z="0"/>
+		<pivot x="1" y="0" z="0"/>
+	</connection>
+
+	<collisionvolumes>
+		<bar>
+			<boundsleft x="3.5" y="0.5" z="0.5"/>
+			<boundsright x="0.5" y="0.5" z="0.5"/>
+			<offset x="1.5" y="0" z="0"/>
+		</bar>
+	</collisionvolumes>
+</piece>
